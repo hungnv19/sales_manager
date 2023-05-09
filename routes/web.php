@@ -14,5 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.layouts.admin');
 });
+
+
+// Route::prefix('admin')->group(function () {
+//     return view('admin.layouts.client');
+//     Route::get('dashboard', [HomeController::class, 'index'])->name('home.index');
+//     Route::resource('user', UserController::class);
+//     Route::resource('category', CategoryController::class);
+//     Route::resource('product', ProductController::class);
+//     Route::resource('stock', StockController::class);
+// });
