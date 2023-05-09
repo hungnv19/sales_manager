@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::prefix('/')->name('')->group(function () {
     Route::get('/', [ClientController::class, 'index'])->name('home');
 
@@ -34,27 +36,45 @@ Route::prefix('/')->name('')->group(function () {
 
 
 
+Route::middleware('user')->group(function () {
+
+    //Cart Routes
+    // Route::get('/gift-card-list', [GiftCardController::class, 'getGiftCardList']);
+    // Route::post('/cart/orders', [CartController::class, 'order'])->name('cart.orders');
+    Route::resource('cart', CartController::class);
+    // Route::get('/cart/delete/{id}', [CartController::class, 'cartDelete']);
+    // Route::get('/cart-products', [CartController::class, 'cartProducts']);
+    // Route::get('cart/addToCart/{id}', [CartController::class, 'addToCart'])->name('cart.addToCart');
+
+    // //Order
+    // Route::resource('order', OrderController::class);
+
+    // //profile
+    // Route::get('/profile', [ClientController::class, 'profile'])->name('profile');
+    // Route::post('/profile', [ClientController::class, 'updateProfile'])->name('profile-update');
+});
+
+
+
+
+
+Route::middleware('admin')->group(function () {
+    Route::get('dashboard', [HomeController::class, 'index'])->name('home.index');
+    Route::resource('user', UserController::class);
+    Route::resource('category', CategoryController::class);
+    Route::resource('product', ProductController::class);
+    Route::resource('stock', StockController::class);
+});
+
 // Route::get('/', function () {
 //     return view('admin.layouts.admin');
 // });
 
 Route::get('register', [RegisterController::class, 'create'])->name('register.create');
 Route::post('register', [RegisterController::class, 'store'])->name('register.store');
-
 Route::get('login', [LoginController::class, 'create'])->name('login.create');
 Route::post('login', [LoginController::class, 'store'])->name('login.store');
-
 Route::get('/logout', [LoginController::class, 'destroy']);
-// Route::prefix('admin')->group(function () {
-//     return view('admin.layouts.client');
-//     Route::get('dashboard', [HomeController::class, 'index'])->name('home.index');
-//     Route::resource('user', UserController::class);
-//     Route::resource('category', CategoryController::class);
-//     Route::resource('product', ProductController::class);
-//     Route::resource('stock', StockController::class);
-// });
-
-
 
 Route::post('check-mail-register', [RegisterController::class, 'checkMailRegister'])->name('register.checkMail');
 Route::post('/product/checkCode', [ProductController::class, 'checkProductCode'])->name('product.checkCode');
