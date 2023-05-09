@@ -19,7 +19,9 @@
     "dependencies": {
         "@vee-validate/i18n": "^4.9.1",
         "@vee-validate/rules": "^4.9.1",
+        "jquery": "^3.6.4",
         "sass": "^1.62.1",
+        "sass-loader": "^13.2.2",
         "vee-validate": "^4.9.1",
         "vue-form": "^4.10.3",
         "vue-loader": "^17.0.1"

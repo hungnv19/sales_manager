@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,10 +14,29 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::prefix('/')->name('')->group(function () {
+    Route::get('/', [ClientController::class, 'index'])->name('home');
 
-Route::get('/', function () {
-    return view('admin.layouts.admin');
+    Route::get('/about', function () {
+        return view('client.pages.about');
+    });
+    Route::get('/contact', function () {
+        return view('client.pages.contact');
+    });
+    Route::get('/blog', function () {
+        return view('client.pages.blog');
+    });
+    // Route::get('/product-detail/{id}', [ClientController::class, 'productDetail'])->name('productDetail');
+    // Route::get('/shop', [ClientController::class, 'shop'])->name('shop');
+    // Route::get('/categoryProducts/{id}', [ClientController::class, 'categoryProducts'])->name('categoryProducts');
+    // Route::get('/searchProduct', [ClientController::class, 'searchProduct'])->name('searchProduct');
 });
+
+
+
+// Route::get('/', function () {
+//     return view('admin.layouts.admin');
+// });
 
 Route::get('register', [RegisterController::class, 'create'])->name('register.create');
 Route::post('register', [RegisterController::class, 'store'])->name('register.store');
@@ -32,3 +53,9 @@ Route::get('/logout', [LoginController::class, 'destroy']);
 //     Route::resource('product', ProductController::class);
 //     Route::resource('stock', StockController::class);
 // });
+
+
+
+Route::post('check-mail-register', [RegisterController::class, 'checkMailRegister'])->name('register.checkMail');
+Route::post('/product/checkCode', [ProductController::class, 'checkProductCode'])->name('product.checkCode');
+Route::post('check-user-login', [LoginController::class, 'checkUserLogin'])->name('login.checkUserLogin');

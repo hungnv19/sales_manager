@@ -1,4 +1,4 @@
-@extends('layout.client')
+@extends('client')
 @section('content')
     <section class="content">
         <h1 style="text-align: center">Register</h1>
