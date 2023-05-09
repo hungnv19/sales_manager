@@ -17,6 +17,11 @@
         "vue": "^3.2.47"
     },
     "dependencies": {
+        "@vee-validate/i18n": "^4.9.1",
+        "@vee-validate/rules": "^4.9.1",
+        "sass": "^1.62.1",
+        "vee-validate": "^4.9.1",
+        "vue-form": "^4.10.3",
         "vue-loader": "^17.0.1"
     }
 }
