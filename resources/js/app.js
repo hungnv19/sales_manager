@@ -4,7 +4,7 @@ require('./bootstrap');
 
 import { createApp } from 'vue';
 
-// import $ from "jquery";
+import $ from "jquery";
 import { configure, defineRule } from "vee-validate";
 
 
@@ -18,7 +18,7 @@ import RegisterForm from './components/auth/register/index.vue';
 
 
 
-// import DataEmpty from './components/common/dataEmpty.vue';
+import DataEmpty from './components/common/dataEmpty.vue';
 
 
 
@@ -28,7 +28,7 @@ const app = createApp({});
 
 
 
-// app.component("data-empty", DataEmpty);
+app.component("data-empty", DataEmpty);
 
 app.component("login-form", LoginForm);
 app.component("register-form", RegisterForm);
