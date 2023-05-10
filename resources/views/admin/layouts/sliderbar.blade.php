@@ -12,11 +12,11 @@
             <div class="image">
                 <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
-            {{-- @if (auth()->check())
+            @if (auth()->check())
                 <div class="info">
                     <a href="#" class="d-block">{{ auth()->user()->name }}</a>
                 </div>
-            @endif --}}
+            @endif
         </div>
 
         <nav class="mt-2">
@@ -33,7 +33,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a {{-- href="{{route('home.index')}}" --}} class="nav-link">
+                            <a href="{{route('home.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Dashboard </p>
                             </a>
@@ -53,7 +53,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a {{-- href="{{route('stock.index')}}" --}} class="nav-link">
+                            <a href="{{route('stock.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>List </p>
                             </a>
@@ -75,7 +75,7 @@
 
 
                         <li class="nav-item">
-                            <a {{-- href="{{ route('category.index') }}" --}} class="nav-link">
+                            <a href="{{ route('category.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>List</p>
                             </a>
@@ -94,7 +94,7 @@
 
 
                         <li class="nav-item">
-                            <a {{-- href="{{ route('product.index') }}" --}} class="nav-link">
+                            <a href="{{ route('product.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>List</p>
                             </a>
@@ -112,7 +112,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a {{-- href="{{ route('user.index') }}"  --}} class="nav-link">
+                            <a href="{{ route('user.index') }}"  class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>List</p>
                             </a>
