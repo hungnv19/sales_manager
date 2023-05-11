@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -17,7 +18,7 @@ class LoginController extends Controller
      */
     public function __construct(User $user)
     {
-        
+
         $this->user = $user;
     }
     /**
@@ -49,17 +50,9 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        
         if (!auth()->attempt(request(['email', 'password']))) {
             return abort('403');
         }
-
-        // if (Auth::check()&&Auth::user()->role === 1) {
-        //     return $next($request);
-        // } else {
-        //     return redirect("/home");
-        // }
-       
         return redirect()->route('home.index');
     }
 
@@ -110,7 +103,8 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
         return redirect('/login');
     }
-    function checkUserLogin(Request $request){
+    function checkUserLogin(Request $request)
+    {
         if ($this->checkUser($request)) {
             return response()->json(['message' => 'Logged in successfully']);
         } else {

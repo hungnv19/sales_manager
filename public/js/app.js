@@ -23462,9 +23462,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-// import DashBroad from './components/DashBroad.vue';
-
-
 
 
 
@@ -23475,9 +23472,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({});
-
-// app.component("dash-broad", DashBroad);
-
 app.component("category-create", _components_admin_category_create_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
 app.component("category-edit", _components_admin_category_edit_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
 app.component("user-create", _components_admin_user_create_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);

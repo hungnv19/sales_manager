@@ -9,7 +9,7 @@ import { configure, defineRule } from "vee-validate";
 
 
 
-// import DashBroad from './components/DashBroad.vue';
+
 
 
 
@@ -33,7 +33,7 @@ import DataEmpty from './components/common/dataEmpty.vue';
 
 const app = createApp({});
 
-// app.component("dash-broad", DashBroad);
+
 
 app.component("category-create", CategoryCreate);
 app.component("category-edit", CategoryEdit);   
