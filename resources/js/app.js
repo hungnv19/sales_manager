@@ -29,7 +29,7 @@ import StockEdit from './components/admin/stock/edit.vue';
 
 import DataEmpty from './components/common/dataEmpty.vue';
 
-
+import UserProfile from './components/client/profile/index.vue';
 
 const app = createApp({});
 
@@ -51,6 +51,6 @@ app.component("data-empty", DataEmpty);
 app.component("login-form", LoginForm);
 app.component("register-form", RegisterForm);
 
-
+app.component("user-profile", UserProfile);
 
 app.mount("#app");

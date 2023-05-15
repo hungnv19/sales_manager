@@ -75,16 +75,14 @@ class ClientController extends BaseController
     }
     public function updateProfile(Request $request)
     {
-       
-            $user =  $this->user->where('id', Auth::user()->id)->first();
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->phone = $request->phone;
-            $user->address = $request->address;
-            $user->save();
-            $this->setFlash(__('Cập nhật  thành công'));
-            return redirect()->back();
-       
-       
+
+        $user =  $this->user->where('id', Auth::user()->id)->first();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->save();
+        $this->setFlash(__('Cập nhật  thành công'));
+        return redirect()->back();
     }
 }
