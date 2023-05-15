@@ -37,8 +37,9 @@ class LoginController extends Controller
      */
     public function create()
     {
+
         return view('auth.login.index', [
-            'title' => 'Dang nhap',
+            'title' => 'Login'
         ]);
     }
 

@@ -1,84 +1,100 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-body">
-            <VeeForm
-              as="div"
-              v-slot="{ handleSubmit }"
-              class="form-owner"
-              @invalid-submit="onInvalidSubmit"
+  <section class="vh-100">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img
+            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+            class="img-fluid"
+            alt="Sample image"
+          />
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <VeeForm
+            as="div"
+            v-slot="{ handleSubmit }"
+            class="form-owner"
+            @invalid-submit="onInvalidSubmit"
+          >
+            <form
+              method="POST"
+              @submit="handleSubmit($event, onSubmit)"
+              ref="formData"
+              enctype="multipart/form-data"
+              :action="data.urlStore"
             >
-              <form
-                method="POST"
-                @submit="handleSubmit($event, onSubmit)"
-                ref="formData"
-                enctype="multipart/form-data"
-                :action="data.urlStore"
-              >
-                <Field type="hidden" :value="csrfToken" name="_token" />
+              <Field type="hidden" :value="csrfToken" name="_token" />
+              <div
+                class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start"
+              ></div>
 
-                <div class="form-group">
-                  <label class="" require>Name</label>
-                  <Field
-                    type="text"
-                    name="name"
-                    autocomplete="off"
-                    v-model="model.name"
-                    rules="required|max:128"
-                    class="form-control"
-                    placeholder="Enter Name"
-                  />
+              <div class="divider d-flex align-items-center my-4"></div>
 
-                  <ErrorMessage class="error" name="name" />
-                </div>
-                <div class="form-group">
-                  <label class="" require>Email</label>
-                  <Field
-                    type="text"
-                    name="email"
-                    autocomplete="off"
-                    v-model="model.email"
-                    rules="required|max:128|email|unique_email"
-                    class="form-control"
-                    placeholder="Enter email"
-                  />
+              <div class="form-group">
+                <label class="" require>Name</label>
+                <Field
+                  type="text"
+                  name="name"
+                  autocomplete="off"
+                  v-model="model.name"
+                  rules="required|max:128"
+                  class="form-control"
+                  placeholder="Enter Name"
+                />
 
-                  <ErrorMessage class="error" name="email" />
-                </div>
-                <div class="form-group">
-                  <label class="" require>Password</label>
-                  <Field
-                    type="password"
-                    name="password"
-                    autocomplete="off"
-                    v-model="model.password"
-                    rules="required|max:128"
-                    class="form-control"
-                    placeholder="Enter password"
-                  />
+                <ErrorMessage class="error" name="name" />
+              </div>
+              <div class="form-group">
+                <label class="" require>Email</label>
+                <Field
+                  type="text"
+                  name="email"
+                  autocomplete="off"
+                  v-model="model.email"
+                  rules="required|max:128|email|unique_email"
+                  class="form-control"
+                  placeholder="Enter email"
+                />
 
-                  <ErrorMessage class="error" name="password" />
-                </div>
+                <ErrorMessage class="error" name="email" />
+              </div>
+              <div class="form-group">
+                <label class="" require>Password</label>
+                <Field
+                  type="password"
+                  name="password"
+                  autocomplete="off"
+                  v-model="model.password"
+                  rules="required|max:128"
+                  class="form-control"
+                  placeholder="Enter password"
+                />
 
-                <div class="col-md-12 text-center btn-box">
-                  <a
-                    :href="data.urlBack"
-                    class="btn btn-outline-secondary"
-                    style="margin-right: 10px"
-                  >
-                    Back
-                  </a>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-              </form>
-            </VeeForm>
-          </div>
+                <ErrorMessage class="error" name="password" />
+              </div>
+
+              <div class="text-center text-lg-start mt-4 pt-2">
+                <a
+                  :href="data.urlBack"
+                  class="btn btn-outline-secondary btn-lg"
+                  style="margin-right: 10px"
+                >
+                  Back
+                </a>
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-lg"
+                  style="padding-left: 2.5rem; padding-right: 2.5rem"
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+          </VeeForm>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -148,10 +164,9 @@ export default {
       return axios
         .post(that.data.urlCheckEmail, {
           value: value,
-         
         })
         .then(function (response) {
-          return response.data.valid
+          return response.data.valid;
         })
         .catch((error) => {});
     });
@@ -182,5 +197,3 @@ export default {
   },
 };
 </script>
-
-

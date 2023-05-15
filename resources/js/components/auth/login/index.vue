@@ -1,77 +1,123 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-body">
-            <VeeForm
-              as="div"
-              v-slot="{ handleSubmit }"
-              class="form-owner"
-              @invalid-submit="onInvalidSubmit"
+  <section class="vh-100">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img
+            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+            class="img-fluid"
+            alt="Sample image"
+          />
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <VeeForm
+            as="div"
+            v-slot="{ handleSubmit }"
+            class="form-owner"
+            @invalid-submit="onInvalidSubmit"
+          >
+            <form
+              method="POST"
+              @submit="handleSubmit($event, onSubmit)"
+              ref="formData"
+              enctype="multipart/form-data"
+              :action="data.urlStore"
             >
-              <form
-                method="POST"
-                @submit="handleSubmit($event, onSubmit)"
-                ref="formData"
-                enctype="multipart/form-data"
-                :action="data.urlStore"
+              <Field type="hidden" :value="csrfToken" name="_token" />
+              <div
+                class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start"
               >
-                <Field type="hidden" :value="csrfToken" name="_token" />
+                <p class="lead fw-normal mb-0 me-3">Sign in with</p>
+                <button type="button" class="btn btn-primary btn-floating mx-1">
+                  <i class="fab fa-facebook-f"></i>
+                </button>
 
-                <div class="form-group">
-                  <label class="" require>Email</label>
-                  <Field
-                    type="text"
-                    name="email"
-                    autocomplete="off"
-                    v-model="model.email"
-                    rules="required|max:128"
-                    class="form-control"
-                    placeholder="Enter email"
-                  />
+                <button type="button" class="btn btn-primary btn-floating mx-1">
+                  <i class="fab fa-twitter"></i>
+                </button>
 
-                  <ErrorMessage class="error" name="email" />
-                </div>
-                <div class="form-group">
-                  <label class="" require>Password</label>
-                  <Field
-                    type="password"
-                    name="password"
-                    autocomplete="off"
-                    v-model="model.password"
-                    rules="required|max:128"
-                    class="form-control"
-                    placeholder="Enter password"
-                  />
+                <button type="button" class="btn btn-primary btn-floating mx-1">
+                  <i class="fab fa-linkedin-in"></i>
+                </button>
+              </div>
 
-                  <ErrorMessage class="error" name="password" />
-                </div>
-                <div class="form-group">
-                  <div class="d-flex justify-content-center">
-                    <div class="text-danger" v-if="showError">
-                      {{ messageError }}
-                    </div>
+              <div class="divider d-flex align-items-center my-4">
+                <p class="text-center fw-bold mx-3 mb-0">Or</p>
+              </div>
+
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <label class="" require>Email</label>
+                <Field
+                  type="text"
+                  name="email"
+                  autocomplete="off"
+                  v-model="model.email"
+                  rules="required|max:128"
+                  class="form-control"
+                  placeholder="Enter email"
+                />
+
+                <ErrorMessage class="error" name="email" />
+              </div>
+
+              <!-- Password input -->
+              <div class="form-outline mb-3">
+                <label class="" require>Password</label>
+                <Field
+                  type="password"
+                  name="password"
+                  autocomplete="off"
+                  v-model="model.password"
+                  rules="required|max:128"
+                  class="form-control"
+                  placeholder="Enter password"
+                />
+
+                <ErrorMessage class="error" name="password" />
+              </div>
+              <div class="form-group">
+                <div class="d-flex justify-content-center">
+                  <div class="text-danger" v-if="showError">
+                    {{ messageError }}
                   </div>
                 </div>
-
-                <div class="col-md-12 text-center btn-box">
-                  <a
-                    :href="data.urlRegister"
-                    class="btn btn-outline-secondary"
-                    style="margin-right: 10px"
-                  >
-                    Register
-                  </a>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <!-- Checkbox -->
+                <div class="form-check mb-0">
+                  <input
+                    class="form-check-input me-2"
+                    type="checkbox"
+                    value=""
+                    id="form2Example3"
+                  />
+                  <label class="form-check-label" for="form2Example3">
+                    Remember me
+                  </label>
                 </div>
-              </form>
-            </VeeForm>
-          </div>
+                <a href="#!" class="text-body">Forgot password?</a>
+              </div>
+
+              <div class="text-center text-lg-start mt-4 pt-2">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-lg"
+                  style="padding-left: 2.5rem; padding-right: 2.5rem"
+                >
+                  Login
+                </button>
+                <p class="small fw-bold mt-2 pt-1 mb-0">
+                  Don't have an account?
+                  <a :href="data.urlRegister" class="link-danger">Register</a>
+                </p>
+              </div>
+            </form>
+          </VeeForm>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -152,22 +198,26 @@ export default {
       );
     },
     onSubmit() {
-      // let that = this;
-      // axios
-      //   .post(that.data.urlUserLogin)
-      //   .then((res) => {
-      //     if (res.data.error) {
-      //       that.messageError = res.data.error;
-      //       that.showError = true;
-      //     }
-      //   })
-      //   .catch((res) => {
-      //     this.errors = res.response.data.res;
-      //   });
       this.$refs.formData.submit();
     },
   },
 };
 </script>
 
-
+<style scoped>
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.h-custom {
+  height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+  .h-custom {
+    height: 100%;
+  }
+}
+</style>
