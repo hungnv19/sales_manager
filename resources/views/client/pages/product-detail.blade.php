@@ -152,17 +152,17 @@
                                         </div>
                                         <div class="product__details__tab__content__item">
                                             <h5> Mô tả : </h5>
-                                            <p>{{ $product->describe }}</p>
+                                            <p class="note">{{ $product->describe }}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="tabs-6" role="tabpanel">
                                     <div class="product__details__tab__content">
-                                        <div class="product__details__tab__content">
+                                        <div class="product__details__tab__content__item">
                                             <div class="row">
-                                                <div class="col-lg-6">
+                                                {{-- <div class="col-lg-6">
                                                     <div>
-                                                        {{-- @foreach ($comments as $item)
+                                                        @foreach ($comments as $item)
                                                             <div class="review_item">
                                                                 <div class="media">
                                                                     
@@ -176,14 +176,14 @@
                                                                     {{ $item->content }}
                                                                 </p>
                                                             </div>
-                                                        @endforeach --}}
+                                                        @endforeach
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="review_box">
-                                                        <h4>Đăng bình luận</h4>
+                                                </div> --}}
+                                                {{-- <div class="col-lg-6"> --}}
+                                                    {{-- <div class="review_box">
+                                                        
                                                         @if (Auth::user())
-                                                            {{-- <form class="row contact_form"
+                                                            <form class="row contact_form"
                                                                 action="{{ route('comment', $product->id) }}" method="post"
                                                                 id="contactForm" novalidate="novalidate">
                                                                 @csrf
@@ -202,12 +202,13 @@
                                                                         Đăng bình luận
                                                                     </button>
                                                                 </div>
-                                                            </form> --}}
+                                                            </form>
                                                         @else
                                                             <h3>Bạn cần đăng nhập để thực hiện chức năng này!</h3>
                                                         @endif
-                                                    </div>
-                                                </div>
+                                                    </div> --}}
+                                                    
+                                                {{-- </div> --}}
                                             </div>
                                         </div>
                                     </div>

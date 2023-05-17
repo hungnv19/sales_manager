@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('category_id');
             $table->string('product_name');
-            $table->string('describe')->nullable();
+            $table->string('describe', 1024)->nullable();
             $table->string('product_code')->nullable();
             $table->string('root')->nullable();
             $table->string('buying_price')->nullable();

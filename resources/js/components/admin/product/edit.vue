@@ -41,6 +41,7 @@
                         class="form-select"
                         name="category_id"
                         aria-label="Default select example"
+                        rules="required"
                         v-model="model.category_id"
                       >
                         <option value disabled selected>Chọn danh muc</option>
@@ -52,12 +53,13 @@
                           {{ item.label }}
                         </option>
                       </select>
+                      <ErrorMessage class="error" name="category_id" />
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="form-row">
-                    <div class="col-6">
+                    <div class="col-4">
                       <label class="" require>Product Code</label>
                       <Field
                         type="text"
@@ -71,19 +73,30 @@
 
                       <ErrorMessage class="error" name="product_code" />
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                       <label class="" require>Root</label>
                       <Field
                         type="text"
                         name="root"
                         autocomplete="off"
                         v-model="model.root"
-                        rules="required|max:128"
                         class="form-control"
                         placeholder="Enter Root"
                       />
+                    </div>
+                    <div class="col-4">
+                      <label class="" require>Product Quantity</label>
+                      <Field
+                        type="text"
+                        name="product_quantity"
+                        autocomplete="off"
+                        v-model="model.product_quantity"
+                        rules="required|min_value:1"
+                        class="form-control"
+                        placeholder="Enter product quantity"
+                      />
 
-                      <ErrorMessage class="error" name="root" />
+                      <ErrorMessage class="error" name="product_quantity" />
                     </div>
                   </div>
                 </div>
@@ -96,12 +109,9 @@
                         name="buying_price"
                         autocomplete="off"
                         v-model="model.buying_price"
-                        rules="required|max:128"
                         class="form-control"
                         placeholder="Enter buying price"
                       />
-
-                      <ErrorMessage class="error" name="buying_price" />
                     </div>
                     <div class="col-4">
                       <label class="" require>Selling Price</label>
@@ -124,30 +134,27 @@
                         name="buying_date"
                         autocomplete="off"
                         v-model="model.buying_date"
-                        rules="required"
                         class="form-control"
                         placeholder="Enter buying date"
                       />
-
-                      <ErrorMessage class="error" name="buying_date" />
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="form-row">
                     <div class="col-6">
-                      <label class="" require>Product Quantity</label>
+                      <label class="" require>Describe</label>
                       <Field
                         type="text"
-                        name="product_quantity"
+                        name="describe"
                         autocomplete="off"
-                        v-model="model.product_quantity"
-                        rules="required|min_value:1"
+                        v-model="model.describe"
+                        as="textarea"
                         class="form-control"
-                        placeholder="Enter product quantity"
+                        placeholder="Enter Describe"
+                        cols="30"
+                        rows="10"
                       />
-
-                      <ErrorMessage class="error" name="product_quantity" />
                     </div>
                   </div>
                 </div>
@@ -306,7 +313,7 @@ export default {
     configure({
       generateMessage: localize(messError),
     });
-     let that = this;
+    let that = this;
     defineRule("unique_code", (value) => {
       return axios
         .post(that.data.urlCheckCode, {

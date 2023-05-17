@@ -58,7 +58,7 @@
                 </div>
                 <div class="form-group">
                   <div class="form-row">
-                    <div class="col-6">
+                    <div class="col-4">
                       <label class="" require>Product Code</label>
                       <Field
                         type="text"
@@ -72,19 +72,33 @@
 
                       <ErrorMessage class="error" name="product_code" />
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                       <label class="" require>Root</label>
                       <Field
                         type="text"
                         name="root"
                         autocomplete="off"
                         v-model="model.root"
-                        rules="required|max:128"
+                        
                         class="form-control"
                         placeholder="Enter Root"
                       />
 
-                      <ErrorMessage class="error" name="root" />
+                      
+                    </div>
+                    <div class="col-4">
+                      <label class="" require>Product Quantity</label>
+                      <Field
+                        type="text"
+                        name="product_quantity"
+                        autocomplete="off"
+                        v-model="model.product_quantity"
+                        rules="required|min_value:1"
+                        class="form-control"
+                        placeholder="Enter product quantity"
+                      />
+
+                      <ErrorMessage class="error" name="product_quantity" />
                     </div>
                   </div>
                 </div>
@@ -97,12 +111,12 @@
                         name="buying_price"
                         autocomplete="off"
                         v-model="model.buying_price"
-                        rules="required|max:128"
+                        
                         class="form-control"
                         placeholder="Enter buying price"
                       />
 
-                      <ErrorMessage class="error" name="buying_price" />
+                      
                     </div>
                     <div class="col-4">
                       <label class="" require>Selling Price</label>
@@ -125,30 +139,30 @@
                         name="buying_date"
                         autocomplete="off"
                         v-model="model.buying_date"
-                        rules="required"
+                        
                         class="form-control"
                         placeholder="Enter buying date"
                       />
 
-                      <ErrorMessage class="error" name="buying_date" />
+                      
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="form-row">
                     <div class="col-6">
-                      <label class="" require>Product Quantity</label>
+                      <label class="" require>Describe</label>
                       <Field
                         type="text"
-                        name="product_quantity"
+                        name="describe"
                         autocomplete="off"
-                        v-model="model.product_quantity"
-                        rules="required|min_value:1"
+                        v-model="model.describe"
+                        as="textarea"
                         class="form-control"
-                        placeholder="Enter product quantity"
+                        placeholder="Enter Describe"
+                        cols="30"
+                        rows="10"
                       />
-
-                      <ErrorMessage class="error" name="product_quantity" />
                     </div>
                   </div>
                 </div>
@@ -263,6 +277,7 @@ export default {
         product_name: "",
         product_code: "",
         root: "",
+        describe: "",
         buying_price: "",
         selling_price: "",
         buying_date: "",
@@ -285,7 +300,7 @@ export default {
             required: "The product_name field is required.",
             max: "The product_name may not be greater than 128.",
           },
-          root : {
+          root: {
             required: "The root  field is required.",
             max: "The root  may not be greater than 128.",
           },
@@ -304,7 +319,7 @@ export default {
           product_code: {
             required: "The product_code field is required.",
             max: "The product_code may not be greater than 128.",
-            unique_code: "The product_code field is already exists "
+            unique_code: "The product_code field is already exists ",
           },
           product_quantity: {
             required: "The product_quantity field is required.",

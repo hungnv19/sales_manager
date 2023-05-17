@@ -63,6 +63,7 @@ class ProductController extends BaseController
         $product->product_name = $request->product_name;
         $product->product_code = $request->product_code;
         $product->root = $request->root;
+        $product->describe = $request->describe;
         $product->buying_date = $request->buying_date;
         $product->buying_price = strval(intval($request->buying_price));
         $product->selling_price = strval(intval($request->selling_price));
@@ -124,6 +125,7 @@ class ProductController extends BaseController
             $product->product_name = $request->product_name;
             $product->product_code = $request->product_code;
             $product->root = $request->root;
+            $product->describe = $request->describe;
             $product->buying_price = $request->buying_price;
             $product->selling_price = $request->selling_price;
             $product->buying_date = $request->buying_date;
