@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BaseController;
+use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
 
 class ClientController extends BaseController
@@ -26,11 +27,11 @@ class ClientController extends BaseController
     }
     public function index()
     {
-        
+
         $products = $this->product->join('categories', 'categories.id', '=', 'products.category_id')
             ->select('products.*', 'categories.category_name as categories_name')
             ->get();
-       
+
         return view('client.layouts.main', [
             'products' => $products,
         ]);
@@ -38,9 +39,12 @@ class ClientController extends BaseController
     public function productDetail($id)
     {
         $product = Product::find($id)->with('category')->first();
-        
+
+        $comments = Comment::select('id', 'content', 'user_id', 'product_id', 'created_at')->orderBy('id', 'desc')->with('user')->with('product')->get();
+        // dd($comment);
         return view('client.pages.product-detail', [
             'product' => $product,
+            'comments' => $comments,
             'title' => 'Chi tiet san pham'
         ]);
     }
@@ -99,6 +103,18 @@ class ClientController extends BaseController
         $user->address = $request->address;
         $user->save();
         $this->setFlash(__('Cập nhật  thành công'));
+        return redirect()->back();
+    }
+
+    public function postComment(Request $request, $id)
+    {
+        
+        $comment = new Comment();
+        $comment->content = $request->content;
+        $comment->user_id = Auth::user()->id;
+        $comment->product_id = $id;
+        
+        $comment->save();
         return redirect()->back();
     }
 }

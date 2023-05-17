@@ -85,3 +85,5 @@ Route::get('/logout', [LoginController::class, 'destroy']);
 Route::post('check-mail-register', [RegisterController::class, 'checkMailRegister'])->name('register.checkMail');
 Route::post('/product/checkCode', [ProductController::class, 'checkProductCode'])->name('product.checkCode');
 Route::post('check-user-login', [LoginController::class, 'checkUserLogin'])->name('login.checkUserLogin');
+
+Route::post('/post-comment/{id}', [ClientController::class, 'postComment'])->name('post-comment');

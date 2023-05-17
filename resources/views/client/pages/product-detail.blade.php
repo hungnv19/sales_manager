@@ -154,13 +154,14 @@
                                             <h5> Mô tả : </h5>
                                             <p class="note">{{ $product->describe }}</p>
                                         </div>
+                                        <br>
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="tabs-6" role="tabpanel">
                                     <div class="product__details__tab__content">
-                                        <div class="product__details__tab__content__item">
-                                            <div class="row">
-                                                {{-- <div class="col-lg-6">
+
+
+                                        {{-- <div class="col-lg-6">
                                                     <div>
                                                         @foreach ($comments as $item)
                                                             <div class="review_item">
@@ -179,43 +180,119 @@
                                                         @endforeach
                                                     </div>
                                                 </div> --}}
-                                                {{-- <div class="col-lg-6"> --}}
-                                                    {{-- <div class="review_box">
-                                                        
-                                                        @if (Auth::user())
-                                                            <form class="row contact_form"
-                                                                action="{{ route('comment', $product->id) }}" method="post"
-                                                                id="contactForm" novalidate="novalidate">
-                                                                @csrf
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <textarea class="form-control" name="content" id="content" rows="4" placeholder="Message"></textarea>
-                                                                        @if ($errors->has('content'))
-                                                                            <span
-                                                                                class="text-danger">{{ $errors->first('content') }}</span>
-                                                                        @endif
+                                        {{-- <div class="col-lg-6"> --}}
+
+                                        <section style="background-color: #eee;">
+                                            <div class="container my-5 py-5">
+                                                <div class="row d-flex justify-content-center">
+                                                    <div class="col-md-12 col-lg-10 col-xl-8">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <h3>Comments</h3>
+                                                                <hr>
+                                                                @if ($comments->count() > 0)
+                                                                    @foreach ($comments as $comment)
+                                                                        <div class="d-flex flex-start align-items-center">
+                                                                            <div class="col-2">
+                                                                                <img class="rounded-circle shadow-1-strong me-3"
+                                                                                    src="https://antimatter.vn/wp-content/uploads/2022/11/anh-avatar-trang-fb-mac-dinh.jpg"
+                                                                                    alt="avatar" width="60"
+                                                                                    height="60" />
+                                                                            </div>
+
+                                                                            <div class="col-4">
+                                                                                <h6 class="fw-bold text-primary mb-1">
+                                                                                    {{ $comment->user->name }}</h6>
+                                                                                <p class="text-muted small mb-0">
+                                                                                    {{ $comment->created_at }}
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <p class="mt-3 mb-4 pb-2"
+                                                                            style="text-align: justify">
+                                                                            {{ $comment->content }}
+                                                                        </p>
+
+                                                                        <hr>
+                                                                    @endforeach
+                                                                @else
+                                                                    <br>
+                                                                    <data-empty></data-empty>
+                                                                @endif
+
+                                                                {{-- <div class="d-flex flex-start align-items-center">
+                                                                    <div class="col-2">
+                                                                        <img class="rounded-circle shadow-1-strong me-3"
+                                                                            src="https://antimatter.vn/wp-content/uploads/2022/11/anh-avatar-trang-fb-mac-dinh.jpg"
+                                                                            alt="avatar" width="60"
+                                                                            height="60" />
+                                                                    </div>
+
+                                                                    <div class="col-4">
+                                                                        <h6 class="fw-bold text-primary mb-1">
+                                                                            Lily Coleman</h6>
+                                                                        <p class="text-muted small mb-0">
+                                                                            Shared publicly - Jan 2020
+                                                                        </p>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-12 text-right">
-                                                                    <button type="submit" value="submit"
-                                                                        class="btn btn-danger">
-                                                                        Đăng bình luận
-                                                                    </button>
-                                                                </div>
-                                                            </form>
-                                                        @else
-                                                            <h3>Bạn cần đăng nhập để thực hiện chức năng này!</h3>
-                                                        @endif
-                                                    </div> --}}
-                                                    
-                                                {{-- </div> --}}
+
+                                                                <p class="mt-3 mb-4 pb-2" style="text-align: justify">
+                                                                    Lorem ipsum dolor sit amet, consectetur
+                                                                    adipiscing elit, sed do eiusmod
+                                                                    tempor incididunt ut labore et dolore magna
+                                                                    aliqua. Ut enim ad minim veniam,
+                                                                    quis nostrud exercitation ullamco laboris
+                                                                    nisi ut aliquip consequat.
+                                                                </p>
+
+                                                                <hr> --}}
+                                                            </div>
+
+                                                            <div class="card-footer py-3 border-0"
+                                                                style="background-color: #f8f9fa;">
+                                                                @if (Auth::user())
+                                                                    <form action="{{ route('post-comment', $product->id) }}"
+                                                                        method="post" novalidate="novalidate">
+                                                                        @csrf
+
+                                                                        <div class="d-flex flex-start w-100">
+
+                                                                            <div class="form-outline w-100">
+                                                                                <label class="form-label"
+                                                                                    for="textAreaExample">Comment
+                                                                                    Panel</label>
+                                                                                <textarea class="form-control"  name="content" id="textAreaExample" rows="4" style="background: #fff;" rows="4"
+                                                                                    placeholder="Your Message"></textarea>
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="float-end mt-2 pt-1">
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary btn-sm">Post
+                                                                                comment</button>
+                                                                        </div>
+                                                                    </form>
+                                                                @else
+                                                                    <h3>Bạn cần đăng nhập để thực hiện chức năng này!</h3>
+                                                                @endif
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </section>
+
+
                                     </div>
+
                                 </div>
                                 <div class="tab-pane" id="tabs-7" role="tabpanel">
                                     <div class="product__details__tab__content">
-                                        <p class="note">Nam tempus turpis at metus scelerisque placerat nulla deumantos
+                                        <p class="note">Nam tempus turpis at metus scelerisque placerat nulla
+                                            deumantos
                                             solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis
                                             ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo
                                             pharetras loremos.</p>
@@ -245,17 +322,17 @@
                                                 breathable. Velvet is a great choice for dinner party jacket and can be
                                                 worn all year round.</p>
                                         </div>
+                                        <br>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <br>
-                <br>
+                    <br>
+                    <br>
+                </div>
             </div>
-        </div>
     </section>
     <!-- Shop Details Section End -->
 

@@ -165,20 +165,7 @@ class CartController extends BaseController
         
         // try {
             DB::beginTransaction();
-            // if ($request->gift_card_id) {
-            //     $giftCard = GiftCard::find($request->gift_card_id);
-            //     if (!$giftCard) {
-            //         return response()->json(
-            //             [
-            //                 'result' => false
-            //             ],
-            //             200
-            //         );
-            //     }
-            //     $giftBalance = $giftCard->balance;
-            //     $giftCard->balance = $giftBalance >= $request->total ? $giftBalance - $request->total : 0;
-            //     $giftCard->save();
-            // }
+            
             $data = [];	
             $data['user_id'] = Auth::user()->id;
             $data['qty'] = $request->qty;
