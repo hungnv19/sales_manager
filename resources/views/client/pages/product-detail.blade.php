@@ -92,7 +92,7 @@
                     <div class="col-lg-8">
                         <div class="product__details__text">
                             <h3>{{ $product->product_name }}</h3>
-                            <h2 style=" color:red">{{ $product->price }}</h2>
+                            <h2 style=" color:red">{{ number_format($product->selling_price) . ' Đ' }}</h2>
 
                             <div class="product__details__cart__option">
                                 <div class="quantity">

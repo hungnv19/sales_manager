@@ -26,11 +26,11 @@ class ClientController extends BaseController
     }
     public function index()
     {
-        // $products = Product::get();
+        
         $products = $this->product->join('categories', 'categories.id', '=', 'products.category_id')
             ->select('products.*', 'categories.category_name as categories_name')
             ->get();
-        dd($products);
+       
         return view('client.layouts.main', [
             'products' => $products,
         ]);
