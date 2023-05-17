@@ -159,29 +159,6 @@
                                 </div>
                                 <div class="tab-pane" id="tabs-6" role="tabpanel">
                                     <div class="product__details__tab__content">
-
-
-                                        {{-- <div class="col-lg-6">
-                                                    <div>
-                                                        @foreach ($comments as $item)
-                                                            <div class="review_item">
-                                                                <div class="media">
-                                                                    
-                                                                    <div class="media-body">
-                                                                        <h4>{{ $item->user->name }}</h4>
-                                                                        <h5>{{ $item->created_at }}</h5>
-                                                                        
-                                                                    </div>
-                                                                </div>
-                                                                <p>
-                                                                    {{ $item->content }}
-                                                                </p>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-                                                </div> --}}
-                                        {{-- <div class="col-lg-6"> --}}
-
                                         <section style="background-color: #eee;">
                                             <div class="container my-5 py-5">
                                                 <div class="row d-flex justify-content-center">
@@ -220,40 +197,13 @@
                                                                     <br>
                                                                     <data-empty></data-empty>
                                                                 @endif
-
-                                                                {{-- <div class="d-flex flex-start align-items-center">
-                                                                    <div class="col-2">
-                                                                        <img class="rounded-circle shadow-1-strong me-3"
-                                                                            src="https://antimatter.vn/wp-content/uploads/2022/11/anh-avatar-trang-fb-mac-dinh.jpg"
-                                                                            alt="avatar" width="60"
-                                                                            height="60" />
-                                                                    </div>
-
-                                                                    <div class="col-4">
-                                                                        <h6 class="fw-bold text-primary mb-1">
-                                                                            Lily Coleman</h6>
-                                                                        <p class="text-muted small mb-0">
-                                                                            Shared publicly - Jan 2020
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-
-                                                                <p class="mt-3 mb-4 pb-2" style="text-align: justify">
-                                                                    Lorem ipsum dolor sit amet, consectetur
-                                                                    adipiscing elit, sed do eiusmod
-                                                                    tempor incididunt ut labore et dolore magna
-                                                                    aliqua. Ut enim ad minim veniam,
-                                                                    quis nostrud exercitation ullamco laboris
-                                                                    nisi ut aliquip consequat.
-                                                                </p>
-
-                                                                <hr> --}}
                                                             </div>
 
                                                             <div class="card-footer py-3 border-0"
                                                                 style="background-color: #f8f9fa;">
                                                                 @if (Auth::user())
-                                                                    <form action="{{ route('post-comment', $product->id) }}"
+                                                                    <form
+                                                                        action="{{ route('post-comment', $product->id) }}"
                                                                         method="post" novalidate="novalidate">
                                                                         @csrf
 
@@ -263,8 +213,8 @@
                                                                                 <label class="form-label"
                                                                                     for="textAreaExample">Comment
                                                                                     Panel</label>
-                                                                                <textarea class="form-control"  name="content" id="textAreaExample" rows="4" style="background: #fff;" rows="4"
-                                                                                    placeholder="Your Message"></textarea>
+                                                                                <textarea class="form-control" name="content" id="textAreaExample" rows="4" style="background: #fff;"
+                                                                                    rows="4" placeholder="Your Message"></textarea>
 
                                                                             </div>
                                                                         </div>
@@ -284,10 +234,7 @@
                                                 </div>
                                             </div>
                                         </section>
-
-
                                     </div>
-
                                 </div>
                                 <div class="tab-pane" id="tabs-7" role="tabpanel">
                                     <div class="product__details__tab__content">
