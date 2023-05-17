@@ -16,4 +16,9 @@ class Category extends Model
      * @var array
      */
     protected $fillable = ['category_name', 'created_at', 'updated_at'];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

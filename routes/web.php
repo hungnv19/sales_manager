@@ -34,7 +34,7 @@ Route::prefix('/')->name('')->group(function () {
     Route::get('/blog', function () {
         return view('client.pages.blog');
     });
-    // Route::get('/product-detail/{id}', [ClientController::class, 'productDetail'])->name('productDetail');
+    Route::get('/product-detail/{id}', [ClientController::class, 'productDetail'])->name('productDetail');
     // Route::get('/shop', [ClientController::class, 'shop'])->name('shop');
     // Route::get('/categoryProducts/{id}', [ClientController::class, 'categoryProducts'])->name('categoryProducts');
     // Route::get('/searchProduct', [ClientController::class, 'searchProduct'])->name('searchProduct');

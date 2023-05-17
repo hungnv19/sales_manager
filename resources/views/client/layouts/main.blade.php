@@ -19,7 +19,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" type="text/css">
+    {{-- <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" type="text/css"> --}}
     <link rel="stylesheet" href="{{ asset('css/elegant-icons.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}" type="text/css">
@@ -253,7 +253,7 @@
 
                                 <ul class="product__hover">
                                     <li><a href=""><img src="img/icon/heart.png" alt=""></a></li>
-                                    <li><a href="{{ asset('/shop-detail') }}"><img src="img/icon/search.png"
+                                    <li><a href=" {{ route('productDetail', $product->id) }}"><img src="img/icon/search.png"
                                                 alt=""></a></li>
                                 </ul>
                             </div>

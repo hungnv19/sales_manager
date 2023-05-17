@@ -13,22 +13,38 @@ use Illuminate\Support\Facades\DB;
 class ClientController extends BaseController
 {
     public User $user;
+    public Product $product;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(User $user)
+    public function __construct(Product $product, User $user)
     {
         $this->user = $user;
+        $this->product = $product;
     }
     public function index()
     {
-        $products = Product::get();
+        // $products = Product::get();
+        $products = $this->product->join('categories', 'categories.id', '=', 'products.category_id')
+            ->select('products.*', 'categories.category_name as categories_name')
+            ->get();
+        dd($products);
         return view('client.layouts.main', [
             'products' => $products,
         ]);
     }
+    public function productDetail($id)
+    {
+        $product = Product::find($id)->with('category')->first();
+        
+        return view('client.pages.product-detail', [
+            'product' => $product,
+            'title' => 'Chi tiet san pham'
+        ]);
+    }
+
     public function shop()
     {
         $products = Product::select('products.*')
