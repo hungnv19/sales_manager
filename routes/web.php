@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\HomeController;
@@ -44,12 +45,12 @@ Route::prefix('/')->name('')->group(function () {
 Route::middleware('user')->group(function () {
 
     //Cart Routes
-    // Route::get('/gift-card-list', [GiftCardController::class, 'getGiftCardList']);
-    // Route::post('/cart/orders', [CartController::class, 'order'])->name('cart.orders');
+    Route::get('/gift-card-list', [GiftCardController::class, 'getGiftCardList']);
+    Route::post('/cart/orders', [CartController::class, 'order'])->name('cart.orders');
     Route::resource('cart', CartController::class);
-    // Route::get('/cart/delete/{id}', [CartController::class, 'cartDelete']);
-    // Route::get('/cart-products', [CartController::class, 'cartProducts']);
-    // Route::get('cart/addToCart/{id}', [CartController::class, 'addToCart'])->name('cart.addToCart');
+    Route::get('/cart/delete/{id}', [CartController::class, 'cartDelete']);
+    Route::get('/cart-product', [CartController::class, 'cartProducts']);
+    Route::get('cart/addToCart/{id}', [CartController::class, 'addToCart'])->name('cart.addToCart');
 
     // //Order
     // Route::resource('order', OrderController::class);

@@ -31,6 +31,8 @@ import DataEmpty from './components/common/dataEmpty.vue';
 
 import UserProfile from './components/client/profile/index.vue';
 
+import CartList from './components/client/cart/index.vue';
+
 const app = createApp({});
 
 
@@ -52,5 +54,7 @@ app.component("login-form", LoginForm);
 app.component("register-form", RegisterForm);
 
 app.component("user-profile", UserProfile);
+
+app.component("cart-list", CartList);
 
 app.mount("#app");
