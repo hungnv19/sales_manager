@@ -22,11 +22,20 @@ class NewsController extends BaseController
 
     public function index()
     {
-
         $news = $this->new->join('categories', 'categories.id', '=', 'news.category_id')
             ->select('news.*', 'categories.category_name as categories_name')
             ->get();
         return view('admin.new.index', [
+            'news' => $news,
+            'title' => 'Tin tức'
+        ]);
+    }
+    public function blog()
+    {
+        $news = $this->new->join('categories', 'categories.id', '=', 'news.category_id')
+            ->select('news.*', 'categories.category_name as categories_name')
+            ->get();
+        return view('client.pages.blog', [
             'news' => $news,
             'title' => 'Tin tức'
         ]);

@@ -15,6 +15,20 @@
     <section class="blog spad">
         <div class="container">
             <div class="row">
+                @foreach ($news as $new)
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="blog__item">
+                            <div class="blog__item__pic set-bg" data-setbg="{{ Storage::url($new->image) }}">
+                                <img src="{{ Storage::url($new->image) }}" alt="">
+                            </div>
+                            <div class="blog__item__text">
+                                <span><img src="img/icon/calendar.png" alt=""> {{ $new->created_at }}</span>
+                                <h5>{{ $new->title }}</h5>
+                                <a href="">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="blog__item">
                         <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-1.jpg"></div>
@@ -109,7 +123,3 @@
         </div>
     </section>
 @endsection
-
-
-
-
