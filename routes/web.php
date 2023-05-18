@@ -28,9 +28,13 @@ Route::prefix('/')->name('')->group(function () {
     Route::get('/about', function () {
         return view('client.pages.about');
     });
-    Route::get('/contact', function () {
-        return view('client.pages.contact');
-    });
+    // Route::get('/contact', function () {
+    //     return view('client.pages.contact');
+    // });
+
+    Route::get('contact', [ClientController::class, 'contact']);
+    Route::post('contact', [ClientController::class, 'storeContact'])->name('contact.us.store');
+
     Route::get('/blog', function () {
         return view('client.pages.blog');
     });

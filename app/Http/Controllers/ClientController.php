@@ -8,8 +8,11 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BaseController;
+use App\Mail\ContactMail;
 use App\Models\Comment;
+use App\Models\Contact;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ClientController extends BaseController
 {
@@ -108,13 +111,31 @@ class ClientController extends BaseController
 
     public function postComment(Request $request, $id)
     {
-        
+
         $comment = new Comment();
         $comment->content = $request->content;
         $comment->user_id = Auth::user()->id;
         $comment->product_id = $id;
-        
+
         $comment->save();
         return redirect()->back();
+    }
+    public function contact()
+    {
+
+        return view('client.pages.contact');
+    }
+    public function storeContact(Request $request)
+    {
+        $contact = new Contact();
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->phone = $request->phone;
+        $contact->subject = $request->subject;
+        $contact->message = $request->message;
+        $contact->save();
+        $mailContents = $request->all();
+        Mail::to($contact->email)->send(new ContactMail($mailContents));
+        return redirect()->back()->with(['success' => 'Thank you for contact us. we will contact you shortly.']);
     }
 }

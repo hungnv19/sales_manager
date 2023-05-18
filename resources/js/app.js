@@ -33,6 +33,8 @@ import UserProfile from './components/client/profile/index.vue';
 
 import CartList from './components/client/cart/index.vue';
 
+import ContactForm from './components/client/contact/form-contact.vue';
+
 const app = createApp({});
 
 
@@ -56,5 +58,7 @@ app.component("register-form", RegisterForm);
 app.component("user-profile", UserProfile);
 
 app.component("cart-list", CartList);
+
+app.component("contact-form", ContactForm);
 
 app.mount("#app");
