@@ -26,8 +26,6 @@
               <Field type="hidden" :value="csrfToken" name="_token" />
 
               
-
-              <!-- Password input -->
               <div class="form-outline mb-3">
                 <label class="" require>Password</label>
                 <Field
@@ -43,36 +41,18 @@
                 <ErrorMessage class="error" name="password" />
               </div>
               <div class="form-outline mb-3">
-                <label class="" require>Password</label>
+                <label class="" require>Password Confirm</label>
                 <Field
                   type="password"
-                  name="password"
+                  name="password_confirm"
                   autocomplete="off"
-                  v-model="model.password"
+                  v-model="model.password_confirm"
                   rules="required|max:128"
                   class="form-control"
-                  placeholder="Enter password"
+                  placeholder="Enter password_confirm"
                 />
 
-                <ErrorMessage class="error" name="password" />
-              </div>
-             
-              <div class="d-flex justify-content-between align-items-center">
-                <!-- Checkbox -->
-                <div class="form-check mb-0">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="form2Example3"
-                  />
-                  <label class="form-check-label" for="form2Example3">
-                    Remember me
-                  </label>
-                </div>
-                <a :href="data.urlForgotPassword" class="text-body"
-                  >Forgot password?</a
-                >
+                <ErrorMessage class="error" name="password_confirm" />
               </div>
 
               <div class="text-center text-lg-start mt-4 pt-2">
@@ -81,12 +61,8 @@
                   class="btn btn-primary btn-lg"
                   style="padding-left: 2.5rem; padding-right: 2.5rem"
                 >
-                  Login
+                  Chang Pass
                 </button>
-                <p class="small fw-bold mt-2 pt-1 mb-0">
-                  Don't have an account?
-                  <a :href="data.urlRegister" class="link-danger">Register</a>
-                </p>
               </div>
             </form>
           </VeeForm>
@@ -126,10 +102,9 @@ export default {
   data: function () {
     return {
       csrfToken: Laravel.csrfToken,
-      showError: false,
-      messageError: null,
+
       model: {
-        email: "",
+        password_confirm: "",
         password: "",
       },
     };
@@ -138,9 +113,9 @@ export default {
     let messError = {
       en: {
         fields: {
-          email: {
-            required: "The email field is required.",
-            max: "The email may not be greater than 128.",
+          password_confirm: {
+            required: "The password_confirm field is required.",
+            max: "The password_confirm may not be greater than 128.",
           },
           password: {
             required: "The password field is required.",

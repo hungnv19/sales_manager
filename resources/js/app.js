@@ -33,6 +33,8 @@ import UserProfile from './components/client/profile/index.vue';
 
 import CartList from './components/client/cart/index.vue';
 
+import ResetPass from './components/auth/reset-password.vue';
+
 import ContactForm from './components/client/contact/form-contact.vue';
 
 import NewsCreate from './components/admin/new/create.vue';
@@ -43,10 +45,10 @@ const app = createApp({});
 
 
 app.component("category-create", CategoryCreate);
-app.component("category-edit", CategoryEdit);  
+app.component("category-edit", CategoryEdit);
 
 app.component("news-create", NewsCreate);
-app.component("news-edit", NewsEdit);   
+app.component("news-edit", NewsEdit);
 
 app.component("user-create", UserCreate);
 app.component("user-edit", UserEdit);
@@ -66,5 +68,7 @@ app.component("user-profile", UserProfile);
 app.component("cart-list", CartList);
 
 app.component("contact-form", ContactForm);
+
+app.component("reset-pass", ResetPass);
 
 app.mount("#app");
