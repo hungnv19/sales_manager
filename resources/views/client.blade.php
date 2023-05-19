@@ -38,6 +38,7 @@
             JSON_UNESCAPED_UNICODE,
         ) !!};
     </script>
+    
     <style>
         .error{
             color: red;

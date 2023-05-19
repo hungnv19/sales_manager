@@ -29,14 +29,14 @@
 
                         </div>
                     </div>
+                    @if (Session::has('message'))
+                        <div class="alert alert-success" role="alert">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ Session::get('message') }}</strong>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </section>
-
-    @if (Session::has('message'))
-        <div class="alert alert-success" role="alert">
-            {{ Session::get('message') }}
-        </div>
-    @endif
 @endsection
