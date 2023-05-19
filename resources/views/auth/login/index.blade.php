@@ -6,6 +6,7 @@
             :data="{{ json_encode([
                 'urlStore' => route('login.store'),
                 'urlRegister' => route('register.create'),
+                'urlForgotPassword' => route('forget.password.get'),
                 'urlUserLogin' => route('login.checkUserLogin'),
             ]) }}">
         </login-form>

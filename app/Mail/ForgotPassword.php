@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactMail extends Mailable
+class ForgotPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -20,7 +20,6 @@ class ContactMail extends Mailable
     public function __construct($mailData)
     {
         $this->mailData = $mailData;
-      
     }
 
     /**
@@ -31,11 +30,10 @@ class ContactMail extends Mailable
     public function build()
     {
 
-        return $this->subject('Văn Hùng | Nội thất Hàn Quốc')
-            ->view('emails.contact')
+        return $this->subject('Reset Password')
+            ->view('emails.forgetPassword')
             ->with([
                 'data' => $this->mailData,
             ]);
-            
     }
 }
