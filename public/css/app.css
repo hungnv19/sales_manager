@@ -1,1 +1,12 @@
+.container .shop__sidebar__categories .li_cte {
+  list-style: none;
+}
+.container .shop__sidebar__categories .cte-links {
+  text-decoration: none;
+  color: black;
+  list-style: none;
+}
+.container .shop__sidebar__categories .cte-links:hover {
+  color: black;
+}
 

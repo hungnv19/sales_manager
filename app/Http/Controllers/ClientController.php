@@ -44,7 +44,7 @@ class ClientController extends BaseController
         $product = Product::find($id)->with('category')->first();
 
         $comments = Comment::select('id', 'content', 'user_id', 'product_id', 'created_at')->orderBy('id', 'desc')->with('user')->with('product')->get();
-        // dd($comment);
+
         return view('client.pages.product-detail', [
             'product' => $product,
             'comments' => $comments,
@@ -55,7 +55,9 @@ class ClientController extends BaseController
     public function shop()
     {
         $products = Product::select('products.*')
-            ->orderBy('product_name')->with('categories')->paginate(12);
+            ->paginate(12);
+        // $products = Product::select('products.*')
+        //     ->orderBy('product_name')->with('categories')->paginate(12);
         $categories = Category::select('id', 'category_name')->get();
         return view('client.pages.shop', [
             'products' => $products,

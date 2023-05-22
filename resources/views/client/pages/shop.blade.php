@@ -18,6 +18,7 @@
                 </div>
             </div>
         </section>
+        <br>
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -41,8 +42,8 @@
                                             <div class="shop__sidebar__categories">
 
                                                 @foreach ($categories as $category)
-                                                    <li>
-                                                        <a
+                                                    <li class="li_cte">
+                                                        <a class="cte-links"
                                                             href="{{ route('categoryProducts', $category->id) }}">{{ $category->category_name }}</a>
                                                     </li>
                                                 @endforeach
@@ -65,14 +66,23 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="shop__product__option__right">
-                                    <p>Sort by Price:</p>
-                                    <select>
-                                        <option value="">Low To High</option>
-                                        <option value="">$0 - $55</option>
-                                        <option value="">$55 - $100</option>
-                                    </select>
-                                </div>
+
+                               
+                                    <div class="col-6">
+                                        <label for="" class="form-label">Sort by Price:</label>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <select class="form-control " aria-label="Default select example">
+                                            <option value="">Low To High</option>
+                                            <option value="">$0 - $55</option>
+                                            <option value="">$55 - $100</option>
+                                        </select>
+                                    </div>
+
+                                
+
+
                             </div>
                         </div>
                     </div>
@@ -81,10 +91,9 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="single-product">
                                     <div class="product-img">
-                                        {{-- <img class="card-img" src="{{ asset($product->image) }}"
-                                            style="width: 254px; height: 254px;" alt="" /> --}}
+
                                         <img src=" {{ Storage::url($product->image) }}"
-                                            style="width: 254px; height: 254px;" />
+                                            style="width: 254px; height: 254px; object-fit: cover" />
                                         <div class="p_icon">
                                             <a href=" {{ route('productDetail', $product->id) }}">
 
@@ -93,9 +102,7 @@
                                             <a href="#">
                                                 <i class="ti-heart"></i>
                                             </a>
-                                            <a href=" {{ route('cart.addCart', $product->id) }}">
-
-
+                                            <a href=" {{ route('cart.addToCart', $product->id) }}">
                                                 <i class="ti-shopping-cart"></i>
                                             </a>
                                         </div>
@@ -106,9 +113,10 @@
                                             <h4>{{ $product->product_name }}</h4>
                                         </a>
                                         <div class="mt-3">
-                                            <span class="mr-4" style=" color:red">{{ $product->buying_price }}
-                                                <sup>đ</sup></span>
-                                            <del>{{ $product->selling_price }} <sup>đ</sup></del>
+                                            <span class="mr-4" style=" color:red">
+                                                {{ number_format($product->buying_price) . ' Đ' }}</span>
+                                            <del> {{ number_format($product->selling_price) . ' Đ' }}</del>
+
                                         </div>
                                     </div>
                                 </div>

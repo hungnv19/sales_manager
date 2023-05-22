@@ -14,13 +14,14 @@
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
+        "resolve-url-loader": "^5.0.0",
+        "sass": "^1.62.1",
         "vue": "^3.2.47"
     },
     "dependencies": {
         "@vee-validate/i18n": "^4.9.1",
         "@vee-validate/rules": "^4.9.1",
         "jquery": "^3.6.4",
-        "sass": "^1.62.1",
         "sass-loader": "^13.2.2",
         "vee-validate": "^4.9.1",
         "vue-form": "^4.10.3",

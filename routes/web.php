@@ -40,9 +40,9 @@ Route::prefix('/')->name('')->group(function () {
     Route::get('/blog', [NewsController::class, 'blog'])->name('blog');
 
     Route::get('/product-detail/{id}', [ClientController::class, 'productDetail'])->name('productDetail');
-    // Route::get('/shop', [ClientController::class, 'shop'])->name('shop');
-    // Route::get('/categoryProducts/{id}', [ClientController::class, 'categoryProducts'])->name('categoryProducts');
-    // Route::get('/searchProduct', [ClientController::class, 'searchProduct'])->name('searchProduct');
+    Route::get('/shop', [ClientController::class, 'shop'])->name('shop');
+    Route::get('/categoryProducts/{id}', [ClientController::class, 'categoryProducts'])->name('categoryProducts');
+    Route::get('/searchProduct', [ClientController::class, 'searchProduct'])->name('searchProduct');
 });
 
 
