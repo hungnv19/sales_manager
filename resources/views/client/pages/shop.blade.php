@@ -66,64 +66,57 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="col-6">
+                                    <label for="" class="form-label">Sort by Price:</label>
+                                </div>
 
-                               
-                                    <div class="col-6">
-                                        <label for="" class="form-label">Sort by Price:</label>
-                                    </div>
-
-                                    <div class="col-6">
-                                        <select class="form-control " aria-label="Default select example">
-                                            <option value="">Low To High</option>
-                                            <option value="">$0 - $55</option>
-                                            <option value="">$55 - $100</option>
-                                        </select>
-                                    </div>
-
-                                
-
-
+                                <div class="col-6">
+                                    <select class="form-control " aria-label="Default select example">
+                                        <option value="">Low To High</option>
+                                        <option value="">$0 - $55</option>
+                                        <option value="">$55 - $100</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         @foreach ($products as $product)
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single-product">
-                                    <div class="product-img">
+                            @if ($product->product_quantity >= 1)
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
 
-                                        <img src=" {{ Storage::url($product->image) }}"
-                                            style="width: 254px; height: 254px; object-fit: cover" />
-                                        <div class="p_icon">
-                                            <a href=" {{ route('productDetail', $product->id) }}">
+                                    <div class="product__item">
 
-                                                <i class="ti-eye"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="ti-heart"></i>
-                                            </a>
-                                            <a href=" {{ route('cart.addToCart', $product->id) }}">
-                                                <i class="ti-shopping-cart"></i>
-                                            </a>
+                                        <div class="product__item__pic set-bg"
+                                            data-setbg="{{ Storage::url($product->image) }}">
+
+
+                                            <ul class="product__hover">
+                                                <li><a href=""><img src="img/icon/heart.png" alt=""></a></li>
+                                                <li><a href=" {{ route('productDetail', $product->id) }}"><img
+                                                            src="img/icon/search.png" alt=""></a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="product__item__text">
+                                            <h6> {{ $product->product_name }}</h6>
+                                            <a href="{{ route('cart.addToCart', $product->id) }}" class="add-cart">+ Add To
+                                                Cart</a>
+                                            <div class="rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+
+                                            <h5> {{ number_format($product->selling_price) . ' Đ' }}</h5>
                                         </div>
                                     </div>
-                                    <div class="product-btm">
-                                        <a href="   {{ route('productDetail', $product->id) }}" class="d-block">
 
-                                            <h4>{{ $product->product_name }}</h4>
-                                        </a>
-                                        <div class="mt-3">
-                                            <span class="mr-4" style=" color:red">
-                                                {{ number_format($product->buying_price) . ' Đ' }}</span>
-                                            <del> {{ number_format($product->selling_price) . ' Đ' }}</del>
-
-                                        </div>
-                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         @endforeach
-
-
                     </div>
                     <div>
                         {{ $products->links() }}

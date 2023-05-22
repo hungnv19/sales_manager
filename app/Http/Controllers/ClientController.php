@@ -41,8 +41,7 @@ class ClientController extends BaseController
     }
     public function productDetail($id)
     {
-        $product = Product::find($id)->with('category')->first();
-
+        $product = Product::where('id', $id)->with('category')->first();
         $comments = Comment::select('id', 'content', 'user_id', 'product_id', 'created_at')->orderBy('id', 'desc')->with('user')->with('product')->get();
 
         return view('client.pages.product-detail', [

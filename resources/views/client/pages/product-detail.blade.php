@@ -20,25 +20,29 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
-                                    <div class="product__thumb__pic set-bg" data-setbg="{{ asset($product->image) }}">
+                                    <div class="product__thumb__pic set-bg"
+                                        data-setbg="{{ Storage::url($product->image) }}">
                                     </div>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">
-                                    <div class="product__thumb__pic set-bg" data-setbg="{{ asset($product->image) }}">
+                                    <div class="product__thumb__pic set-bg"
+                                        data-setbg="{{ Storage::url($product->image) }}">
                                     </div>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">
-                                    <div class="product__thumb__pic set-bg" data-setbg="{{ asset($product->image) }}">
+                                    <div class="product__thumb__pic set-bg"
+                                        data-setbg="{{ Storage::url($product->image) }}">
                                     </div>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">
-                                    <div class="product__thumb__pic set-bg" data-setbg="{{ asset($product->image) }}">
+                                    <div class="product__thumb__pic set-bg"
+                                        data-setbg="{{ Storage::url($product->image) }}">
                                         <i class="fa fa-play"></i>
                                     </div>
                                 </a>
@@ -49,37 +53,25 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="product__details__pic__item">
-                                    <img src="{{ asset($product->image) }}" alt="">
+                                    <img src="{{ Storage::url($product->image) }}" alt="">
                                 </div>
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <div class="product__details__pic__item">
-                                    <img src="{{ asset($product->image) }}" alt="">
+                                    <img src="{{ Storage::url($product->image) }}" alt="">
                                 </div>
                             </div>
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
                                 <div class="product__details__pic__item">
-                                    <img src="{{ asset($product->image) }}" alt="">
+                                    <img src="{{ Storage::url($product->image) }}" alt="">
                                 </div>
                             </div>
                             <div class="tab-pane" id="tabs-4" role="tabpanel">
                                 <div class="product__details__pic__item">
-                                    <img src="{{ asset($product->image) }}" alt="">
-                                    <a href="https://www.youtube.com/watch?v=8PJ3_p7VqHw&list=RD8PJ3_p7VqHw&start_radio=1"
-                                        class="video-popup"><i class="fa fa-play"></i></a>
+                                    <img src="{{ Storage::url($product->image) }}" alt="">
+                                    <a href="" class="video-popup"><i class="fa fa-play"></i></a>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-9">
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <div class="product__details__pic__item">
-                                    <img src="{{ asset($product->image) }}" alt="">
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>

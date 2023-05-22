@@ -51,8 +51,8 @@
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="{{ asset('/profile') }}">Profile</a>
                                 <a class="dropdown-item" href="{{ asset('/cart') }}">Cart</a>
-                                <a class="dropdown-item" href="{{ asset('/logout') }}">Logout</a>
                                 <a class="dropdown-item" href="{{ asset('/order') }}">Order</a>
+                                <a class="dropdown-item" href="{{ asset('/logout') }}">Logout</a>
                             </div>
                         </div>
                     @endif
