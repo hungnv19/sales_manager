@@ -59,6 +59,50 @@
                 </div>
                 <div class="form-group">
                   <div class="form-row">
+                    <div class="col-6">
+                      <label class="" require>Color</label>
+                      <select
+                        class="form-select"
+                        name="color_id"
+                        aria-label="Default select example"
+                        rules="required"
+                        v-model="model.color_id"
+                      >
+                        <option value disabled selected>Chọn màu sắc</option>
+                        <option
+                          v-for="item in data.colors"
+                          :key="item.id"
+                          :value="item.id"
+                        >
+                          {{ item.label }}
+                        </option>
+                      </select>
+                      <ErrorMessage class="error" name="color_id" />
+                    </div>
+                    <div class="col-6">
+                      <label class="" require>Size</label>
+                      <select
+                        class="form-select"
+                        name="size_id"
+                        aria-label="Default select example"
+                        rules="required"
+                        v-model="model.size_id"
+                      >
+                        <option value disabled selected>Chọn Kích thước</option>
+                        <option
+                          v-for="item in data.sizes"
+                          :key="item.id"
+                          :value="item.id"
+                        >
+                          {{ item.label }}
+                        </option>
+                      </select>
+                      <ErrorMessage class="error" name="size_id" />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-row">
                     <div class="col-4">
                       <label class="" require>Product Code</label>
                       <Field
@@ -142,7 +186,7 @@
                 </div>
                 <div class="form-group">
                   <div class="form-row">
-                    <div class="col-6">
+                    <div class="col-12">
                       <label class="" require>Describe</label>
                       <Field
                         type="text"
@@ -267,6 +311,8 @@ export default {
 
       model: this.data.product,
       categories: [],
+      sizes: [],
+      colors: [],
       filePreview: "",
       typeFile: "file",
       errMsgImage: "",

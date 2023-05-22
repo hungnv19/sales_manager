@@ -26,6 +26,8 @@
                 'urlStore' => route('product.store'),
                 'urlBack' => route('product.index'),
                 'categories' => $categories,
+                'colors' => $colors,
+                'sizes' => $sizes,
                 'urlCheckCode' => route('product.checkCode'),
             ]) }}">
         </product-create>

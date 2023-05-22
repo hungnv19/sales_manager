@@ -40,9 +40,21 @@ import ContactForm from './components/client/contact/form-contact.vue';
 import NewsCreate from './components/admin/new/create.vue';
 import NewsEdit from './components/admin/new/edit.vue';
 
+import SizeCreate from './components/admin/size/create.vue';
+import SizeEdit from './components/admin/size/edit.vue';
+
+import ColorCreate from './components/admin/color/create.vue';
+import ColorEdit from './components/admin/color/edit.vue';
+
 const app = createApp({});
 
 
+
+app.component("size-create", SizeCreate);
+app.component("size-edit", SizeEdit);
+
+app.component("color-create", ColorCreate);
+app.component("color-edit", ColorEdit);
 
 app.component("category-create", CategoryCreate);
 app.component("category-edit", CategoryEdit);

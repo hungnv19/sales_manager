@@ -8,6 +8,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\ProductRequest;
+use App\Models\Color;
+use App\Models\Size;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends BaseController
@@ -25,7 +27,14 @@ class ProductController extends BaseController
     public function index()
     {
         $product = $this->product->join('categories', 'categories.id', '=', 'products.category_id')
-            ->select('products.*', 'categories.category_name as categories_name')
+            // ->join('colors', 'colors.id', '=', 'products.color_id')
+            // ->join('sizes', 'sizes.id', '=', 'products.size_id')
+            ->select(
+                'products.*',
+                'categories.category_name as categories_name',
+                // 'colors.name as color_name',
+                // 'sizes.name as size_name',
+            )
             ->get();
         return view('admin.product.index', [
             'products' => $product,
@@ -42,9 +51,13 @@ class ProductController extends BaseController
     public function create()
     {
         $category = Category::select('id', 'category_name as label')->get();
+        $colors = Color::select('id', 'name as label')->get();
+        $sizes = Size::select('id', 'name as label')->get();
 
         return view('admin.product.create', [
             'categories' => $category,
+            'colors' => $colors,
+            'sizes' => $sizes,
             'title' => 'Thêm san pham'
         ]);
     }
@@ -57,9 +70,11 @@ class ProductController extends BaseController
      */
     public function store(Request $request)
     {
-       
+
         $product = new Product;
         $product->category_id = $request->category_id;
+        $product->color_id = $request->color_id;
+        $product->size_id = $request->size_id;
         $product->product_name = $request->product_name;
         $product->product_code = $request->product_code;
         $product->root = $request->root;
@@ -102,8 +117,12 @@ class ProductController extends BaseController
     {
         $product = Product::where('id', $id)->first();
         $category = Category::select('id', 'category_name as label')->get();
+        $colors = Color::select('id', 'name as label')->get();
+        $sizes = Size::select('id', 'name as label')->get();
         return view('admin.product.edit', [
             'product' => $product,
+            'colors' => $colors,
+            'sizes' => $sizes,
             'title' => 'Sua san pham',
             'categories' => $category,
         ]);
@@ -119,9 +138,11 @@ class ProductController extends BaseController
     public function update(Request $request, $id)
     {
         try {
-           
+
             $product =  $this->product->where('id', $id)->first();
             $product->category_id = $request->category_id;
+            $product->color_id = $request->color_id;
+            $product->size_id = $request->size_id;
             $product->product_name = $request->product_name;
             $product->product_code = $request->product_code;
             $product->root = $request->root;

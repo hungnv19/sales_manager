@@ -4,12 +4,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Product Edit</h1>
+                    <h1>Size Edit</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="">Home</a></li>
-                        <li class="breadcrumb-item"><a href="">Product</a></li>
+                        <li class="breadcrumb-item"><a href="">Size</a></li>
                         <li class="breadcrumb-item"><a href="">Edit</a></li>
 
                     </ol>
@@ -21,16 +21,12 @@
     <!-- Main content -->
 
     <section class="content">
-        <product-edit
+        <size-edit
             :data="{{ json_encode([
-                'urlUpdate' => route('product.update', $product->id),
-                'urlBack' => route('product.index'),
-                'urlCheckCode' => route('product.checkCode'),
-                'categories' => $categories,
-                'colors' => $colors,
-                'sizes' => $sizes,
-                'product' => $product,
+                'size' => $size,
+                'urlUpdate' => route('sizes.update', $size->id),
+                'urlBack' => route('sizes.index'),
             ]) }}">
-        </product-edit>
+        </size-edit>
     </section>
 @endsection
