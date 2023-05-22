@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\StockController;
@@ -30,15 +32,13 @@ Route::prefix('/')->name('')->group(function () {
     Route::get('/about', function () {
         return view('client.pages.about');
     });
-    // Route::get('/contact', function () {
-    //     return view('client.pages.contact');
-    // });
+
 
     Route::get('contact', [ClientController::class, 'contact']);
     Route::post('contact', [ClientController::class, 'storeContact'])->name('contact.us.store');
 
     Route::get('/blog', [NewsController::class, 'blog'])->name('blog');
-   
+
     Route::get('/product-detail/{id}', [ClientController::class, 'productDetail'])->name('productDetail');
     // Route::get('/shop', [ClientController::class, 'shop'])->name('shop');
     // Route::get('/categoryProducts/{id}', [ClientController::class, 'categoryProducts'])->name('categoryProducts');
@@ -58,7 +58,7 @@ Route::middleware('user')->group(function () {
     Route::get('cart/addToCart/{id}', [CartController::class, 'addToCart'])->name('cart.addToCart');
 
     // //Order
-    // Route::resource('order', OrderController::class);
+    Route::resource('order', OrderController::class);
 
     // //profile
     Route::get('/profile', [ClientController::class, 'profile'])->name('profile');
@@ -76,6 +76,7 @@ Route::middleware('admin')->group(function () {
     Route::resource('product', ProductController::class);
     Route::resource('stock', StockController::class);
     Route::resource('news', NewsController::class);
+    Route::resource('orders', AdminOrderController::class);
 });
 
 // Route::get('/', function () {
@@ -96,6 +97,6 @@ Route::post('/post-comment/{id}', [ClientController::class, 'postComment'])->nam
 
 
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
-Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');

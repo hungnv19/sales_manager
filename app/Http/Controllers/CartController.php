@@ -157,7 +157,6 @@ class CartController extends BaseController
 				'carts.*'
 			])
 			->get();
-		// dd($products);
 		return response()->json($products);
 	}
 	public function order(Request $request)
@@ -184,7 +183,7 @@ class CartController extends BaseController
             $order_id = DB::table('orders')->insertGetId($data);
 
             $cartContents = DB::table('carts')->get();
-			// dd($cartContents);
+			
             $cartData = [];
             foreach ($cartContents as $content) {
                 $cartData['order_id'] = $order_id;

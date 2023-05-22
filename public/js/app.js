@@ -25126,7 +25126,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         value: $data.total,
         name: "total"
       }, null, 8 /* PROPS */, ["value"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [_hoisted_46, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
-        "class": "form-select",
+        "class": "form-control",
         id: "exampleFormControlSelect2",
         name: "payBy",
         as: "select",
