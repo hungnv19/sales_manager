@@ -28,8 +28,7 @@
     <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Theme style -->
     <script>
@@ -41,8 +40,8 @@
             JSON_UNESCAPED_UNICODE,
         ) !!};
     </script>
-     <style>
-        .error{
+    <style>
+        .error {
             color: red;
         }
     </style>

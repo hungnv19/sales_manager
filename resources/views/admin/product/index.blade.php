@@ -85,8 +85,7 @@
                                                     </td>
                                                     <td>
                                                         <img src=" {{ Storage::url($product->image) }}"
-                                                            style="width: 50px;" />
-
+                                                            style="width: 60px; height: 60px; object-fit: cover" />
                                                     </td>
                                                     <td>
                                                         {{ $product->product_quantity }}
@@ -127,7 +126,7 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                       
+
                                     </table>
                                 </div>
                                 <data-empty></data-empty>

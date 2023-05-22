@@ -244,37 +244,40 @@
             </div>
             <div class="row product__filter">
                 @foreach ($products as $product)
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    @if ($product->product_quantity >= 1)
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
 
-                        <div class="product__item">
+                            <div class="product__item">
 
-                            <div class="product__item__pic set-bg" data-setbg="{{ Storage::url($product->image) }}">
+                                <div class="product__item__pic set-bg"
+                                    data-setbg="{{ Storage::url($product->image) }}">
 
 
-                                <ul class="product__hover">
-                                    <li><a href=""><img src="img/icon/heart.png" alt=""></a></li>
-                                    <li><a href=" {{ route('productDetail', $product->id) }}"><img src="img/icon/search.png"
-                                                alt=""></a></li>
-                                </ul>
-                            </div>
-
-                            <div class="product__item__text">
-                                <h6> {{ $product->product_name }}</h6>
-                                <a href="{{ route('cart.addToCart', $product->id) }}" class="add-cart">+ Add To
-                                    Cart</a>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
+                                    <ul class="product__hover">
+                                        <li><a href=""><img src="img/icon/heart.png" alt=""></a></li>
+                                        <li><a href=" {{ route('productDetail', $product->id) }}"><img
+                                                    src="img/icon/search.png" alt=""></a></li>
+                                    </ul>
                                 </div>
 
-                                <h5> {{ number_format($product->selling_price) . ' Đ' }}</h5>
-                            </div>
-                        </div>
+                                <div class="product__item__text">
+                                    <h6> {{ $product->product_name }}</h6>
+                                    <a href="{{ route('cart.addToCart', $product->id) }}" class="add-cart">+ Add To
+                                        Cart</a>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
 
-                    </div>
+                                    <h5> {{ number_format($product->selling_price) . ' Đ' }}</h5>
+                                </div>
+                            </div>
+
+                        </div>
+                    @endif
                 @endforeach
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                     <div class="product__item">
