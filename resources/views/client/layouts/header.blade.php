@@ -16,7 +16,6 @@
                                 <a href="{{ asset('/login') }}">Sign in</a>
                             @endif
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -47,18 +46,16 @@
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
                                 aria-expanded="false">
-
                                 {{ Auth::user()->name }}
-
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="{{ asset('/profile') }}">Profile</a>
                                 <a class="dropdown-item" href="{{ asset('/cart') }}">Cart</a>
                                 <a class="dropdown-item" href="{{ asset('/logout') }}">Logout</a>
+                                <a class="dropdown-item" href="{{ asset('/order') }}">Order</a>
                             </div>
                         </div>
                     @endif
-
                 </div>
             </div>
             <div class="canvas__open"><i class="fa fa-bars"></i></div>
