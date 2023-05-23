@@ -101,6 +101,7 @@
                                     <a class="dropdown-item" href="{{ asset('/profile') }}">Profile</a>
                                     <a class="dropdown-item" href="{{ asset('/cart') }}">Cart</a>
                                     <a class="dropdown-item" href="{{ asset('/order') }}">Order</a>
+                                    <a class="dropdown-item" href="{{ asset('/wishlist') }}">WishList</a>
                                     <a class="dropdown-item" href="{{ asset('/logout') }}">Logout</a>
                                 </div>
                             </div>
@@ -255,7 +256,11 @@
 
 
                                     <ul class="product__hover">
-                                        <li><a href="{{ route('add-wishlist', $product->id) }}"><img src="img/icon/heart.png" alt=""></a></li>
+                                        @if (Auth::user())
+                                            <li><a href="{{ route('add-wishlist', $product->id) }}"><img
+                                                        src="img/icon/heart.png" alt=""></a></li>
+                                        @endif
+
                                         <li><a href=" {{ route('productDetail', $product->id) }}"><img
                                                     src="img/icon/search.png" alt=""></a></li>
                                     </ul>

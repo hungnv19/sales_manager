@@ -146,13 +146,16 @@
                                         <input type="text" value="1">
                                     </div>
                                 </div>
-                                <a href=" {{ route('cart.addToCart', $product->id) }}" class="primary-btn">add to
-                                    cart</a>
+                                <a href=" {{ route('cart.addToCart', $product->id) }}" class="primary-btn">Add To
+                                    Cart</a>
                             </div>
-                            <div class="product__details__btns__option">
-                                <a href="#"><i class="fa fa-heart"></i> add to wishlist</a>
-                                <a href="#"><i class="fa fa-exchange"></i> Add To Compare</a>
-                            </div>
+                            @if (Auth::user())
+                                <div class="product__details__btns__option">
+                                    <a href="{{ route('add-wishlist', $product->id) }}"><i class="fa fa-heart"></i> Add
+                                        To WishList</a>
+
+                                </div>
+                            @endif
                             <div class="product__details__last__option">
                                 <h5><span>Guaranteed Safe Checkout</span></h5>
                                 <img src="{{ asset('img/shop-details/details-payment.png') }} " alt="">

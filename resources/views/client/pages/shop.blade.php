@@ -51,6 +51,47 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
+                                    </div>
+                                    <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__price">
+                                                <ul>
+                                                    <li><a href="#">$0.00 - $50.00</a></li>
+                                                    <li><a href="#">$50.00 - $100.00</a></li>
+                                                    <li><a href="#">$100.00 - $150.00</a></li>
+                                                    <li><a href="#">$150.00 - $200.00</a></li>
+                                                    <li><a href="#">$200.00 - $250.00</a></li>
+                                                    <li><a href="#">250.00+</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseFour">Size</a>
+                                    </div>
+                                    <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__size">
+                                                <label for="xs">Nhỏ
+                                                    <input type="radio" id="xs">
+                                                </label>
+                                                <label for="sm">Vừa
+                                                    <input type="radio" id="sm">
+                                                </label>
+                                                <label for="md">Lớn
+                                                    <input type="radio" id="md">
+                                                </label>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
 
                             </div>
@@ -92,7 +133,10 @@
 
 
                                             <ul class="product__hover">
-                                                <li><a href=""><img src="img/icon/heart.png" alt=""></a></li>
+                                                @if (Auth::user())
+                                                    <li><a href="{{ route('add-wishlist', $product->id) }}"><img
+                                                                src="img/icon/heart.png" alt=""></a></li>
+                                                @endif
                                                 <li><a href=" {{ route('productDetail', $product->id) }}"><img
                                                             src="img/icon/search.png" alt=""></a></li>
                                             </ul>

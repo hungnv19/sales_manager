@@ -52,6 +52,7 @@
                                 <a class="dropdown-item" href="{{ asset('/profile') }}">Profile</a>
                                 <a class="dropdown-item" href="{{ asset('/cart') }}">Cart</a>
                                 <a class="dropdown-item" href="{{ asset('/order') }}">Order</a>
+                                <a class="dropdown-item" href="{{ asset('/wishlist') }}">WishList</a>
                                 <a class="dropdown-item" href="{{ asset('/logout') }}">Logout</a>
                             </div>
                         </div>

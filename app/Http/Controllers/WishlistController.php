@@ -16,9 +16,10 @@ class WishlistController extends Controller
     public function index()
     {
 
-        $wishlists = Wishlist::where("user_id", "=", Auth::user()->id)->orderby('id', 'desc')->paginate(10);
-        dd($wishlists);
-        return view('client.wishlist.index');
+        $wishlists = Wishlist::where("user_id", "=", Auth::user()->id)->with('product')->orderby('id', 'desc')->paginate(10);
+        return view('client.wishlist.index', [
+            'wishlists' => $wishlists,
+        ]);
     }
 
     /**
@@ -90,12 +91,18 @@ class WishlistController extends Controller
     }
     public function addWishList(Request $request, $id)
     {
+        $status = Wishlist::where('user_id', Auth::user()->id)
+            ->where('product_id', $id)
+            ->first();
+        if (isset($status->user_id) && isset($id)) {
+            return redirect()->back()->with('message', 'This item is already in your wishlist!');
+        } else {
+            $wishlist = new Wishlist();
+            $wishlist->user_id = Auth::user()->id;
+            $wishlist->product_id = $id;
 
-        $wishlist = new Wishlist();
-        $wishlist->user_id = Auth::user()->id;
-        $wishlist->product_id = $id;
-
-        $wishlist->save();
-        return redirect()->back();
+            $wishlist->save();
+            return redirect()->back();
+        }
     }
 }
