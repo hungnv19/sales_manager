@@ -34,6 +34,7 @@
                                     <table class="table align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
+                                                <th>Image</th>
                                                 <th>Product Name</th>
                                                 <th>Product Code</th>
                                                 <th>Root</th>
@@ -47,6 +48,10 @@
                                         <tbody>
                                             @foreach ($products as $product)
                                                 <tr>
+                                                    <td>
+                                                        <img src=" {{ Storage::url($product->image) }}"
+                                                            style="width: 60px; height: 60px; object-fit: cover" />
+                                                    </td>
                                                     <td>
                                                         {{ $product->product_name }}
 
@@ -94,6 +99,7 @@
                                     <table class="table align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
+                                                <th>Image</th>
                                                 <th>Product Name</th>
                                                 <th>Product Code</th>
                                                 <th>Root</th>

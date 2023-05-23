@@ -123,7 +123,7 @@
                     </div>
                     <br>
                     <div class="row">
-                        <section class="col-lg-12 connectedSortable">
+                        {{-- <section class="col-lg-12 connectedSortable">
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">
@@ -158,97 +158,109 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h3 class="card-title">All Stock</h3>
-                                        </div>
-                                        <!-- /.card-header -->
-                                        <div class="card-body">
-                                            @if ($products->count() > 0)
-                                                <table class="table align-items-center table-flush">
-                                                    <thead class="thead-light">
-                                                        <tr>
-                                                            <th>Product Name</th>
-                                                            <th>Product Code</th>
-                                                            <th>Root</th>
-                                                            <th>Category</th>
-                                                            <th>Buying Price</th>
-                                                            <th>Status</th>
-                                                            <th>Product Quantity</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach ($products as $product)
-                                                            <tr>
-                                                                <td>
-                                                                    {{ $product->product_name }}
 
-                                                                </td>
-                                                                <td>
-                                                                    {{ $product->product_code }}
+                        </section> --}}
 
-                                                                </td>
-                                                                <td>
-                                                                    {{ $product->root }}
+                        <canvas id="myChart" height="100px"></canvas>
 
-                                                                </td>
-                                                                <td>
-                                                                    {{ $product->categories_name }}
-                                                                </td>
-                                                                <td>
-                                                                    {{ number_format($product->buying_price) . ' Đ' }}
-                                                                </td>
-                                                                @if ($product->product_quantity >= 1)
-                                                                    <td class="text-success">
-                                                                        Available
-                                                                    </td>
-                                                                @else
-                                                                    <td class="text-danger">
-                                                                        Stock Out
-                                                                    </td>
-                                                                @endif
-
-                                                                <td>
-                                                                    {{ $product->product_quantity }}
-
-                                                                </td>
-                                                                <td>
-                                                                    <a class="btn btn-sm btn-primary"
-                                                                        href="{{ route('stock.edit', $product->id) }}">Edit</a>
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach
-
-                                                    </tbody>
-                                                </table>
-                                            @else
-                                                <table class="table align-items-center table-flush">
-                                                    <thead class="thead-light">
-                                                        <tr>
-                                                            <th>Product Name</th>
-                                                            <th>Product Code</th>
-                                                            <th>Root</th>
-                                                            <th>Category</th>
-                                                            <th>Buying Price</th>
-                                                            <th>Status</th>
-                                                            <th>Product Quantity</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                </table>
-                                                <br>
-                                                <data-empty></data-empty>
-                                            @endif
-                                            <!-- /.card-body -->
-                                        </div>
-                                        <!-- /.card -->
-                                    </div>
-                                    <!-- /.col -->
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">All Stock</h3>
                                 </div>
-                        </section>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    @if ($products->count() > 0)
+                                        <table class="table align-items-center table-flush">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>Image</th>
+                                                    <th>Product Name</th>
+                                                    <th>Product Code</th>
+                                                    <th>Root</th>
+                                                    <th>Category</th>
+                                                    <th>Buying Price</th>
+                                                    <th>Status</th>
+                                                    <th>Product Quantity</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($products as $product)
+                                                    <tr>
+                                                        <td>
+                                                            <img src=" {{ Storage::url($product->image) }}"
+                                                                style="width: 60px; height: 60px; object-fit: cover" />
+                                                        </td>
+                                                        <td>
+                                                            {{ $product->product_name }}
+
+                                                        </td>
+                                                        <td>
+                                                            {{ $product->product_code }}
+
+                                                        </td>
+                                                        <td>
+                                                            {{ $product->root }}
+
+                                                        </td>
+                                                        <td>
+                                                            {{ $product->categories_name }}
+                                                        </td>
+                                                        <td>
+                                                            {{ number_format($product->buying_price) . ' Đ' }}
+                                                        </td>
+                                                        @if ($product->product_quantity >= 1)
+                                                            <td class="text-success">
+                                                                Available
+                                                            </td>
+                                                        @else
+                                                            <td class="text-danger">
+                                                                Stock Out
+                                                            </td>
+                                                        @endif
+
+                                                        <td>
+                                                            {{ $product->product_quantity }}
+
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-sm btn-primary"
+                                                                href="{{ route('stock.edit', $product->id) }}">Edit</a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    @else
+                                        <table class="table align-items-center table-flush">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>Image</th>
+                                                    <th>Product Name</th>
+                                                    <th>Product Code</th>
+                                                    <th>Root</th>
+                                                    <th>Category</th>
+                                                    <th>Buying Price</th>
+                                                    <th>Status</th>
+                                                    <th>Product Quantity</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                        <br>
+                                        <data-empty></data-empty>
+                                    @endif
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
                     </div>
                 </div>
             </section>
@@ -296,6 +308,34 @@
     <script src="dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="dist/js/pages/dashboard.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript">
+        var labels = {{ Js::from($labels) }};
+        var users = {{ Js::from($data) }};
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: users,
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
 </body>
 
 </html>

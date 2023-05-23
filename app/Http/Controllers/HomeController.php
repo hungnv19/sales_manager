@@ -7,7 +7,9 @@ use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -33,6 +35,14 @@ class HomeController extends Controller
         $category = Category::count();
         $order =  Order::count();
 
+
+        $users = User::select(DB::raw("COUNT(*) as count"))
+            ->whereYear('created_at', date('Y'))
+            ->groupBy(DB::raw("Month(created_at)"))
+            ->pluck('count');
+        $labels = $users->keys();
+        $data = $users->values();
+
         return view('dashboard', [
             'title' => 'Trang quản trị',
 
@@ -40,6 +50,9 @@ class HomeController extends Controller
             'product' => $product,
             'user' => $user,
             'order' => $order,
+            'data' => $data,
+            'labels' => $labels,
+
             'category' => $category,
         ]);
     }
