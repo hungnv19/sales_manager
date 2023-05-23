@@ -255,7 +255,7 @@
 
 
                                     <ul class="product__hover">
-                                        <li><a href=""><img src="img/icon/heart.png" alt=""></a></li>
+                                        <li><a href="{{ route('add-wishlist', $product->id) }}"><img src="img/icon/heart.png" alt=""></a></li>
                                         <li><a href=" {{ route('productDetail', $product->id) }}"><img
                                                     src="img/icon/search.png" alt=""></a></li>
                                     </ul>

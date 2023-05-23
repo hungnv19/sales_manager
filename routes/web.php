@@ -15,6 +15,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SizesController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -83,9 +84,8 @@ Route::middleware('admin')->group(function () {
     Route::resource('orders', AdminOrderController::class);
 });
 
-// Route::get('/', function () {
-//     return view('admin.layouts.admin');
-// });
+Route::resource('wishlist', WishlistController::class);
+Route::get('/add-wishlist/{id}', [WishlistController::class, 'addWishList'])->name('add-wishlist');
 
 Route::get('register', [RegisterController::class, 'create'])->name('register.create');
 Route::post('register', [RegisterController::class, 'store'])->name('register.store');
