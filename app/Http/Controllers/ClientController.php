@@ -11,6 +11,7 @@ use App\Http\Controllers\BaseController;
 use App\Mail\ContactMail;
 use App\Models\Comment;
 use App\Models\Contact;
+use App\Models\News;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -18,31 +19,36 @@ class ClientController extends BaseController
 {
     public User $user;
     public Product $product;
+    public News $new;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(Product $product, User $user)
+    public function __construct(Product $product, User $user, News $new)
     {
         $this->user = $user;
+        $this->new = $new;
         $this->product = $product;
     }
     public function index()
     {
-
+        $news = $this->new->join('categories', 'categories.id', '=', 'news.category_id')
+            ->select('news.*', 'categories.category_name as categories_name')
+            ->get();
         $products = $this->product->join('categories', 'categories.id', '=', 'products.category_id')
             ->select('products.*', 'categories.category_name as categories_name')
             ->get();
 
         return view('client.layouts.main', [
             'products' => $products,
+            'news' => $news,
         ]);
     }
     public function productDetail($id)
     {
         $product = Product::where('id', $id)->with('category')->with('size')->with('color')->first();
-        
+
         $comments = Comment::select('id', 'content', 'user_id', 'product_id', 'created_at')->orderBy('id', 'desc')->with('user')->with('product')->get();
 
         // dd($product->size);
@@ -108,7 +114,7 @@ class ClientController extends BaseController
         $user->phone = $request->phone;
         $user->address = $request->address;
         $user->save();
-       
+
         return redirect()->back()->with('success', 'Cập nhật thông tin thành công !');
     }
 
@@ -139,6 +145,6 @@ class ClientController extends BaseController
         $contact->save();
         $mailContents = $request->all();
         Mail::to($contact->email)->send(new ContactMail($mailContents));
-        return redirect()->back()->with('success' , 'Cảm ơn bạn đã liên hệ với chúng tôi. Chúng tôi sẽ sớm liên lạc lại với bạn.');
+        return redirect()->back()->with('success', 'Cảm ơn bạn đã liên hệ với chúng tôi. Chúng tôi sẽ sớm liên lạc lại với bạn.');
     }
 }
