@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.0/css/toastr.css" rel="stylesheet" />
+
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Theme style -->
     <script>
@@ -98,8 +100,18 @@
     <script src="../../dist/js/adminlte.min.js"></script>
 
     <!-- AdminLTE for demo purposes -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.0/js/toastr.js"></script>
 
-
+    <script>
+        $(document).ready(function() {
+            toastr.options.timeOut = 10000;
+            @if (Session::has('error'))
+                toastr.error('{{ Session::get('error') }}');
+            @elseif (Session::has('success'))
+                toastr.success('{{ Session::get('success') }}');
+            @endif
+        });
+    </script>
 </body>
 
 </html>

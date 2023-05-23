@@ -76,11 +76,11 @@ class NewsController extends BaseController
         $new->save();
 
         if ($new) {
-            $this->setFlash(__('Thêm tin thành công'));
-            return redirect()->route('news.index');
+
+            return redirect()->route('news.index')->with('success', 'Thêm tin thành công!');
+        } else {
+            return redirect()->route('news.index')->with('failed', 'Thêm tin thất bại!');
         }
-        $this->setFlash(__('Thêm tin thất bại'));
-        return redirect()->route('news.index');
     }
 
     /**
@@ -132,12 +132,10 @@ class NewsController extends BaseController
             }
 
             $new->save();
-            $this->setFlash(__('Cập nhật  thành công'));
-            return redirect()->route('news.index');
+            return redirect()->route('news.index')->with('success', 'Cập nhật tin thành công!');
         } catch (\Throwable $th) {
             DB::rollback();
-            $this->setFlash(__('Đã có một lỗi không mong muốn xảy ra'), 'error');
-            return redirect()->route('news.index');
+            return redirect()->route('news.index')->with('failed', 'cập nhật tin thất bại!');
         }
     }
 
@@ -150,8 +148,9 @@ class NewsController extends BaseController
     public function destroy($id)
     {
         if (News::destroy($id)) {
-            session()->flash('comment', 'Xóa  thành công!');
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Xóa tin thành công!');
+        } else {
+            return redirect()->back()->with('failed', 'Xóa tin thất bại!');
         }
     }
 }

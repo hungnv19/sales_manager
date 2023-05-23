@@ -20,7 +20,7 @@ class UserController extends BaseController
     {
         $this->user = $user;
     }
-     
+
     public function index()
     {
         $user = User::get();
@@ -38,7 +38,7 @@ class UserController extends BaseController
     public function create()
     {
         return view('admin.user.create', [
-          
+
             'title' => 'Thêm user'
         ]);
     }
@@ -55,14 +55,13 @@ class UserController extends BaseController
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-       
+
         $user->save();
         if ($user) {
-            $this->setFlash(__('Thêm danh mục thành công'));
-            return redirect()->route('user.index');
+            return redirect()->route('user.index')->with('success', 'Thêm người dùng thành công!');
+        } else {
+            return redirect()->route('user.index')->with('failed', 'Thêm người dùng thất bại!');
         }
-        $this->setFlash(__('Thêm danh mục thất bại'));
-        return redirect()->route('user.index');
     }
 
     /**
@@ -105,12 +104,11 @@ class UserController extends BaseController
             $user->name = $request->name;
             $user->email = $request->email;
             $user->save();
-            $this->setFlash(__('Cập nhật tin tuyển dụng thành công'));
-            return redirect()->route('user.index');
+
+            return redirect()->route('user.index')->with('success', 'Cập nhật  thành công!');
         } catch (\Throwable $th) {
             DB::rollback();
-            $this->setFlash(__('Đã có một lỗi không mong muốn xảy ra'), 'error');
-            return redirect()->route('user.index');
+            return redirect()->route('user.index')->with('success', 'Cập nhật  thất bại!');
         }
     }
 
@@ -122,8 +120,10 @@ class UserController extends BaseController
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
-        return redirect()->back();
+        if (User::destroy($id)) {
+            return redirect()->back()->with('success', 'Xóa người dùng thành công!');
+        } else {
+            return redirect()->back()->with('failed', 'Xóa người dùng thất bại!');
+        }
     }
 }

@@ -109,8 +109,9 @@ class AdminOrderController extends Controller
     public function destroy($id)
     {
         if (Order::destroy($id)) {
-            session()->flash('comment', 'Xóa  thành công!');
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Xóa  thành công !');
+        } else {
+            return redirect()->back()->with('failed', 'Xóa  thất bại !');
         }
     }
     public function todayOrder()

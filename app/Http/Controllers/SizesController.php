@@ -53,11 +53,10 @@ class SizesController extends BaseController
 
         $size->save();
         if ($size) {
-            $this->setFlash(__('Thêm kich thuoc thành công'));
-            return redirect()->route('sizes.index');
+            return redirect()->route('sizes.index')->with('success', 'Thêm kích thước thành công!');
+        } else {
+            return redirect()->route('sizes.index')->with('failed', 'Thêm kích thước thất bại!');
         }
-        $this->setFlash(__('Thêm kich thuoc thất bại'));
-        return redirect()->route('sizes.index');
     }
 
     /**
@@ -101,12 +100,10 @@ class SizesController extends BaseController
             $size->name = $request->name;
 
             $size->save();
-            $this->setFlash(__('Cập nhật tin tuyển dụng thành công'));
-            return redirect()->route('sizes.index');
+            return redirect()->route('sizes.index')->with('success', 'Cập nhật kích thước thành công!');
         } catch (\Throwable $th) {
             DB::rollback();
-            $this->setFlash(__('Đã có một lỗi không mong muốn xảy ra'), 'error');
-            return redirect()->route('sizes.index');
+            return redirect()->route('sizes.index')->with('failed', 'Cập nhật kích thước thất bại!');
         }
     }
 
@@ -119,8 +116,9 @@ class SizesController extends BaseController
     public function destroy($id)
     {
         if (Size::destroy($id)) {
-            session()->flash('comment', 'Xóa size thành công!');
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Xóa sản phẩm thành công!');
+        } else {
+            return redirect()->back()->with('failed', 'Xóa sản phẩm thất bại!');
         }
     }
 }

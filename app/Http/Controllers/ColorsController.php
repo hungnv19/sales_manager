@@ -53,11 +53,10 @@ class ColorsController extends BaseController
 
         $color->save();
         if ($color) {
-            $this->setFlash(__('Thêm mau sac thành công'));
-            return redirect()->route('colors.index');
+            return redirect()->route('colors.index')->with('success', 'Thêm màu sắc thành công!');
+        } else {
+            return redirect()->route('colors.index')->with('failed', 'Thêm màu sắc thất bại!');
         }
-        $this->setFlash(__('Thêm mau sac thất bại'));
-        return redirect()->route('colors.index');
     }
 
     /**
@@ -101,12 +100,10 @@ class ColorsController extends BaseController
             $color->name = $request->name;
 
             $color->save();
-            $this->setFlash(__('Cập nhật tin tuyển dụng thành công'));
-            return redirect()->route('colors.index');
+            return redirect()->route('colors.index')->with('success', 'Cập nhật màu sắc thành công!');
         } catch (\Throwable $th) {
             DB::rollback();
-            $this->setFlash(__('Đã có một lỗi không mong muốn xảy ra'), 'error');
-            return redirect()->route('colors.index');
+            return redirect()->route('colors.index')->with('failed', 'Cập nhật màu sắc thất bại!');
         }
     }
 
@@ -119,8 +116,10 @@ class ColorsController extends BaseController
     public function destroy($id)
     {
         if (Color::destroy($id)) {
-            session()->flash('comment', 'Xóa  thành công!');
-            return redirect()->back();
+            
+            return redirect()->back()->with('success', 'Xóa màu sắc thành công!');
+        } else {
+            return redirect()->back()->with('failed', 'Xóa màu sắc thất bại!');
         }
     }
 }

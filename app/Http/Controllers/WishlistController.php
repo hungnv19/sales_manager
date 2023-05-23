@@ -85,9 +85,11 @@ class WishlistController extends Controller
      */
     public function destroy($id)
     {
-        $wishlist = Wishlist::find($id);
-        $wishlist->delete();
-        return redirect()->back();
+        if (Wishlist::destroy($id)) {
+            return redirect()->back()->with('success', 'Xóa  thành công!');
+        } else {
+            return redirect()->back()->with('failed', 'Xóa  thất bại!');
+        }
     }
     public function addWishList(Request $request, $id)
     {
@@ -95,14 +97,14 @@ class WishlistController extends Controller
             ->where('product_id', $id)
             ->first();
         if (isset($status->user_id) && isset($id)) {
-            return redirect()->back()->with('message', 'This item is already in your wishlist!');
+            return redirect()->back()->with('success', 'Sản phẩm này đã có trong danh sách yêu thích của bạn!');
         } else {
             $wishlist = new Wishlist();
             $wishlist->user_id = Auth::user()->id;
             $wishlist->product_id = $id;
 
             $wishlist->save();
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Sản phẩm đã được thêm vào mục yêu thích!');
         }
     }
 }

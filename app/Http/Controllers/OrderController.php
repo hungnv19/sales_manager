@@ -64,7 +64,7 @@ class OrderController extends Controller
             ->where('order_details.order_id', $id)
             ->select('products.product_name', 'products.product_code', 'products.image', 'order_details.*')
             ->get();
-        
+
 
         $orders = DB::table('orders')
             ->join('users', 'orders.user_id', 'users.id')
@@ -110,8 +110,9 @@ class OrderController extends Controller
     public function destroy($id)
     {
         if (Order::destroy($id)) {
-            session()->flash('comment', 'Xóa  thành công!');
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Xóa thành công!');
+        } else {
+            return redirect()->back()->with('failed', 'Xóa tin thất bại!');
         }
     }
     public function todayOrder()
@@ -145,6 +146,4 @@ class OrderController extends Controller
             ->get();
         return response()->json($details);
     }
-
-   
 }

@@ -54,11 +54,10 @@ class CategoryController extends BaseController
 
         $category->save();
         if ($category) {
-            $this->setFlash(__('Thêm danh mục thành công'));
-            return redirect()->route('category.index');
+            return redirect()->route('category.index')->with('success', 'Thêm danh mục thành công !');
+        } else {
+            return redirect()->route('category.index')->with('failed', 'Thêm danh mục thất bại !');
         }
-        $this->setFlash(__('Thêm danh mục thất bại'));
-        return redirect()->route('category.index');
     }
 
     /**
@@ -102,12 +101,10 @@ class CategoryController extends BaseController
             $category->category_name = $request->category_name;
 
             $category->save();
-            $this->setFlash(__('Cập nhật tin tuyển dụng thành công'));
-            return redirect()->route('category.index');
+            return redirect()->route('category.index')->with('success', 'Cập nhật danh mục thành công !');
         } catch (\Throwable $th) {
             DB::rollback();
-            $this->setFlash(__('Đã có một lỗi không mong muốn xảy ra'), 'error');
-            return redirect()->route('category.index');
+            return redirect()->route('category.index')->with('success', 'Cập nhật danh mục thất bại !');
         }
     }
 
@@ -120,8 +117,9 @@ class CategoryController extends BaseController
     public function destroy($id)
     {
         if (Category::destroy($id)) {
-            session()->flash('comment', 'Xóa comment thành công!');
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Xóa danh mục thành công !');
+        } else {
+            return redirect()->back()->with('failed', 'Xóa danh mục thất bại !');
         }
     }
 }

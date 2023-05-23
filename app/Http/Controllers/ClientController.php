@@ -108,8 +108,8 @@ class ClientController extends BaseController
         $user->phone = $request->phone;
         $user->address = $request->address;
         $user->save();
-        $this->setFlash(__('Cập nhật  thành công'));
-        return redirect()->back();
+       
+        return redirect()->back()->with('success', 'Cập nhật thông tin thành công !');
     }
 
     public function postComment(Request $request, $id)
@@ -121,7 +121,7 @@ class ClientController extends BaseController
         $comment->product_id = $id;
 
         $comment->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Đăng bình luận thành công !');
     }
     public function contact()
     {
@@ -139,6 +139,6 @@ class ClientController extends BaseController
         $contact->save();
         $mailContents = $request->all();
         Mail::to($contact->email)->send(new ContactMail($mailContents));
-        return redirect()->back()->with(['success' => 'Thank you for contact us. we will contact you shortly.']);
+        return redirect()->back()->with('success' , 'Cảm ơn bạn đã liên hệ với chúng tôi. Chúng tôi sẽ sớm liên lạc lại với bạn.');
     }
 }

@@ -33,7 +33,7 @@ class RegisterController extends Controller
         $user->save();
        
         auth()->login($user);
-        return redirect()->route('home.index');
+        return redirect()->route('home.index')->with('success', 'Đăng ký tài khoản thành công!');
     }
     public function checkMailRegister(Request $request)
     {

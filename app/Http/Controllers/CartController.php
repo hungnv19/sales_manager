@@ -122,7 +122,7 @@ class CartController extends BaseController
 
 			DB::table('carts')->insert($data);
 		}
-		return redirect()->route('cart.index');
+		return redirect()->route('cart.index')->with('success', 'Sản phẩn đã được thêm thành công !');
 	}
 
 
@@ -162,7 +162,7 @@ class CartController extends BaseController
 	public function order(Request $request)
     {
         
-        // try {
+        try {
             DB::beginTransaction();
             
             $data = [];	
@@ -203,12 +203,12 @@ class CartController extends BaseController
             DB::table('carts')->delete();
             DB::commit();
            
-            return redirect()->route('order.index');
+            return redirect()->route('order.index')->with('success', 'Đặt hàng thành công !');
            
-        // } catch (\Exception $ex) {
-        //     DB::rollBack();
+        } catch (\Exception $ex) {
+            DB::rollBack();
 			
-        //     return redirect()->route('order.index');
-        // }
+            return redirect()->route('order.index')->with('failed', 'Đặt hàng thất bại !');
+        }
     }
 }

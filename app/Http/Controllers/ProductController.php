@@ -89,11 +89,10 @@ class ProductController extends BaseController
         $product->save();
 
         if ($product) {
-            $this->setFlash(__('Thêm san pham thành công'));
-            return redirect()->route('product.index');
+            return redirect()->route('product.index')->with('success', 'Thêm sản phẩm thành công!');
+        } else {
+            return redirect()->route('product.index')->with('failed', 'Thêm san pham thất bại!');
         }
-        $this->setFlash(__('Thêm san pham thất bại'));
-        return redirect()->route('product.index');
     }
 
     /**
@@ -156,12 +155,10 @@ class ProductController extends BaseController
             }
 
             $product->save();
-            $this->setFlash(__('Cập nhật  thành công'));
-            return redirect()->route('product.index');
+            return redirect()->route('product.index')->with('success', 'Cập nhật sản phẩm thành công!');
         } catch (\Throwable $th) {
             DB::rollback();
-            $this->setFlash(__('Đã có một lỗi không mong muốn xảy ra'), 'error');
-            return redirect()->route('product.index');
+            return redirect()->route('product.index')->with('failed', 'Cập nhật sản phẩm thất bại!');
         }
     }
 
@@ -174,8 +171,10 @@ class ProductController extends BaseController
     public function destroy($id)
     {
         if (Product::destroy($id)) {
-            session()->flash('comment', 'Xóa  thành công!');
-            return redirect()->back();
+           
+            return redirect()->back()->with('success', 'Xóa sản phẩm thành công!');
+        } else {
+            return redirect()->back()->with('failed', 'Xóa sản phẩm thất bại !');
         }
     }
     public function checkProductCode(Request $request)

@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\BaseController;
+
 class StockController extends BaseController
 {
     public Product $product;
@@ -91,12 +92,10 @@ class StockController extends BaseController
             $product->product_quantity = $request->product_quantity;
 
             $product->save();
-            $this->setFlash(__('Cập nhật  thành công'));
-            return redirect()->route('stock.index');
+            return redirect()->route('stock.index')->with('success', 'Cập nhật thành công!');
         } catch (\Throwable $th) {
             DB::rollback();
-            $this->setFlash(__('Đã có một lỗi không mong muốn xảy ra'), 'error');
-            return redirect()->route('stock.index');
+            return redirect()->route('stock.index')->with('failed', 'Cập nhật thất bại!');
         }
     }
 
