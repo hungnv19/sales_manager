@@ -23,7 +23,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card" >
+                    <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">All Product</h3>
                             <a class="btn btn-sm btn-primary" href="{{ route('product.create') }}"
@@ -32,7 +32,7 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             @if ($products->count() > 0)
-                                <div class="table-responsive-sm" >
+                                <div class="table-responsive-sm">
                                     <table class="table  align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
@@ -62,7 +62,7 @@
 
                                                     </td>
                                                     <td>
-                                                        {{ $product->product_name }}
+                                                        {{ $product->product_name  }}
 
                                                     </td>
                                                     <td>
@@ -73,7 +73,7 @@
                                                         {{ $product->root }}
 
                                                     </td>
-                                                    <td>
+                                                    <td >
                                                         {{ number_format($product->buying_price) . ' Đ' }}
                                                     </td>
                                                     <td>
