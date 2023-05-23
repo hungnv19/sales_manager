@@ -23,7 +23,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card" >
                         <div class="card-header">
                             <h3 class="card-title">All Product</h3>
                             <a class="btn btn-sm btn-primary" href="{{ route('product.create') }}"
@@ -32,7 +32,7 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             @if ($products->count() > 0)
-                                <div class="table-responsive-sm">
+                                <div class="table-responsive-sm" >
                                     <table class="table  align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
@@ -95,7 +95,7 @@
                                                         <a class="btn btn-sm btn-primary"
                                                             href="{{ route('product.edit', $product->id) }}">Edit</a>
                                                         <form action="{{ route('product.destroy', $product->id) }}"
-                                                            method="Post" style="display: inline-block; margin-left: 10px">
+                                                            method="Post" style="display: flex; margin-left: 10px">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit"

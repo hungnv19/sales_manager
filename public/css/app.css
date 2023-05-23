@@ -10,3 +10,10 @@
   color: black;
 }
 
+.content .container-fluid .card {
+  overflow-x: auto;
+}
+.content .container-fluid .card .table-responsive-sm {
+  overflow-x: auto;
+}
+

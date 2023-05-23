@@ -45,6 +45,7 @@ class ClientController extends BaseController
         
         $comments = Comment::select('id', 'content', 'user_id', 'product_id', 'created_at')->orderBy('id', 'desc')->with('user')->with('product')->get();
 
+        // dd($product->size);
         return view('client.pages.product-detail', [
             'product' => $product,
             'comments' => $comments,

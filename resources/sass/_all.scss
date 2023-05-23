@@ -1,9 +1,10 @@
 .container {
     .shop__sidebar__categories {
-        .li_cte  {
+        .li_cte {
             list-style: none;
-            
+
         }
+
         .cte-links {
             text-decoration: none;
             color: black;
@@ -13,6 +14,18 @@
         .cte-links:hover {
 
             color: black;
+        }
+    }
+}
+
+.content {
+    .container-fluid {
+        .card {
+            overflow-x: auto;
+
+            .table-responsive-sm {
+                overflow-x: auto;
+            }
         }
     }
 }

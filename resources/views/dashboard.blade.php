@@ -110,8 +110,8 @@
                             <!-- small box -->
                             <div class="small-box bg-danger">
                                 <div class="inner">
-                                    
-                                    <p>Customer</p>
+                                    <h3>{{ $order }}</h3>
+                                    <p>Order</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-pie-graph"></i>

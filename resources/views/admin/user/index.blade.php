@@ -31,61 +31,65 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             @if ($users->count() > 0)
-                                <table class="table align-items-center table-flush">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($users as $user)
-                                            @if ($user->role === 0)
-                                                <tr>
+                                <div class="table-responsive-sm">
+                                    <table class="table align-items-center table-flush">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($users as $user)
+                                                @if ($user->role === 0)
+                                                    <tr>
 
-                                                    <td>
-                                                        {{ $user->id }}
+                                                        <td>
+                                                            {{ $user->id }}
 
-                                                    </td>
-                                                    <td>
-                                                        {{ $user->name }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $user->name }}
 
-                                                    </td>
-                                                    <td>
-                                                        {{ $user->email }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $user->email }}
 
-                                                    </td>
-                                                    <td>
-                                                        <a class="btn btn-sm btn-primary"
-                                                            href="{{ route('user.edit', $user->id) }}">Edit</a>
-                                                        <form action="{{ route('user.destroy', $user->id) }}" method="Post"
-                                                            style="display: inline-block; margin-left: 10px">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit"
-                                                                class="btn btn-sm btn-danger">Delete</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-sm btn-primary"
+                                                                href="{{ route('user.edit', $user->id) }}">Edit</a>
+                                                            <form action="{{ route('user.destroy', $user->id) }}"
+                                                                method="Post"
+                                                                style="display: inline-block; margin-left: 10px">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit"
+                                                                    class="btn btn-sm btn-danger">Delete</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                @endif
+                                            @endforeach
 
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             @else
-                                <table class="table align-items-center table-flush">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                                <br>
+                                <div class="table-responsive-sm">
+                                    <table class="table align-items-center table-flush">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
                                 <data-empty></data-empty>
                             @endif
 

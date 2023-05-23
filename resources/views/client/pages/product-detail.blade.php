@@ -90,25 +90,31 @@
                                 <div class="product__details__option__size">
                                     <span>Size:</span>
                                     <label for="s">S
-                                        <input type="radio" id="s">
+                                        <input type="radio" id="s" value="s"
+                                            {{ $product->size->name === 's' ? 'active' : '' }}>
                                     </label>
                                     <label for="m">M
-                                        <input type="radio" id="m">
+                                        <input type="radio" id="m" value="m"
+                                            {{ $product->size->name === 'm' ? 'active' : '' }}>
                                     </label>
                                     <label for="l">L
-                                        <input type="radio" id="l">
+                                        <input type="radio" id="l" value="l"
+                                            {{ $product->size->name === 'l' ? 'active' : '' }}>
                                     </label>
                                     <label for="xl">XL
-                                        <input type="radio" id="xl">
+                                        <input type="radio" id="xl" value="xl"
+                                            {{ $product->size->name === 'xl' ? 'active' : '' }}>
                                     </label>
                                     <label for="xxl">XXL
-                                        <input type="radio" id="xxl">
+                                        <input type="radio" id="xxl" value="xxl"
+                                            {{ $product->size->name === 'xxl' ? 'active' : '' }}>
                                     </label>
+
 
 
                                     {{-- <select class="form-control m-bot15" name="size_id">
 
-                                        @foreach ($product->size as $size)
+                                        @foreach ($sizes as $size)
                                             <option value="{{ $size->id }}">{{ $size->name }}</option>
                                         @endForeach
 

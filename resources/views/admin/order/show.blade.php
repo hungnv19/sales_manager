@@ -127,7 +127,7 @@
                             </h5>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <div class="table-responsive-sm">
                                 <table class="table align-items-center table-flush">
                                     <thead class="thead-light">
                                         <tr>

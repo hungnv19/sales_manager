@@ -32,54 +32,59 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             @if ($colors->count() > 0)
-                                <table class="table align-items-center table-flush">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($colors as $color)
+                                <div class="table-responsive-sm">
+                                    <table class="table align-items-center table-flush">
+                                        <thead class="thead-light">
                                             <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
 
-                                                <td>
-                                                    {{ $color->id }}
-
-                                                </td>
-                                                <td>
-                                                    {{ $color->name }}
-
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-sm btn-primary"
-                                                        href="{{ route('colors.edit', $color->id) }}">Edit</a>
-                                                    <form action="{{ route('colors.destroy', $color->id) }}"
-                                                        method="Post" style="display: inline-block; margin-left: 10px">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                                    </form>
-                                                </td>
+                                                <th>Action</th>
                                             </tr>
-                                        @endforeach
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($colors as $color)
+                                                <tr>
 
-                                    </tbody>
-                                </table>
+                                                    <td>
+                                                        {{ $color->id }}
+
+                                                    </td>
+                                                    <td>
+                                                        {{ $color->name }}
+
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-sm btn-primary"
+                                                            href="{{ route('colors.edit', $color->id) }}">Edit</a>
+                                                        <form action="{{ route('colors.destroy', $color->id) }}"
+                                                            method="Post" style="display: inline-block; margin-left: 10px">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="btn btn-sm btn-danger">Delete</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             @else
-                                <table class="table align-items-center table-flush">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
+                                <div class="table-responsive-sm">
+                                    <table class="table align-items-center table-flush">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
 
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                                <br>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
                                 <data-empty></data-empty>
                             @endif
 

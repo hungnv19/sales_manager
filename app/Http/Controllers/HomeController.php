@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Customer;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -30,6 +31,7 @@ class HomeController extends Controller
             ->get();
         $user = User::count();
         $category = Category::count();
+        $order =  Order::count();
 
         return view('dashboard', [
             'title' => 'Trang quản trị',
@@ -37,6 +39,7 @@ class HomeController extends Controller
             'products' => $products,
             'product' => $product,
             'user' => $user,
+            'order' => $order,
             'category' => $category,
         ]);
     }
