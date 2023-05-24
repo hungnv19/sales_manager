@@ -60,42 +60,56 @@
                   <div class="form-row">
                     <div class="col-6">
                       <label class="" require>Color</label>
-                      <select
-                        class="form-select"
+                      <Field
+                        class="form-control"
+                        v-model="value"
                         name="color_id"
-                        aria-label="Default select example"
                         rules="required"
-                        v-model="model.color_id"
                       >
-                        <option value disabled selected>Chọn màu sắc</option>
-                        <option
-                          v-for="item in data.colors"
-                          :key="item.id"
-                          :value="item.id"
-                        >
-                          {{ item.label }}
-                        </option>
-                      </select>
+                        <Multiselect
+                          placeholder="Chọn Màu sắc"
+                          mode="tags"
+                          v-model="value"
+                          :searchable="true"
+                          :options="options"
+                          label="label"
+                          track-by="label"
+                          :infinite="true"
+                          :object="true"
+                          :filterResults="true"
+                          :clearOnSearch="true"
+                          :clearOnSelect="true"
+                          @input="updateSelectedColor"
+                        />
+                      </Field>
+                      <input type="hidden" name="color[]" v-model="color" />
                       <ErrorMessage class="error" name="color_id" />
                     </div>
                     <div class="col-6">
                       <label class="" require>Size</label>
-                      <select
-                        class="form-select"
+                      <Field
+                        class="form-control"
+                        v-model="values"
                         name="size_id"
-                        aria-label="Default select example"
                         rules="required"
-                        v-model="model.size_id"
                       >
-                        <option value disabled selected>Chọn Kích thước</option>
-                        <option
-                          v-for="item in data.sizes"
-                          :key="item.id"
-                          :value="item.id"
-                        >
-                          {{ item.label }}
-                        </option>
-                      </select>
+                        <Multiselect
+                          placeholder="Chọn Màu sắc"
+                          mode="tags"
+                          v-model="values"
+                          :searchable="true"
+                          :options="selects"
+                          label="label"
+                          track-by="label"
+                          :infinite="true"
+                          :object="true"
+                          :filterResults="true"
+                          :clearOnSearch="true"
+                          :clearOnSelect="true"
+                          @input="updateSelectedSize"
+                        />
+                      </Field>
+                      <input type="hidden" name="size[]" v-model="size" />
                       <ErrorMessage class="error" name="size_id" />
                     </div>
                   </div>
@@ -286,6 +300,7 @@ import {
 } from "vee-validate";
 import { localize } from "@vee-validate/i18n";
 import * as rules from "@vee-validate/rules";
+import Multiselect from "@vueform/multiselect";
 import $ from "jquery";
 
 export default {
@@ -300,6 +315,7 @@ export default {
     VeeForm,
     Field,
     ErrorMessage,
+    Multiselect,
   },
   computed: {},
   props: ["data"],
@@ -327,9 +343,25 @@ export default {
       categories: [],
       sizes: [],
       colors: [],
+      value: [],
+      options: [],
+      selects: [],
+      values: [],
     };
   },
   created() {
+    this.data.colors.map((e) => {
+      this.options.push({
+        value: e.id,
+        label: e.label,
+      });
+    });
+    this.data.sizes.map((e) => {
+      this.selects.push({
+        value: e.id,
+        label: e.label,
+      });
+    });
     let messError = {
       en: {
         fields: {
@@ -427,13 +459,23 @@ export default {
         reader.readAsDataURL(imgFile[0]);
       }
     },
-    updateSelected(e) {
+    updateSelectedColor(e) {
       let array = [];
       e.map((x) => {
         array.push(x.value);
       });
       array = [...new Set(array)];
-      this.skill = array;
+      this.color = array;
+      console.log(this.color);
+    },
+
+    updateSelectedSize(e) {
+      let array = [];
+      e.map((x) => {
+        array.push(x.value);
+      });
+      array = [...new Set(array)];
+      this.size = array;
     },
     onInvalidSubmit({ values, errors, results }) {
       let firstInputError = Object.entries(errors)[0][0];
@@ -454,3 +496,4 @@ export default {
 </script>
 
 
+<style src="@vueform/multiselect/themes/default.css"></style>

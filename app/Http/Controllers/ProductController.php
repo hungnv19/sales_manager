@@ -15,14 +15,16 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends BaseController
 {
     public Product $product;
+    public Color $color;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(Product $product)
+    public function __construct(Product $product, Color $color)
     {
         $this->product = $product;
+        $this->color = $color;
     }
     public function index()
     {
@@ -70,11 +72,8 @@ class ProductController extends BaseController
      */
     public function store(Request $request)
     {
-
         $product = new Product;
         $product->category_id = $request->category_id;
-        $product->color_id = $request->color_id;
-        $product->size_id = $request->size_id;
         $product->product_name = $request->product_name;
         $product->product_code = $request->product_code;
         $product->root = $request->root;
@@ -86,6 +85,10 @@ class ProductController extends BaseController
         if ($request->hasFile('image')) {
             $product->image = $request->image->storeAs('public/images', $request->image->hashName());
         }
+        $product->color_id = json_encode($request->color);
+        $product->size_id = json_encode($request->size);
+        // dd(json_decode( $product->color_id));
+        
         $product->save();
 
         if ($product) {
@@ -171,7 +174,7 @@ class ProductController extends BaseController
     public function destroy($id)
     {
         if (Product::destroy($id)) {
-           
+
             return redirect()->back()->with('success', 'Xóa sản phẩm thành công!');
         } else {
             return redirect()->back()->with('failed', 'Xóa sản phẩm thất bại !');
