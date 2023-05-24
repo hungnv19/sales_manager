@@ -253,7 +253,7 @@
 
                             <div class="product__item">
 
-                                <div class="product__item__pic set-bg"
+                                <div class="product__item__pic set-bg" 
                                     data-setbg="{{ Storage::url($product->image) }}">
 
 

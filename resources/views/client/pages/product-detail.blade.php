@@ -91,23 +91,28 @@
                                     <span>Size:</span>
                                     <label for="s">S
                                         <input type="radio" id="s" value="s"
-                                            {{ $product->size->name === 's' ? 'active' : '' }}>
+                                            {{-- {{ $product->sizes->name === 's' ? 'active' : '' }} --}}
+                                            >
                                     </label>
                                     <label for="m">M
                                         <input type="radio" id="m" value="m"
-                                            {{ $product->size->name === 'm' ? 'active' : '' }}>
+                                            {{-- {{ $product->size->name === 'm' ? 'active' : '' }} --}}
+                                            >
                                     </label>
                                     <label for="l">L
                                         <input type="radio" id="l" value="l"
-                                            {{ $product->size->name === 'l' ? 'active' : '' }}>
+                                            {{-- {{ $product->size->name === 'l' ? 'active' : '' }} --}}
+                                            >
                                     </label>
                                     <label for="xl">XL
                                         <input type="radio" id="xl" value="xl"
-                                            {{ $product->size->name === 'xl' ? 'active' : '' }}>
+                                            {{-- {{ $product->size->name === 'xl' ? 'active' : '' }} --}}
+                                            >
                                     </label>
                                     <label for="xxl">XXL
                                         <input type="radio" id="xxl" value="xxl"
-                                            {{ $product->size->name === 'xxl' ? 'active' : '' }}>
+                                            {{-- {{ $product->size->name === 'xxl' ? 'active' : '' }} --}}
+                                            >
                                     </label>
 
 

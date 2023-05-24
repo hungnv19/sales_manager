@@ -39,8 +39,9 @@ class Product extends Model
     {
         return $this->belongsTo(Color::class);
     }
-    
-    public function wishlist(){
+
+    public function wishlist()
+    {
         return $this->hasMany(Wishlist::class);
-     }
+    }
 }

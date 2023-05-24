@@ -11,6 +11,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Color;
 use App\Models\Size;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ProductController extends BaseController
 {
@@ -60,6 +61,7 @@ class ProductController extends BaseController
             'categories' => $category,
             'colors' => $colors,
             'sizes' => $sizes,
+
             'title' => 'Thêm san pham'
         ]);
     }
@@ -72,6 +74,7 @@ class ProductController extends BaseController
      */
     public function store(Request $request)
     {
+        
         $product = new Product;
         $product->category_id = $request->category_id;
         $product->product_name = $request->product_name;
@@ -88,7 +91,7 @@ class ProductController extends BaseController
         $product->color_id = json_encode($request->color);
         $product->size_id = json_encode($request->size);
         // dd(json_decode( $product->color_id));
-        
+
         $product->save();
 
         if ($product) {
@@ -200,5 +203,12 @@ class ProductController extends BaseController
         }
 
         return true;
+    }
+    public function generateCode()
+    {
+        $firstLetters = Str::of('S P')->explode(' ')->map(fn ($word) => Str::substr($word, 0, 1))->implode('');
+        $randomCode = $firstLetters . str_pad(rand(0, 999), 3, '0', STR_PAD_LEFT);
+        $randomCode = Str::upper($randomCode);
+        return response()->json($randomCode);
     }
 }

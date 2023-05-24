@@ -106,16 +106,14 @@
                     <div class="col-4">
                       <label class="" require>Product Code</label>
                       <Field
-                        type="text"
+                        readonly
                         name="product_code"
+                        type="text"
                         autocomplete="off"
                         v-model="model.product_code"
-                        rules="required|max:128|unique_code"
                         class="form-control"
                         placeholder="Enter product code"
                       />
-
-                      <ErrorMessage class="error" name="product_code" />
                     </div>
                     <div class="col-4">
                       <label class="" require>Root</label>

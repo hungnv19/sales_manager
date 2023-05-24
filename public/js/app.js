@@ -21542,6 +21542,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         product_quantity: ""
       },
       filePreview: "",
+      // randomCode: "",
       typeFile: "file",
       errMsgImage: "",
       hasErrImg: false,
@@ -21614,6 +21615,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return response.data.valid;
       })["catch"](function (error) {});
     });
+    axios.get("/get-code").then(function (res) {
+      _this.model.product_code = res.data;
+    })["catch"](function (error) {});
   },
   methods: {
     deleteImage: function deleteImage() {
@@ -24192,20 +24196,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "error",
         name: "size_id"
       })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
-        type: "text",
+        readonly: "",
         name: "product_code",
+        type: "text",
         autocomplete: "off",
         modelValue: _ctx.model.product_code,
         "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
           return _ctx.model.product_code = $event;
         }),
-        rules: "required|max:128|unique_code",
         "class": "form-control",
         placeholder: "Enter product code"
-      }, null, 8 /* PROPS */, ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
-        "class": "error",
-        name: "product_code"
-      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
+      }, null, 8 /* PROPS */, ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <ErrorMessage class=\"error\" name=\"product_code\" /> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
         type: "text",
         name: "root",
         autocomplete: "off",
@@ -24620,20 +24621,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "error",
         name: "size_id"
       })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
-        type: "text",
+        readonly: "",
         name: "product_code",
+        type: "text",
         autocomplete: "off",
         modelValue: _ctx.model.product_code,
         "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
           return _ctx.model.product_code = $event;
         }),
-        rules: "required|max:128|unique_code",
         "class": "form-control",
         placeholder: "Enter product code"
-      }, null, 8 /* PROPS */, ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ErrorMessage, {
-        "class": "error",
-        name: "product_code"
-      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
+      }, null, 8 /* PROPS */, ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Field, {
         type: "text",
         name: "root",
         autocomplete: "off",
