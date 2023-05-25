@@ -31,7 +31,7 @@
                                 <div class="col-12">
                                     <form action="{{ route('stock.index') }}" method="GET">
                                         <input name="search_input" class="form-control " placeholder="Search"
-                                            autocomplete="off" id="search_input" value="" type="control">
+                                            autocomplete="off" id="search_input" value="{{ request('search_input') }}" type="control">
                                     </form>
                                 </div>
 

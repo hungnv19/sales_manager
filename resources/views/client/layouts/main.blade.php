@@ -109,7 +109,7 @@
 
                                                 <div class="dropdown-menu">
 
-                                                    <h5>{{ Auth::user()->name }}</h5>
+                                                    <h5 class="dropdown-item"> {{ Auth::user()->name }}</h5>
 
                                                     <a class="dropdown-item" href="{{ asset('/profile') }}">Profile</a>
                                                     <a class="dropdown-item" href="{{ asset('/cart') }}">Cart</a>

@@ -33,7 +33,7 @@
                                 <div class="col-9">
                                     <form action="{{ route('sizes.index') }}" method="GET">
                                         <input name="search_input" class="form-control " placeholder="Search"
-                                            autocomplete="off" id="search_input" value="" type="control">
+                                            autocomplete="off" id="search_input" value="{{ request('search_input') }}" type="control">
                                     </form>
                                 </div>
                                 &nbsp;
