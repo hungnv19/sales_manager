@@ -20,7 +20,7 @@ class SizesController extends BaseController
     }
     public function index()
     {
-        $sizes = Size::get();
+        $sizes = Size::paginate(5);
         return view('admin.size.index', [
             'sizes' => $sizes,
             'title' => 'Kich thuoc'

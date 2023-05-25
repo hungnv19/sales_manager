@@ -77,6 +77,7 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                {{ $users->links("pagination::bootstrap-5") }}
                             @else
                                 <div class="table-responsive-sm">
                                     <table class="table align-items-center table-flush">

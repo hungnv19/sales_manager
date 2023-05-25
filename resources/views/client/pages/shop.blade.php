@@ -101,11 +101,7 @@
                 <div class="col-lg-9">
                     <div class="shop__product__option">
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="shop__product__option__left">
-                                    <p>Showing 1–12 of 126 results</p>
-                                </div>
-                            </div>
+                            
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="col-6">
                                     <label for="" class="form-label">Sort by Price:</label>
@@ -163,7 +159,7 @@
                         @endforeach
                     </div>
                     <div>
-                        {{ $products->links() }}
+                        {{ $products->links("pagination::bootstrap-5") }}
                     </div>
 
                 </div>

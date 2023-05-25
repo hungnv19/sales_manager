@@ -21,7 +21,7 @@ class CategoryController extends BaseController
     }
     public function index()
     {
-        $categories = Category::get();
+        $categories = Category::paginate(5);
         return view('admin.category.index', [
             'categories' => $categories,
             'title' => 'Danh mục'

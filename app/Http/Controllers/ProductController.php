@@ -38,7 +38,7 @@ class ProductController extends BaseController
                 // 'colors.name as color_name',
                 // 'sizes.name as size_name',
             )
-            ->get();
+            ->paginate(5);
         return view('admin.product.index', [
             'products' => $product,
 

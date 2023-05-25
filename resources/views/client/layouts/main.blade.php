@@ -253,7 +253,7 @@
 
                             <div class="product__item">
 
-                                <div class="product__item__pic set-bg" 
+                                <div class="product__item__pic set-bg"
                                     data-setbg="{{ Storage::url($product->image) }}">
 
 
@@ -545,7 +545,9 @@
                         </div>
                     </div>
                 </div>
+
             </div>
+            {{ $products->links('pagination::bootstrap-5') }}
         </div>
     </section>
     <!-- Product Section End -->
@@ -682,6 +684,7 @@
                     </div>
                 </div>
             </div>
+            {{ $news->links('pagination::bootstrap-5') }}
         </div>
     </section>
     <!-- Latest Blog Section End -->

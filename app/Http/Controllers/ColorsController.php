@@ -20,7 +20,7 @@ class ColorsController extends BaseController
     }
     public function index()
     {
-        $colors = Color::get();
+        $colors = Color::paginate(5);
         return view('admin.color.index', [
             'colors' => $colors,
             'title' => 'Mau sac'

@@ -24,7 +24,7 @@ class NewsController extends BaseController
     {
         $news = $this->new->join('categories', 'categories.id', '=', 'news.category_id')
             ->select('news.*', 'categories.category_name as categories_name')
-            ->get();
+            ->paginate(5);
         return view('admin.new.index', [
             'news' => $news,
             'title' => 'Tin tức'
@@ -34,7 +34,7 @@ class NewsController extends BaseController
     {
         $news = $this->new->join('categories', 'categories.id', '=', 'news.category_id')
             ->select('news.*', 'categories.category_name as categories_name')
-            ->get();
+            ->paginate(6);
         return view('client.pages.blog', [
             'news' => $news,
             'title' => 'Tin tức'

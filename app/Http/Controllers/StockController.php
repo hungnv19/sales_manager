@@ -23,7 +23,7 @@ class StockController extends BaseController
     {
         $product = $this->product->join('categories', 'categories.id', '=', 'products.category_id')
             ->select('products.*', 'categories.category_name as categories_name')
-            ->get();
+            ->paginate(5);
         return view('admin.stock.index', [
             'products' => $product,
             'title' => 'Stock'

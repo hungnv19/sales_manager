@@ -35,10 +35,10 @@ class ClientController extends BaseController
     {
         $news = $this->new->join('categories', 'categories.id', '=', 'news.category_id')
             ->select('news.*', 'categories.category_name as categories_name')
-            ->get();
+            ->paginate(3);
         $products = $this->product->join('categories', 'categories.id', '=', 'products.category_id')
             ->select('products.*', 'categories.category_name as categories_name')
-            ->get();
+            ->paginate(12);
 
         return view('client.layouts.main', [
             'products' => $products,
