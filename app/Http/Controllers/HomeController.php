@@ -30,7 +30,7 @@ class HomeController extends Controller
         $product = Product::count();
         $products = $this->product->join('categories', 'categories.id', '=', 'products.category_id')
             ->select('products.*', 'categories.category_name as categories_name')
-            ->get();
+            ->paginate(5);
         $user = User::count();
         $category = Category::count();
         $order =  Order::count();

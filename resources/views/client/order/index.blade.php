@@ -23,12 +23,23 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">All Order</h3>
+                    <div class="row">
+                        <div class="col-8"></div>
+                        <div class="col-4">
+                            <div class="row" style="">
 
+                                <div class="col-12">
+                                    <form action="{{ route('order.index') }}" method="GET">
+                                        <input name="search_input" class="form-control " placeholder="Search"
+                                            autocomplete="off" id="search_input" value="" type="control">
+                                    </form>
+                                </div>
+
+                            </div>
                         </div>
-                        <!-- /.card-header -->
+                    </div>
+                    <br>
+                    <div class="card">
                         <div class="card-body">
                             @if ($orders->count() > 0)
                                 <div class="table-responsive-sm">
@@ -103,6 +114,7 @@
                         </div>
                         <!-- /.card-body -->
                     </div>
+                    {{ $orders->links('pagination::bootstrap-5') }}
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->

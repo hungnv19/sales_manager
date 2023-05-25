@@ -23,13 +23,30 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">All Size</h3>
-                            <a class="btn btn-sm btn-primary" href="{{ route('sizes.create') }}"
-                                style="float: right;">Create</a>
+                    <div class="row">
+                        <div class="col-8"></div>
+                        <div class="col-4">
+                            <div class="row" style="">
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                <div class="col-9">
+                                    <form action="{{ route('sizes.index') }}" method="GET">
+                                        <input name="search_input" class="form-control " placeholder="Search"
+                                            autocomplete="off" id="search_input" value="" type="control">
+                                    </form>
+                                </div>
+                                &nbsp;
+                                <div class="col-2">
+                                    <a class="btn btn-sm btn-primary" href="{{ route('sizes.create') }}"
+                                        style="float: right; height: 38px; padding-top: 5px; ">Create</a>
+                                </div>
+                            </div>
                         </div>
-                        <!-- /.card-header -->
+                    </div>
+                    <br>
+                    <div class="card">
+
                         <div class="card-body">
                             @if ($sizes->count() > 0)
                                 <div class="table-responsive-sm">
@@ -71,7 +88,6 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $sizes->links("pagination::bootstrap-5") }}
                             @else
                                 <div class="table-responsive-sm">
                                     <table class="table align-items-center table-flush">
@@ -91,6 +107,7 @@
                         </div>
                         <!-- /.card-body -->
                     </div>
+                    {{ $sizes->links('pagination::bootstrap-5') }}
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->

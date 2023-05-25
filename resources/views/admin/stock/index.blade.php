@@ -23,11 +23,24 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">All Stock</h3>
+                    <div class="row">
+                        <div class="col-8"></div>
+                        <div class="col-4">
+                            <div class="row" style="">
+
+                                <div class="col-12">
+                                    <form action="{{ route('stock.index') }}" method="GET">
+                                        <input name="search_input" class="form-control " placeholder="Search"
+                                            autocomplete="off" id="search_input" value="" type="control">
+                                    </form>
+                                </div>
+
+                            </div>
                         </div>
-                        <!-- /.card-header -->
+                    </div>
+                    <br>
+                    <div class="card">
+
                         <div class="card-body">
                             @if ($products->count() > 0)
                                 <div class="table-responsive-sm">
@@ -94,7 +107,6 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $products->links("pagination::bootstrap-5") }}
                             @else
                                 <div class="table-responsive-sm">
                                     <table class="table align-items-center table-flush">
@@ -119,6 +131,7 @@
                         </div>
                         <!-- /.card-body -->
                     </div>
+                    {{ $products->links('pagination::bootstrap-5') }}
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->

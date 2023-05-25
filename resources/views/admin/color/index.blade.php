@@ -23,12 +23,30 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">All Color</h3>
-                            <a class="btn btn-sm btn-primary" href="{{ route('colors.create') }}"
-                                style="float: right;">Create</a>
+                    <div class="row">
+                        <div class="col-8"></div>
+                        <div class="col-4">
+                            <div class="row" style="">
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                <div class="col-9">
+                                    <form action="{{ route('colors.index') }}" method="GET">
+                                        <input name="search_input" class="form-control " placeholder="Search"
+                                            autocomplete="off" id="search_input" value="" type="control">
+                                    </form>
+                                </div>
+                                &nbsp;
+                                <div class="col-2">
+                                    <a class="btn btn-sm btn-primary" href="{{ route('colors.create') }}"
+                                        style="float: right; height: 38px; padding-top: 5px; ">Create</a>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                    <br>
+                    <div class="card">
+                       
                         <!-- /.card-header -->
                         <div class="card-body">
                             @if ($colors->count() > 0)
@@ -71,7 +89,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $colors->links("pagination::bootstrap-5") }}
+                                
                             @else
                                 <div class="table-responsive-sm">
                                     <table class="table align-items-center table-flush">
@@ -92,6 +110,7 @@
                         </div>
                         <!-- /.card-body -->
                     </div>
+                    {{ $colors->links('pagination::bootstrap-5') }}
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->

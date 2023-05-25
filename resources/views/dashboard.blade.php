@@ -167,11 +167,24 @@
                     <br>
                     <div class="row">
                         <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">All Stock</h3>
+                            <div class="row">
+                                <div class="col-8"></div>
+                                <div class="col-4">
+                                    <div class="row" style="">
+
+                                        <div class="col-12">
+                                            <form action="{{ route('home.index') }}" method="GET">
+                                                <input name="search_input" class="form-control " placeholder="Search"
+                                                    autocomplete="off" id="search_input" value="" type="control">
+                                            </form>
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <!-- /.card-header -->
+                            </div>
+                            <br>
+                            <div class="card">
+
                                 <div class="card-body">
                                     @if ($products->count() > 0)
                                         <table class="table align-items-center table-flush">
@@ -257,7 +270,7 @@
                                     @endif
                                     <!-- /.card-body -->
                                 </div>
-                                <!-- /.card -->
+                                {{ $products->links('pagination::bootstrap-5') }}
                             </div>
                             <!-- /.col -->
                         </div>

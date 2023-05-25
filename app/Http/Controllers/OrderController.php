@@ -23,7 +23,7 @@ class OrderController extends Controller
     {
         $orders = $this->order->join('users', 'users.id', '=', 'orders.user_id')
             ->select('orders.*', 'users.name as user_name')
-            ->get();
+            ->paginate(10);
         return view('client.order.index', [
             'orders' => $orders,
             'title' => 'Order'

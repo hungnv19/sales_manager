@@ -19,8 +19,17 @@ class CategoryController extends BaseController
     {
         $this->category = $category;
     }
-    public function index()
+    public function index(Request $request)
     {
+        $categoryBuilder = $this->category;
+        if (isset($request['search_input'])) {
+            $categoryBuilder = $categoryBuilder->where(function ($q) use ($request) {
+                $q->where($this->escapeLikeSentence('categories.category_name', $request['search_input']));
+               
+            });
+        }
+        
+
         $categories = Category::paginate(5);
         return view('admin.category.index', [
             'categories' => $categories,
