@@ -18,9 +18,19 @@ class SizesController extends BaseController
     {
         $this->size = $size;
     }
-    public function index()
+    public function index(Request $request)
     {
-        $sizes = Size::paginate(5);
+        $search =  $request->input('search_input');
+        if ($search != "") {
+            $sizes = Size::where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })
+                ->paginate(2);
+            $sizes->appends(['search_input' => $search]);
+        } else {
+            $sizes = Size::paginate(5);
+        }
+
         return view('admin.size.index', [
             'sizes' => $sizes,
             'title' => 'Kich thuoc'

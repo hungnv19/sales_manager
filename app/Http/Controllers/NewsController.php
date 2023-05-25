@@ -20,11 +20,22 @@ class NewsController extends BaseController
         $this->new = $new;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $news = $this->new->join('categories', 'categories.id', '=', 'news.category_id')
-            ->select('news.*', 'categories.category_name as categories_name')
-            ->paginate(5);
+        $search =  $request->input('search_input');
+        if ($search != "") {
+            $news = News::where(function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('describe', 'like', '%' . $search . '%');
+            })
+                ->paginate(2);
+            $news->appends(['search_input' => $search]);
+        } else {
+            $news = $this->new->join('categories', 'categories.id', '=', 'news.category_id')
+                ->select('news.*', 'categories.category_name as categories_name')
+                ->paginate(5);
+        }
+
         return view('admin.new.index', [
             'news' => $news,
             'title' => 'Tin tức'

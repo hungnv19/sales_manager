@@ -24,10 +24,11 @@
                 <div class="col-lg-3">
                     <div class="shop__sidebar">
                         <div class="shop__sidebar__search">
-                            <form action="{{ route('searchProduct') }}">
-                                @csrf
-                                <input type="text" width="400px" name="name" placeholder="Tìm kiếm"
-                                    class="form-control">
+
+                            <form action="{{ route('shop') }}" method="GET">
+                                <input type="text" width="400px" name="search_input" class="form-control "
+                                    placeholder="Search" autocomplete="off" id="search_input"
+                                    value="{{ request('search_input') }}" type="control">
                                 <button type="submit"><span class="icon_search"></span></button>
                             </form>
                         </div>
@@ -101,7 +102,7 @@
                 <div class="col-lg-9">
                     <div class="shop__product__option">
                         <div class="row">
-                            
+
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="col-6">
                                     <label for="" class="form-label">Sort by Price:</label>
@@ -140,7 +141,8 @@
 
                                         <div class="product__item__text">
                                             <h6> {{ $product->product_name }}</h6>
-                                            <a href="{{ route('cart.addToCart', $product->id) }}" class="add-cart">+ Add To
+                                            <a href="{{ route('cart.addToCart', $product->id) }}" class="add-cart">+ Add
+                                                To
                                                 Cart</a>
                                             <div class="rating">
                                                 <i class="fa fa-star"></i>
@@ -159,7 +161,7 @@
                         @endforeach
                     </div>
                     <div>
-                        {{ $products->links("pagination::bootstrap-5") }}
+                        {{ $products->links('pagination::bootstrap-5') }}
                     </div>
 
                 </div>

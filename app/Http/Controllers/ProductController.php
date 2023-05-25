@@ -27,18 +27,32 @@ class ProductController extends BaseController
         $this->product = $product;
         $this->color = $color;
     }
-    public function index()
+    public function index(Request $request)
     {
-        $product = $this->product->join('categories', 'categories.id', '=', 'products.category_id')
-            // ->join('colors', 'colors.id', '=', 'products.color_id')
-            // ->join('sizes', 'sizes.id', '=', 'products.size_id')
-            ->select(
-                'products.*',
-                'categories.category_name as categories_name',
-                // 'colors.name as color_name',
-                // 'sizes.name as size_name',
-            )
-            ->paginate(5);
+
+        $search =  $request->input('search_input');
+        if ($search != "") {
+            $product = Product::where(function ($query) use ($search) {
+                $query->where('product_name', 'like', '%' . $search . '%')
+                    ->orWhere('product_code', 'like', '%' . $search . '%')
+                    ->orWhere('id', 'like', '%' . $search . '%')
+                    ->orWhere('buying_price', 'like', '%' . $search . '%')
+                    ->orWhere('selling_price', 'like', '%' . $search . '%')
+                    ->orWhere('product_quantity', 'like', '%' . $search . '%')
+                    ->orWhere('root', 'like', '%' . $search . '%');
+            })
+                ->paginate(5);
+            $product->appends(['search_input' => $search]);
+        } else {
+            $product = $this->product->join('categories', 'categories.id', '=', 'products.category_id')
+
+                ->select(
+                    'products.*',
+                    'categories.category_name as categories_name',
+
+                )
+                ->paginate(5);
+        }
         return view('admin.product.index', [
             'products' => $product,
 
@@ -74,7 +88,7 @@ class ProductController extends BaseController
      */
     public function store(Request $request)
     {
-        
+
         $product = new Product;
         $product->category_id = $request->category_id;
         $product->product_name = $request->product_name;

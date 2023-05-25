@@ -13,10 +13,19 @@ class WishlistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-
-        $wishlists = Wishlist::where("user_id", "=", Auth::user()->id)->with('product')->orderby('id', 'desc')->paginate(10);
+        $search =  $request->input('search_input');
+        if ($search != "") {
+            $wishlists = Wishlist::where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })
+                ->paginate(10);
+            $wishlists->appends(['search_input' => $search]);
+        } else {
+            $wishlists = Wishlist::where("user_id", "=", Auth::user()->id)->with('product')->orderby('id', 'desc')->paginate(10);
+        }
+        
         return view('client.wishlist.index', [
             'wishlists' => $wishlists,
         ]);

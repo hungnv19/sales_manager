@@ -21,9 +21,21 @@ class UserController extends BaseController
         $this->user = $user;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::paginate(5);
+        $search =  $request->input('search_input');
+        if ($search != "") {
+            $user = User::where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%')
+                ->orWhere('email', 'like', '%' . $search . '%')
+                ->orWhere('id', 'like', '%' . $search . '%');
+            })
+                ->paginate(5);
+            $user->appends(['search_input' => $search]);
+        } else {
+            $user = User::paginate(5);
+        }
+        // $user = User::paginate(5);
         return view('admin.user.index', [
             'users' => $user,
             'title' => 'User'

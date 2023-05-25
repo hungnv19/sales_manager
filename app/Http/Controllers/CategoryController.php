@@ -21,16 +21,20 @@ class CategoryController extends BaseController
     }
     public function index(Request $request)
     {
-        $categoryBuilder = $this->category;
-        if (isset($request['search_input'])) {
-            $categoryBuilder = $categoryBuilder->where(function ($q) use ($request) {
-                $q->where($this->escapeLikeSentence('categories.category_name', $request['search_input']));
-               
-            });
-        }
-        
 
-        $categories = Category::paginate(5);
+        $search =  $request->input('search_input');
+        if ($search != "") {
+            $categories = Category::where(function ($query) use ($search) {
+                $query->where('category_name', 'like', '%' . $search . '%');
+            })
+                ->paginate(5);
+            $categories->appends(['search_input' => $search]);
+        } else {
+            $categories = Category::paginate(5);
+        }
+
+
+
         return view('admin.category.index', [
             'categories' => $categories,
             'title' => 'Danh mục'

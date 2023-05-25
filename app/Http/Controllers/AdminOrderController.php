@@ -18,11 +18,21 @@ class AdminOrderController extends Controller
     {
         $this->order = $order;
     }
-    public function index()
+    public function index(Request $request)
     {
-        $orders = $this->order->join('users', 'users.id', '=', 'orders.user_id')
-            ->select('orders.*', 'users.name as user_name')
-            ->paginate(10);
+        $search =  $request->input('search_input');
+        if ($search != "") {
+            $orders = Order::where(function ($query) use ($search) {
+                $query->where('sub_total', 'like', '%' . $search . '%')
+                    ->orWhere('due', 'like', '%' . $search . '%');
+            })
+                ->paginate(2);
+            $orders->appends(['search_input' => $search]);
+        } else {
+            $orders = $this->order->join('users', 'users.id', '=', 'orders.user_id')
+                ->select('orders.*', 'users.name as user_name')
+                ->paginate(10);
+        }
         return view('admin.order.index', [
             'orders' => $orders,
             'title' => 'Order'

@@ -96,7 +96,9 @@
                     Remember me
                   </label>
                 </div>
-                <a :href="data.urlForgotPassword" class="text-body">Forgot password?</a>
+                <a :href="data.urlForgotPassword" class="text-body"
+                  >Forgot password?</a
+                >
               </div>
 
               <div class="text-center text-lg-start mt-4 pt-2">
@@ -177,14 +179,23 @@ export default {
       generateMessage: localize(messError),
     });
   },
+  mounted() {
+    this.checkLogin();
+  },
   methods: {
-    updateSelected(e) {
-      let array = [];
-      e.map((x) => {
-        array.push(x.value);
-      });
-      array = [...new Set(array)];
-      this.skill = array;
+    checkLogin() {
+      axios
+        .post(this.data.urlUserLogin)
+        .then((res) => {
+          if (res.data.error) {
+            this.messageError = res.data.error;
+            this.showError = true;
+            console.log(res.data);
+          }
+        })
+        .catch((res) => {
+          this.errors = res.response.data.res;
+        });
     },
     onInvalidSubmit({ values, errors, results }) {
       let firstInputError = Object.entries(errors)[0][0];

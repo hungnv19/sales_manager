@@ -19,11 +19,29 @@ class StockController extends BaseController
     {
         $this->product = $product;
     }
-    public function index()
+    public function index(Request $request)
     {
-        $product = $this->product->join('categories', 'categories.id', '=', 'products.category_id')
-            ->select('products.*', 'categories.category_name as categories_name')
-            ->paginate(5);
+        // $product = $this->product->join('categories', 'categories.id', '=', 'products.category_id')
+        //     ->select('products.*', 'categories.category_name as categories_name')
+        //     ->paginate(5);
+        $search =  $request->input('search_input');
+        if ($search != "") {
+            $product = Product::where(function ($query) use ($search) {
+                $query->where('product_name', 'like', '%' . $search . '%')
+                    ->orWhere('product_code', 'like', '%' . $search . '%')
+                    ->orWhere('id', 'like', '%' . $search . '%')
+                    ->orWhere('buying_price', 'like', '%' . $search . '%')
+                    ->orWhere('selling_price', 'like', '%' . $search . '%')
+                    ->orWhere('product_quantity', 'like', '%' . $search . '%')
+                    ->orWhere('root', 'like', '%' . $search . '%');
+            })
+                ->paginate(5);
+            $product->appends(['search_input' => $search]);
+        } else {
+            $product = $this->product->join('categories', 'categories.id', '=', 'products.category_id')
+                ->select('products.*', 'categories.category_name as categories_name')
+                ->paginate(5);
+        }
         return view('admin.stock.index', [
             'products' => $product,
             'title' => 'Stock'

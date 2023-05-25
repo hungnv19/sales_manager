@@ -79,7 +79,7 @@
 
                                                     </td>
                                                     <td>
-                                                        <img src=" {{ Storage::url($new->image) }}" style="width: 50px;" />
+                                                        <img src=" {{ Storage::url($new->image) }}" style="width: 60px; height: 60px; object-fit: cover"  />
 
                                                     </td>
                                                     <td>

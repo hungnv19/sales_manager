@@ -18,9 +18,19 @@ class ColorsController extends BaseController
     {
         $this->color = $color;
     }
-    public function index()
+    public function index(Request $request)
     {
-        $colors = Color::paginate(5);
+        $search =  $request->input('search_input');
+        if ($search != "") {
+            $colors = Color::where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })
+                ->paginate(2);
+            $colors->appends(['search_input' => $search]);
+        } else {
+            $colors = Color::paginate(5);
+        }
+        // $colors = Color::paginate(5);
         return view('admin.color.index', [
             'colors' => $colors,
             'title' => 'Mau sac'

@@ -25,12 +25,28 @@ class HomeController extends Controller
         $this->user = $user;
         $this->category = $category;
     }
-    public function index()
+    public function index(Request $request)
     {
         $product = Product::count();
-        $products = $this->product->join('categories', 'categories.id', '=', 'products.category_id')
-            ->select('products.*', 'categories.category_name as categories_name')
-            ->paginate(5);
+
+        $search =  $request->input('search_input');
+        if ($search != "") {
+            $products = Product::where(function ($query) use ($search) {
+                $query->where('product_name', 'like', '%' . $search . '%')
+                    ->orWhere('product_code', 'like', '%' . $search . '%')
+                    ->orWhere('id', 'like', '%' . $search . '%')
+                    ->orWhere('buying_price', 'like', '%' . $search . '%')
+                    ->orWhere('selling_price', 'like', '%' . $search . '%')
+                    ->orWhere('product_quantity', 'like', '%' . $search . '%')
+                    ->orWhere('root', 'like', '%' . $search . '%');
+            })
+                ->paginate(5);
+            $products->appends(['search_input' => $search]);
+        } else {
+            $products = $this->product->join('categories', 'categories.id', '=', 'products.category_id')
+                ->select('products.*', 'categories.category_name as categories_name')
+                ->paginate(5);
+        }
         $user = User::count();
         $category = Category::count();
         $order =  Order::count();

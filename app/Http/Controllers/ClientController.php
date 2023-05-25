@@ -59,12 +59,27 @@ class ClientController extends BaseController
         ]);
     }
 
-    public function shop()
+    public function shop(Request $request)
     {
-        $products = Product::select('products.*')
-            ->paginate(12);
-        // $products = Product::select('products.*')
-        //     ->orderBy('product_name')->with('categories')->paginate(12);
+        $search =  $request->input('search_input');
+        if ($search != "") {
+            $products = Product::where(function ($query) use ($search) {
+                $query->where('product_name', 'like', '%' . $search . '%')
+                    ->orWhere('product_code', 'like', '%' . $search . '%')
+                    ->orWhere('id', 'like', '%' . $search . '%')
+                    ->orWhere('buying_price', 'like', '%' . $search . '%')
+                    ->orWhere('selling_price', 'like', '%' . $search . '%')
+                    ->orWhere('product_quantity', 'like', '%' . $search . '%')
+                    ->orWhere('root', 'like', '%' . $search . '%');
+            })
+                ->paginate(5);
+            $products->appends(['search_input' => $search]);
+        } else {
+            $products = Product::select('products.*')
+                ->paginate(12);
+        }
+
+
         $categories = Category::select('id', 'category_name')->get();
         return view('client.pages.shop', [
             'products' => $products,
@@ -72,17 +87,7 @@ class ClientController extends BaseController
 
         ]);
     }
-    public function searchProduct(Request $requests)
-    {
-        $products = Product::where('product_name', 'like', '%' . $requests->name . '%')->paginate(12);
-        $categories = Category::select('id', 'category_name')->get();
-
-        return view('client.pages.shop', [
-            'products' => $products,
-            'categories' => $categories,
-
-        ]);
-    }
+   
     public function categoryProducts($id)
     {
         $products = DB::table('products')->join('categories', 'products.category_id', '=', 'categories.id')->select('products.*')
