@@ -115,28 +115,9 @@ class OrderController extends Controller
             return redirect()->back()->with('failed', 'Xóa tin thất bại!');
         }
     }
-    public function todayOrder()
-    {
-        $orders = DB::table('orders')
-            ->join('customers', 'orders.customer_id', 'customers.id')
-            ->where('orders.order_date', date('d/m/Y'))
-            ->select('customers.name', 'orders.*')
-            ->orderBy('orders.id', 'desc')
-            ->get();
-        return response()->json($orders);
-    }
+   
 
-    public function orders($id)
-    {
-        $orders = DB::table('orders')
-            ->join('customers', 'orders.customer_id', 'customers.id')
-            ->where('orders.id', $id)
-            ->select('customers.name', 'customers.phone', 'customers.address', 'orders.*')
-            ->first();
-
-        return response()->json($orders);
-    }
-
+  
     public function orderDetails($id)
     {
         $details = DB::table('order_details')
