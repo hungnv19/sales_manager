@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Customer;
+use App\Models\News;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -49,7 +50,7 @@ class HomeController extends Controller
         }
         $user = User::count();
         $category = Category::count();
-        $order =  Order::count();
+        $new =  News::count();
 
 
         $users = User::select(DB::raw("COUNT(*) as count"))
@@ -65,7 +66,7 @@ class HomeController extends Controller
             'products' => $products,
             'product' => $product,
             'user' => $user,
-            'order' => $order,
+            'new' => $new,
             'data' => $data,
             'labels' => $labels,
 
