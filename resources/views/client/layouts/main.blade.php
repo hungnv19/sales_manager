@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.0/css/toastr.css" rel="stylesheet" />
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script>
@@ -92,21 +93,36 @@
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
                         @if (Auth::check())
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                                    aria-expanded="false">
+                            <section class="ftco-section" style="margin-left: 60px">
+                                <div class="container">
 
-                                    {{ Auth::user()->name }}
+                                    <div class="row justify-content-center">
 
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{{ asset('/profile') }}">Profile</a>
-                                    <a class="dropdown-item" href="{{ asset('/cart') }}">Cart</a>
-                                    <a class="dropdown-item" href="{{ asset('/order') }}">Order</a>
-                                    <a class="dropdown-item" href="{{ asset('/wishlist') }}">WishList</a>
-                                    <a class="dropdown-item" href="{{ asset('/logout') }}">Logout</a>
+                                        <div class="col-md-6 d-flex justify-content-center">
+                                            <div class="btn-group">
+                                                <a href="" class="btn-img img dropdown-toggle rounded-circle"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <img src="img/avatar.jpg" alt=""
+                                                        style="width: 40px; height: 40px; border-radius: 50%">
+
+                                                </a>
+
+                                                <div class="dropdown-menu">
+
+                                                    <h5>{{ Auth::user()->name }}</h5>
+
+                                                    <a class="dropdown-item" href="{{ asset('/profile') }}">Profile</a>
+                                                    <a class="dropdown-item" href="{{ asset('/cart') }}">Cart</a>
+                                                    <a class="dropdown-item" href="{{ asset('/order') }}">Order</a>
+                                                    <a class="dropdown-item"
+                                                        href="{{ asset('/wishlist') }}">WishList</a>
+                                                    <a class="dropdown-item" href="{{ asset('/logout') }}">Logout</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </section>
                         @endif
                     </div>
                 </div>
@@ -792,6 +808,7 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.0/js/toastr.js"></script>
 
     <script>
