@@ -85,8 +85,6 @@
                                                             href="{{ route('sizeProducts', $size->id) }}">{{ $size->name }}</a>
                                                     </li>
                                                 @endforeach
-                                               
-
                                             </div>
                                         </div>
                                     </div>
@@ -104,12 +102,13 @@
                                                             href="{{ route('colorProducts', $color->id) }}">{{ $color->name }}</a>
                                                     </li>
                                                 @endforeach
-                                               
+
 
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -148,7 +147,8 @@
                                             <ul class="product__hover">
                                                 @if (Auth::user())
                                                     <li><a href="{{ route('add-wishlist', $product->id) }}"><img
-                                                                src="{{ asset('img/icon/heart.png') }}" alt=""></a>
+                                                                src="{{ asset('img/icon/heart.png') }}"
+                                                                alt=""></a>
                                                     </li>
                                                 @endif
                                                 <li><a href=" {{ route('productDetail', $product->id) }}"><img
@@ -186,8 +186,8 @@
                     @else
                         <data-empty></data-empty>
                     @endif
-
                 </div>
+
             </div>
         </div>
     </section>

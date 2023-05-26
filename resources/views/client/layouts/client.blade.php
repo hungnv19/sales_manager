@@ -129,7 +129,7 @@
     <script src="js/jquery.slicknav.js"></script>   
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script> --}}
-    <script src="js/main.js"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.0/js/toastr.js"></script>
 

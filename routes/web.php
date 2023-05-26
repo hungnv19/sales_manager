@@ -44,7 +44,9 @@ Route::prefix('/')->name('')->group(function () {
 
     Route::get('/product-detail/{id}', [ClientController::class, 'productDetail'])->name('productDetail');
     Route::get('/shop', [ClientController::class, 'shop'])->name('shop');
-    Route::get('/categoryProducts/{id}', [ClientController::class, 'categoryProducts'])->name('categoryProducts');
+    Route::get('/categories/{id}', [ClientController::class, 'categoryProducts'])->name('categoryProducts');
+    Route::get('/size/{id}', [ClientController::class, 'sizeProducts'])->name('sizeProducts');
+    Route::get('/color/{id}', [ClientController::class, 'colorProducts'])->name('colorProducts');
     Route::get('/searchProduct', [ClientController::class, 'searchProduct'])->name('searchProduct');
 });
 

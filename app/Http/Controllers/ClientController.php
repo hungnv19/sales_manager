@@ -9,9 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BaseController;
 use App\Mail\ContactMail;
+use App\Models\Color;
 use App\Models\Comment;
 use App\Models\Contact;
 use App\Models\News;
+use App\Models\Size;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -51,7 +53,7 @@ class ClientController extends BaseController
 
         $comments = Comment::select('id', 'content', 'user_id', 'product_id', 'created_at')->orderBy('id', 'desc')->with('user')->with('product')->get();
 
-        // dd($product->size);
+
         return view('client.pages.product-detail', [
             'product' => $product,
             'comments' => $comments,
@@ -81,25 +83,67 @@ class ClientController extends BaseController
 
 
         $categories = Category::select('id', 'category_name')->get();
+        $sizes = Size::select('id', 'name')->get();
+        $colors = Color::select('id', 'name')->get();
         return view('client.pages.shop', [
             'products' => $products,
+            'categories' => $categories,
+            'sizes' => $sizes,
+            'colors' => $colors,
+
+        ]);
+    }
+
+    public function categoryProducts($id)
+    {
+        $category = Category::where('id', $id)->first();
+
+        $products = Product::where('category_id', $category->id)->paginate(12);
+
+        $categories = Category::select('id', 'category_name')->get();
+
+        $sizes = Size::select('id', 'name')->get();
+
+        $colors = Color::select('id', 'name')->get();
+
+        return view('client.pages.category-product', [
+            'products' => $products,
+            'sizes' => $sizes,
+            'colors' => $colors,
             'categories' => $categories,
 
         ]);
     }
-   
-    public function categoryProducts($id)
+    public function sizeProducts($id)
     {
-        $products = DB::table('products')->join('categories', 'products.category_id', '=', 'categories.id')->select('products.*')
-            ->where('products.category_id', '=', $id)
-            ->paginate(12);
+        $size = Size::where('id', $id)->first();
+
+        $products = Product::where('size_id', $size->id)->paginate(12);
+
         $categories = Category::select('id', 'category_name')->get();
-
-
-        return view('client.pages.shop', [
+        $sizes = Size::select('id', 'name')->get();
+        $colors = Color::select('id', 'name')->get();
+        return view('client.pages.category-product', [
             'products' => $products,
             'categories' => $categories,
+            'sizes' => $sizes,
+            'colors' => $colors,
+        ]);
+    }
+    public function colorProducts($id)
+    {
+        $color = Color::where('id', $id)->first();
 
+        $products = Product::where('color_id', $color->id)->paginate(12);
+
+        $categories = Category::select('id', 'category_name')->get();
+        $sizes = Size::select('id', 'name')->get();
+        $colors = Color::select('id', 'name')->get();
+        return view('client.pages.category-product', [
+            'products' => $products,
+            'categories' => $categories,
+            'sizes' => $sizes,
+            'colors' => $colors,
         ]);
     }
     public function profile()
