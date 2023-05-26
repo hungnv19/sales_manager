@@ -85,7 +85,7 @@
                                                             href="{{ route('sizeProducts', $size->id) }}">{{ $size->name }}</a>
                                                     </li>
                                                 @endforeach
-                                               
+
 
                                             </div>
                                         </div>
@@ -104,7 +104,7 @@
                                                             href="{{ route('colorProducts', $color->id) }}">{{ $color->name }}</a>
                                                     </li>
                                                 @endforeach
-                                               
+
 
                                             </div>
                                         </div>
@@ -122,14 +122,17 @@
                                 <div class="col-6">
                                     <label for="" class="form-label">Sort by Price:</label>
                                 </div>
+                                <form action="">
+                                    <div class="col-6">
+                                        <select name="sort" id="sort" class="form-control "
+                                            aria-label="Default select example">
+                                            <option value="{{ Request::url() }}?sort_by=none">Lọc</option>
+                                            <option value="{{ Request::url() }}?sort_by=asc">Giá tăng dần</option>
+                                            <option value="{{ Request::url() }}?sort_by=dec">Giá giảm dần</option>
+                                        </select>
+                                    </div>
+                                </form>
 
-                                <div class="col-6">
-                                    <select class="form-control " aria-label="Default select example">
-                                        <option value="">Low To High</option>
-                                        <option value="">$0 - $55</option>
-                                        <option value="">$55 - $100</option>
-                                    </select>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -148,7 +151,8 @@
                                             <ul class="product__hover">
                                                 @if (Auth::user())
                                                     <li><a href="{{ route('add-wishlist', $product->id) }}"><img
-                                                                src="{{ asset('img/icon/heart.png') }}" alt=""></a>
+                                                                src="{{ asset('img/icon/heart.png') }}"
+                                                                alt=""></a>
                                                     </li>
                                                 @endif
                                                 <li><a href=" {{ route('productDetail', $product->id) }}"><img
