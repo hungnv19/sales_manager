@@ -33,7 +33,8 @@
                                 <div class="col-9">
                                     <form action="{{ route('product.index') }}" method="GET">
                                         <input name="search_input" class="form-control " placeholder="Search"
-                                            autocomplete="off" id="search_input" value="{{ request('search_input') }}" type="control">
+                                            autocomplete="off" id="search_input" value="{{ request('search_input') }}"
+                                            type="control">
                                     </form>
                                 </div>
                                 &nbsp;
@@ -46,119 +47,103 @@
                     </div>
                     <br>
                     <div class="card">
-
                         <div class="card-body">
                             @if ($products->count() > 0)
-                                <div class="table-responsive-sm">
+                                <div class="table table-responsive-sm table-bordered">
                                     <table class="table  align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Category</th>
-                                                <th>Name</th>
-                                                <th>Code</th>
-                                                <th>Root</th>
-                                                <th>Buying Price</th>
-                                                <th>Selling Price</th>
-                                                <th>Buying Date</th>
-                                                <th>Image</th>
-                                                <th>Quantity</th>
-                                                <th>Action</th>
+                                                <th class="text-center">ID</th>
+                                                <th class="text-center">Category</th>
+                                                <th class="text-center">Name</th>
+                                                <th class="text-center">Code</th>
+                                                <th class="text-center">Root</th>
+                                                <th class="text-center">Buying Price</th>
+                                                <th class="text-center">Selling Price</th>
+                                                <th class="text-center">Buying Date</th>
+                                                <th >Image</th>
+                                                <th class="text-center">Quantity</th>
+                                                <th class="th-120 text-center">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($products as $product)
                                                 <tr>
-
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $product->id }}
-
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $product->categories_name }}
-
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $product->product_name }}
-
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $product->product_code }}
-
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $product->root }}
-
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ number_format($product->buying_price) . ' Đ' }}
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ number_format($product->selling_price) . ' Đ' }}
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $product->buying_date }}
-
                                                     </td>
                                                     <td>
                                                         <img src=" {{ Storage::url($product->image) }}"
                                                             style="width: 60px; height: 60px; object-fit: cover" />
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $product->product_quantity }}
-
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <a class="btn btn-sm btn-primary"
                                                             href="{{ route('product.edit', $product->id) }}">Edit</a>
+
                                                         <form action="{{ route('product.destroy', $product->id) }}"
-                                                            method="Post" style="display: flex; margin-left: 10px">
+                                                            method="Post" style="  display: inline-block ">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit"
-                                                                class="btn btn-sm btn-danger">Delete</button>
+                                                            <button type="submit" class="btn btn-sm btn-danger"
+                                                                style=" margin-left: 10px; display: inline-block ">Delete</button>
                                                         </form>
                                                     </td>
                                                 </tr>
                                             @endforeach
-
                                         </tbody>
                                     </table>
                                 </div>
                             @else
-                                <div class="table-responsive-sm">
+                                <div class="table table-responsive-sm table-bordered">
                                     <table class="table  align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Category</th>
-                                                <th>Name</th>
-                                                <th>Code</th>
-                                                <th>Root</th>
-                                                <th>Buying Price</th>
-                                                <th>Selling Price</th>
-                                                <th>Buying Date</th>
-                                                <th>Image</th>
-                                                <th>Quantity</th>
-                                                <th>Action</th>
+                                                <th class="text-center">ID</th>
+                                                <th class="text-center">Category</th>
+                                                <th class="text-center">Name</th>
+                                                <th class="text-center">Code</th>
+                                                <th class="text-center">Root</th>
+                                                <th class="text-center">Buying Price</th>
+                                                <th class="text-center">Selling Price</th>
+                                                <th class="text-center">Buying Date</th>
+                                                <th >Image</th>
+                                                <th class="text-center">Quantity</th>
+                                                <th class="th-120 text-center">Action</th>
                                             </tr>
                                         </thead>
-
                                     </table>
                                 </div>
                                 <data-empty></data-empty>
                             @endif
-
-
                         </div>
-                        <!-- /.card-body -->
                     </div>
                     {{ $products->links('pagination::bootstrap-5') }}
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
     </section>
 @endsection

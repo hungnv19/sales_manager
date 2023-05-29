@@ -31,7 +31,8 @@
                                 <div class="col-12">
                                     <form action="{{ route('order.index') }}" method="GET">
                                         <input name="search_input" class="form-control " placeholder="Search"
-                                            autocomplete="off" id="search_input" value="{{ request('search_input') }}" type="control">
+                                            autocomplete="off" id="search_input" value="{{ request('search_input') }}"
+                                            type="control">
                                     </form>
                                 </div>
 
@@ -42,39 +43,38 @@
                     <div class="card">
                         <div class="card-body">
                             @if ($orders->count() > 0)
-                                <div class="table-responsive-sm">
+                                <div class="table-responsive-sm table-bordered">
                                     <table class="table  align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Total Amount</th>
-                                                <th>Pay</th>
-                                                <th>Due</th>
-                                                <th>Pay By</th>
-                                                <th>Action</th>
+                                                <th class="text-center">Name</th>
+                                                <th class="text-center">Total Amount</th>
+                                                <th class="text-center">Pay</th>
+                                                <th class="text-center">Due</th>
+                                                <th class="text-center">Pay By</th>
+                                                <th class="text-center th-120">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($orders as $order)
                                                 <tr>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $order->user_name }}
-
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ number_format($order->total) . ' Đ' }}
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ number_format($order->pay) . ' Đ' }}
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ number_format($order->due) . ' Đ' }}
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $order->payBy }}
                                                     </td>
-                                                    <td>
-                                                        <a class="btn btn-sm btn-primary"
+                                                    <td class="text-center">
+                                                        <a class="btn btn-sm btn-primary" style="display: inline-block; "
                                                             href="{{ route('order.show', $order->id) }}">Detail</a>
                                                         <form action="{{ route('order.destroy', $order->id) }}"
                                                             method="Post" style="display: inline-block; margin-left: 10px">
@@ -91,35 +91,27 @@
                                     </table>
                                 </div>
                             @else
-                                <div class="table-responsive-sm">
+                                <div class="table-responsive-sm table-bordered">
                                     <table class="table  align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-
-                                                <th>Name</th>
-                                                <th>Total Amount</th>
-                                                <th>Pay</th>
-                                                <th>Due</th>
-                                                <th>Pay By</th>
-                                                <th>Action</th>
+                                                <th class="text-center">Name</th>
+                                                <th class="text-center">Total Amount</th>
+                                                <th class="text-center">Pay</th>
+                                                <th class="text-center">Due</th>
+                                                <th class="text-center">Pay By</th>
+                                                <th class="text-center th-120">Action</th>
                                             </tr>
                                         </thead>
-
                                     </table>
                                 </div>
                                 <data-empty></data-empty>
                             @endif
-
-
                         </div>
-                        <!-- /.card-body -->
                     </div>
                     {{ $orders->links('pagination::bootstrap-5') }}
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
     </section>
 @endsection

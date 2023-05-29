@@ -43,36 +43,35 @@
             <div class="col-lg-3 col-md-3">
                 <div class="header__nav__option">
                     @if (Auth::check())
-                    <section class="ftco-section" style="margin-left: 60px">
-                        <div class="container">
+                        <section class="ftco-section" style="margin-left: 60px">
+                            <div class="container">
 
-                            <div class="row justify-content-center">
+                                <div class="row justify-content-center">
 
-                                <div class="col-md-6 d-flex justify-content-center">
-                                    <div class="btn-group">
-                                        <a href="" class="btn-img img dropdown-toggle rounded-circle"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <img src="img/avatar.jpg" alt=""
-                                                style="width: 40px; height: 40px; border-radius: 50%">
+                                    <div class="col-md-6 d-flex justify-content-center">
+                                        <div class="btn-group">
+                                            <a href="" class="btn-img img dropdown-toggle rounded-circle"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="img/avatar.jpg" alt=""
+                                                    style="width: 40px; height: 40px; border-radius: 50%">
 
-                                        </a>
+                                            </a>
 
-                                        <div class="dropdown-menu">
+                                            <div class="dropdown-menu">
 
-                                            <h5 class="dropdown-item"> {{ Auth::user()->name }}</h5>
+                                                <h5 class="dropdown-item"> {{ Auth::user()->name }}</h5>
 
-                                            <a class="dropdown-item" href="{{ asset('/profile') }}">Profile</a>
-                                            <a class="dropdown-item" href="{{ asset('/cart') }}">Cart</a>
-                                            <a class="dropdown-item" href="{{ asset('/order') }}">Order</a>
-                                            <a class="dropdown-item"
-                                                href="{{ asset('/wishlist') }}">WishList</a>
-                                            <a class="dropdown-item" href="{{ asset('/logout') }}">Logout</a>
+                                                <a class="dropdown-item" href="{{ asset('/profile') }}">Profile</a>
+                                                <a class="dropdown-item" href="{{ asset('/cart') }}">Cart</a>
+                                                <a class="dropdown-item" href="{{ asset('/order') }}">Order</a>
+                                                <a class="dropdown-item" href="{{ asset('/wishlist') }}">WishList</a>
+                                                <a class="dropdown-item" href="{{ asset('/logout') }}">Logout</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
                     @endif
                 </div>
             </div>

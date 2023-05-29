@@ -33,7 +33,8 @@
                                 <div class="col-9">
                                     <form action="{{ route('category.index') }}" method="GET">
                                         <input name="search_input" class="form-control " placeholder="Search"
-                                            autocomplete="off" id="search_input" value="{{ request('search_input') }}" type="control">
+                                            autocomplete="off" id="search_input" value="{{ request('search_input') }}"
+                                            type="control">
                                     </form>
                                 </div>
                                 &nbsp;
@@ -48,30 +49,26 @@
                     <div class="card">
                         <div class="card-body">
                             @if ($categories->count() > 0)
-                                <div class="table-responsive-sm">
+                                <div class="table-responsive-sm table-bordered">
                                     <table class="table align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
-
-                                                <th>Action</th>
+                                                <th class="text-center">ID</th>
+                                                <th class="text-center">Name</th>
+                                                <th class="text-center th-120">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($categories as $category)
                                                 <tr>
-
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $category->id }}
-
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $category->category_name }}
-
                                                     </td>
-                                                    <td>
-                                                        <a class="btn btn-sm btn-primary"
+                                                    <td class="text-center">
+                                                        <a class="btn btn-sm btn-primary" style="display: inline-block; "
                                                             href="{{ route('category.edit', $category->id) }}">Edit</a>
                                                         <form action="{{ route('category.destroy', $category->id) }}"
                                                             method="Post" style="display: inline-block; margin-left: 10px">
@@ -88,32 +85,24 @@
                                     </table>
                                 </div>
                             @else
-                                <div class="table-responsive-sm">
+                                <div class="table-responsive-sm table-bordered">
                                     <table class="table align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
-
-                                                <th>Action</th>
+                                                <th class="text-center">ID</th>
+                                                <th class="text-center">Name</th>
+                                                <th class="text-center th-120">Action</th>
                                             </tr>
                                         </thead>
                                     </table>
                                 </div>
-
                                 <data-empty></data-empty>
                             @endif
-
                         </div>
-
-                        <!-- /.card-body -->
                     </div>
                     {{ $categories->links('pagination::bootstrap-5') }}
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
     </section>
 @endsection

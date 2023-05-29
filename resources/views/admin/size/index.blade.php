@@ -49,29 +49,25 @@
 
                         <div class="card-body">
                             @if ($sizes->count() > 0)
-                                <div class="table-responsive-sm">
+                                <div class="table table-responsive-sm table-bordered">
                                     <table class="table align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
-
-                                                <th>Action</th>
+                                                <th class="text-center">ID</th>
+                                                <th class="text-center">Name</th>
+                                                <th class="text-center th-120">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($sizes as $size)
                                                 <tr>
-
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $size->id }}
-
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $size->name }}
-
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <a class="btn btn-sm btn-primary"
                                                             href="{{ route('sizes.edit', $size->id) }}">Edit</a>
                                                         <form action="{{ route('sizes.destroy', $size->id) }}"
@@ -89,13 +85,12 @@
                                     </table>
                                 </div>
                             @else
-                                <div class="table-responsive-sm">
+                                <div class="table table-responsive-sm table-bordered">
                                     <table class="table align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Name</th>
-
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -103,16 +98,11 @@
                                 </div>
                                 <data-empty></data-empty>
                             @endif
-
                         </div>
-                        <!-- /.card-body -->
                     </div>
                     {{ $sizes->links('pagination::bootstrap-5') }}
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
     </section>
 @endsection

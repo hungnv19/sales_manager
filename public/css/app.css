@@ -14,6 +14,14 @@
   overflow-x: auto;
 }
 .content .container-fluid .card .table-responsive-sm {
-  overflow-x: auto;
+  min-width: 1080px;
+}
+@media only screen and (max-width: 480px) {
+  .content .container-fluid .card .table-responsive-sm {
+    width: 1080px;
+  }
+}
+.content .container-fluid .card .table-responsive-sm .th-120 {
+  width: 130px;
 }
 

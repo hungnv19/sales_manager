@@ -33,7 +33,8 @@
                                 <div class="col-9">
                                     <form action="{{ route('news.index') }}" method="GET">
                                         <input name="search_input" class="form-control " placeholder="Search"
-                                            autocomplete="off" id="search_input" value="{{ request('search_input') }}" type="control">
+                                            autocomplete="off" id="search_input" value="{{ request('search_input') }}"
+                                            type="control">
                                     </form>
                                 </div>
                                 &nbsp;
@@ -46,11 +47,11 @@
                     </div>
                     <br>
                     <div class="card">
-                        
+
                         <!-- /.card-header -->
                         <div class="card-body">
                             @if ($news->count() > 0)
-                                <div class="table-responsive-sm">
+                                <div class="table-responsive-sm table-bordered">
                                     <table class="table  align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
@@ -79,7 +80,8 @@
 
                                                     </td>
                                                     <td>
-                                                        <img src=" {{ Storage::url($new->image) }}" style="width: 60px; height: 60px; object-fit: cover"  />
+                                                        <img src=" {{ Storage::url($new->image) }}"
+                                                            style="width: 60px; height: 60px; object-fit: cover" />
 
                                                     </td>
                                                     <td>
@@ -88,10 +90,10 @@
                                                     </td>
 
                                                     <td>
-                                                        <a class="btn btn-sm btn-primary"
+                                                        <a class="btn btn-sm btn-primary" style="  display: inline-block "
                                                             href="{{ route('news.edit', $new->id) }}">Edit</a>
                                                         <form action="{{ route('news.destroy', $new->id) }}" method="Post"
-                                                            style="display: inline-block; margin-left: 10px">
+                                                            style=" margin-left: 10px; display: inline-block ">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit"
@@ -104,7 +106,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{ $news->links("pagination::bootstrap-5") }}
+                                {{ $news->links('pagination::bootstrap-5') }}
                             @else
                                 <div class="table-responsive-sm">
                                     <table class="table  align-items-center table-flush">
@@ -128,7 +130,7 @@
                         </div>
                         <!-- /.card-body -->
                     </div>
-                    {{ $news->links("pagination::bootstrap-5") }}
+                    {{ $news->links('pagination::bootstrap-5') }}
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->

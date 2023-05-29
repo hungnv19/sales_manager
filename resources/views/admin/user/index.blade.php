@@ -32,7 +32,8 @@
                                 <div class="col-9">
                                     <form action="{{ route('user.index') }}" method="GET">
                                         <input name="search_input" class="form-control " placeholder="Search"
-                                            autocomplete="off" id="search_input" value="{{ request('search_input') }}" type="control">
+                                            autocomplete="off" id="search_input" value="{{ request('search_input') }}"
+                                            type="control">
                                     </form>
                                 </div>
                                 &nbsp;
@@ -45,73 +46,64 @@
                     </div>
                     <br>
                     <div class="card">
-
                         <div class="card-body">
                             @if ($users->count() > 0)
-                                <div class="table-responsive-sm">
+                                <div class="table table-responsive-sm table-bordered">
                                     <table class="table align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Action</th>
+                                                <th class="text-center">ID</th>
+                                                <th class="text-center">Name</th>
+                                                <th class="text-center">Email</th>
+                                                <th class="th-120 text-center">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($users as $user)
                                                 @if ($user->role === 0)
                                                     <tr>
-
-                                                        <td>
+                                                        <td class="text-center">
                                                             {{ $user->id }}
-
                                                         </td>
-                                                        <td>
+                                                        <td class="text-center">
                                                             {{ $user->name }}
-
                                                         </td>
-                                                        <td>
+                                                        <td class="text-center">
                                                             {{ $user->email }}
-
                                                         </td>
-                                                        <td>
+                                                        <td class="text-center">
                                                             <a class="btn btn-sm btn-primary"
                                                                 href="{{ route('user.edit', $user->id) }}">Edit</a>
                                                             <form action="{{ route('user.destroy', $user->id) }}"
-                                                                method="Post"
-                                                                style="display: inline-block; margin-left: 10px">
+                                                                method="Post" style="display: inline-block">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit"
+                                                                    style=" margin-left: 10px; display: inline-block "
                                                                     class="btn btn-sm btn-danger">Delete</button>
                                                             </form>
                                                         </td>
                                                     </tr>
                                                 @endif
                                             @endforeach
-
                                         </tbody>
                                     </table>
                                 </div>
                             @else
-                                <div class="table-responsive-sm">
+                                <div class="table table-responsive-sm table-bordered">
                                     <table class="table align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Action</th>
+                                                <th class="text-center">ID</th>
+                                                <th class="text-center">Name</th>
+                                                <th class="text-center">Email</th>
+                                                <th class="th-120 text-center">Action</th>
                                             </tr>
                                         </thead>
                                     </table>
                                 </div>
                                 <data-empty></data-empty>
                             @endif
-
-
-
                         </div>
                     </div>
                     {{ $users->links('pagination::bootstrap-5') }}

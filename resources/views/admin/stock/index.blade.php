@@ -34,28 +34,26 @@
                                             autocomplete="off" id="search_input" value="{{ request('search_input') }}" type="control">
                                     </form>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                     <br>
                     <div class="card">
-
                         <div class="card-body">
                             @if ($products->count() > 0)
-                                <div class="table-responsive-sm">
+                                <div class="table table-responsive-sm table-bordered">
                                     <table class="table align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>Image</th>
-                                                <th>Product Name</th>
-                                                <th>Product Code</th>
-                                                <th>Root</th>
-                                                <th>Category</th>
-                                                <th>Buying Price</th>
-                                                <th>Status</th>
-                                                <th>Product Quantity</th>
-                                                <th>Action</th>
+                                                <th >Image</th>
+                                                <th class="text-center">Product Name</th>
+                                                <th class="text-center">Product Code</th>
+                                                <th class="text-center">Root</th>
+                                                <th class="text-center">Category</th>
+                                                <th class="text-center">Buying Price</th>
+                                                <th class="text-center">Status</th>
+                                                <th class="text-center">Product Quantity</th>
+                                                <th class="th-120 text-center">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -65,62 +63,56 @@
                                                         <img src=" {{ Storage::url($product->image) }}"
                                                             style="width: 60px; height: 60px; object-fit: cover" />
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $product->product_name }}
-
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $product->product_code }}
-
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $product->root }}
-
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $product->categories_name }}
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ number_format($product->buying_price) . ' Đ' }}
                                                     </td>
                                                     @if ($product->product_quantity >= 1)
-                                                        <td class="text-success">
+                                                        <td class="text-success text-center">
                                                             Available
                                                         </td>
                                                     @else
-                                                        <td class="text-danger">
+                                                        <td class="text-danger text-center">
                                                             Stock Out
                                                         </td>
                                                     @endif
-
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $product->product_quantity }}
-
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <a class="btn btn-sm btn-primary"
                                                             href="{{ route('stock.edit', $product->id) }}">Edit</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
-
                                         </tbody>
                                     </table>
                                 </div>
                             @else
-                                <div class="table-responsive-sm">
+                                <div class="table table-responsive-sm table-bordered">
                                     <table class="table align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>Image</th>
-                                                <th>Product Name</th>
-                                                <th>Product Code</th>
-                                                <th>Root</th>
-                                                <th>Category</th>
-                                                <th>Buying Price</th>
-                                                <th>Status</th>
-                                                <th>Product Quantity</th>
-                                                <th>Action</th>
+                                                <th >Image</th>
+                                                <th class="text-center">Product Name</th>
+                                                <th class="text-center">Product Code</th>
+                                                <th class="text-center">Root</th>
+                                                <th class="text-center">Category</th>
+                                                <th class="text-center">Buying Price</th>
+                                                <th class="text-center">Status</th>
+                                                <th class="text-center">Product Quantity</th>
+                                                <th class="th-120 text-center">Action</th>
                                             </tr>
                                         </thead>
                                     </table>

@@ -24,7 +24,13 @@
             overflow-x: auto;
 
             .table-responsive-sm {
-                overflow-x: auto;
+                min-width: 1080px;
+                @media only screen and (max-width: 480px) {
+                    width: 1080px;
+                }
+                .th-120{
+                    width: 130px;
+                }
             }
         }
     }

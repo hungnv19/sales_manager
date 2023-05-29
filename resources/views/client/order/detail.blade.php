@@ -127,40 +127,40 @@
                             </h5>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive-sm">
+                            <div class="table-responsive-sm table-bordered">
                                 <table class="table align-items-center table-flush">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th>
+                                            <th class="text-center">
                                                 Product Name
                                             </th>
-                                            <th>Code</th>
-                                            <th>
+                                            <th class="text-center">Code</th>
+                                            <th class="text-center">
                                                 Image
                                             </th>
-                                            <th>Quantity</th>
-                                            <th>Unit_price</th>
-                                            <th>Total</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-center">Unit_price</th>
+                                            <th class="text-center">Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($details as $detail)
                                             <tr>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $detail->product_name }}
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $detail->product_code }}
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <img src=" {{ Storage::url($detail->image) }}" style="width: 50px;" />
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $detail->product_quantity }}
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ number_format($detail->product_price) . ' Đ' }}
-                                                </td>
+                                                </td class="text-center">
                                                 <td>
                                                     {{ number_format($detail->sub_total) . ' Đ' }}
                                                 </td>
