@@ -11,21 +11,16 @@
                         <li class="breadcrumb-item"><a href="">Home</a></li>
                         <li class="breadcrumb-item"><a href="">News</a></li>
                         <li class="breadcrumb-item"><a href="">Edit</a></li>
-
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
-
-    <!-- Main content -->
-
     <section class="content">
         <news-edit
             :data="{{ json_encode([
                 'urlUpdate' => route('news.update', $new->id),
                 'urlBack' => route('news.index'),
-              
                 'categories' => $categories,
                 'new' => $new,
             ]) }}">

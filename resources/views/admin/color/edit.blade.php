@@ -26,8 +26,7 @@
                 'color' => $color,
                 'urlUpdate' => route('colors.update', $color->id),
                 'urlBack' => route('colors.index'),
-                
             ]) }}">
-            </color-edit>
+        </color-edit>
     </section>
 @endsection

@@ -26,7 +26,6 @@
                         <div class="col-8"></div>
                         <div class="col-4">
                             <div class="row" style="">
-
                                 <div class="col-12">
                                     <form action="{{ route('wishlist.index') }}" method="GET">
                                         <input name="search_input" class="form-control " placeholder="Search"
@@ -34,13 +33,11 @@
                                             type="control">
                                     </form>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                     <br>
                     <div class="card">
-
                         <div class="card-body">
                             @if ($wishlists->count() > 0)
                                 <div class="table-responsive-sm table-bordered">

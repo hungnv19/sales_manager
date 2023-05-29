@@ -15,15 +15,10 @@
             </div>
         </div>
     </section>
-
-    <!-- Main content -->
     <br>
     <section class="content">
         <div class="container-fluid" id="container-wrapper">
-
-
             <div class="row mb-3">
-                <!-- Table 1 -->
                 <div class="col-xl-6 col-lg-6">
                     <div class="card mb-4">
                         <div
@@ -63,8 +58,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="col-xl-6 col-lg-6">
                     <div class="card mb-4">
                         <div

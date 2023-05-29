@@ -11,23 +11,17 @@
                         <li class="breadcrumb-item"><a href="">Home</a></li>
                         <li class="breadcrumb-item"><a href="">Color</a></li>
                         <li class="breadcrumb-item"><a href="">Create</a></li>
-
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
-
-    <!-- Main content -->
-
     <section class="content">
         <color-create
             :data="{{ json_encode([
-                
                 'urlStore' => route('colors.store'),
                 'urlBack' => route('colors.index'),
-                
             ]) }}">
-            </color-create>
+        </color-create>
     </section>
 @endsection

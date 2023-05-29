@@ -10,15 +10,11 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="">Home</a></li>
                         <li class="breadcrumb-item"><a href="">News</a></li>
-
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
-
-    <!-- Main content -->
-
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -47,49 +43,40 @@
                     </div>
                     <br>
                     <div class="card">
-
-                        <!-- /.card-header -->
                         <div class="card-body">
                             @if ($news->count() > 0)
                                 <div class="table-responsive-sm table-bordered">
                                     <table class="table  align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Category Id</th>
-                                                <th>Title</th>
-                                                <th>Image</th>
-                                                <th>Day Create</th>
-                                                <th>Action</th>
+                                                <th class="text-center">ID</th>
+                                                <th class="text-center">Category Id</th>
+                                                <th class="text-center">Title</th>
+                                                <th class="text-center">Image</th>
+                                                <th class="text-center">Day Create</th>
+                                                <th class="text-center th-120">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($news as $new)
                                                 <tr>
-
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $new->id }}
-
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $new->categories_name }}
-
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $new->title }}
-
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <img src=" {{ Storage::url($new->image) }}"
                                                             style="width: 60px; height: 60px; object-fit: cover" />
-
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         {{ $new->created_at }}
-
                                                     </td>
-
-                                                    <td>
+                                                    <td class="text-center">
                                                         <a class="btn btn-sm btn-primary" style="  display: inline-block "
                                                             href="{{ route('news.edit', $new->id) }}">Edit</a>
                                                         <form action="{{ route('news.destroy', $new->id) }}" method="Post"
@@ -112,30 +99,23 @@
                                     <table class="table  align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Category Id</th>
-                                                <th>Title</th>
-                                                <th>Image</th>
-                                                <th>Day Create</th>
-                                                <th>Action</th>
+                                                <th class="text-center">ID</th>
+                                                <th class="text-center">Category Id</th>
+                                                <th class="text-center">Title</th>
+                                                <th class="text-center">Image</th>
+                                                <th class="text-center">Day Create</th>
+                                                <th class="text-center th-120">Action</th>
                                             </tr>
                                         </thead>
-
                                     </table>
                                 </div>
                                 <data-empty></data-empty>
                             @endif
-
-
-                        </div>
-                        <!-- /.card-body -->
+                        </div>              
                     </div>
                     {{ $news->links('pagination::bootstrap-5') }}
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
     </section>
 @endsection

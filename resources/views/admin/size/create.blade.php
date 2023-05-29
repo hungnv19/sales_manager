@@ -11,23 +11,17 @@
                         <li class="breadcrumb-item"><a href="">Home</a></li>
                         <li class="breadcrumb-item"><a href="">Size</a></li>
                         <li class="breadcrumb-item"><a href="">Create</a></li>
-
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
-
-    <!-- Main content -->
-
     <section class="content">
         <size-create
             :data="{{ json_encode([
-                
                 'urlStore' => route('sizes.store'),
                 'urlBack' => route('sizes.index'),
-                
             ]) }}">
-            </size-create>
+        </size-create>
     </section>
 @endsection

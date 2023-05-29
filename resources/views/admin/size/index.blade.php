@@ -10,15 +10,11 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="">Home</a></li>
                         <li class="breadcrumb-item"><a href="">Size</a></li>
-
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
-
-    <!-- Main content -->
-
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -46,7 +42,6 @@
                     </div>
                     <br>
                     <div class="card">
-
                         <div class="card-body">
                             @if ($sizes->count() > 0)
                                 <div class="table table-responsive-sm table-bordered">
@@ -80,7 +75,6 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
-
                                         </tbody>
                                     </table>
                                 </div>

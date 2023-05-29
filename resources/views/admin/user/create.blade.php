@@ -11,15 +11,11 @@
                         <li class="breadcrumb-item"><a href="">Home</a></li>
                         <li class="breadcrumb-item"><a href="">User</a></li>
                         <li class="breadcrumb-item"><a href="">Create</a></li>
-
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
-
-    <!-- Main content -->
-
     <section class="content">
         <user-create
             :data="{{ json_encode([

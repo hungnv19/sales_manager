@@ -11,15 +11,11 @@
                         <li class="breadcrumb-item"><a href="">Home</a></li>
                         <li class="breadcrumb-item"><a href="">Size</a></li>
                         <li class="breadcrumb-item"><a href="">Edit</a></li>
-
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
-
-    <!-- Main content -->
-
     <section class="content">
         <size-edit
             :data="{{ json_encode([
