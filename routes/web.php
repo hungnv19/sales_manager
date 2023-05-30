@@ -61,6 +61,9 @@ Route::middleware('user')->group(function () {
     // //profile
     Route::get('/profile', [ClientController::class, 'profile'])->name('profile');
     Route::post('/profile', [ClientController::class, 'updateProfile'])->name('profile-update');
+    //whistList
+    Route::resource('wishlist', WishlistController::class);
+    Route::get('/add-wishlist/{id}', [WishlistController::class, 'addWishList'])->name('add-wishlist');
 });
 
 Route::middleware('admin')->group(function () {
@@ -75,8 +78,7 @@ Route::middleware('admin')->group(function () {
     Route::resource('orders', AdminOrderController::class);
 });
 
-Route::resource('wishlist', WishlistController::class);
-Route::get('/add-wishlist/{id}', [WishlistController::class, 'addWishList'])->name('add-wishlist');
+
 //Auth
 Route::get('register', [RegisterController::class, 'create'])->name('register.create');
 Route::post('register', [RegisterController::class, 'store'])->name('register.store');
