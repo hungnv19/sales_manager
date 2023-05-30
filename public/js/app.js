@@ -25490,7 +25490,7 @@ var _hoisted_14 = {
 };
 var _hoisted_15 = {
   key: 0,
-  "class": "text-danger"
+  "class": "error"
 };
 var _hoisted_16 = {
   "class": "d-flex justify-content-between align-items-center"

@@ -78,7 +78,7 @@
               </div>
               <div class="form-group">
                 <div class="d-flex justify-content-center">
-                  <div class="text-danger" v-if="showError">
+                  <div class="error" v-if="showError">
                     {{ messageError }}
                   </div>
                 </div>

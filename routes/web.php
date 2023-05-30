@@ -82,6 +82,7 @@ Route::post('login', [LoginController::class, 'store'])->name('login.store');
 Route::get('/logout', [LoginController::class, 'destroy']);
 Route::post('check-mail-register', [RegisterController::class, 'checkMailRegister'])->name('register.checkMail');
 Route::post('/product/checkCode', [ProductController::class, 'checkProductCode'])->name('product.checkCode');
+// Route::post('check-user-login', [LoginController::class, 'checkUserLogin'])->name('login.checkUserLogin');
 Route::post('check-user-login', [LoginController::class, 'checkUserLogin'])->name('login.checkUserLogin');
 //Reset pass 
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');

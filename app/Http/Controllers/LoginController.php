@@ -107,9 +107,9 @@ class LoginController extends Controller
     function checkUserLogin(Request $request)
     {
         if ($this->checkUser($request)) {
-            return response()->json('message' , 'Logged in successfully');
+            return response()->json(['message' => 'Logged in successfully']);
         } else {
-            return response()->json('error' , 'Incorrect email or password!');
+            return response()->json(['error' => 'Incorrect email or password!']);
         }
     }
 
