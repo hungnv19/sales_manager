@@ -31,17 +31,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/')->name('')->group(function () {
     Route::get('/', [ClientController::class, 'index'])->name('home');
-
     Route::get('/about', function () {
         return view('client.pages.about');
     });
-
-
     Route::get('contact', [ClientController::class, 'contact']);
     Route::post('contact', [ClientController::class, 'storeContact'])->name('contact.us.store');
-
     Route::get('/blog', [NewsController::class, 'blog'])->name('blog');
-
     Route::get('/product-detail/{id}', [ClientController::class, 'productDetail'])->name('productDetail');
     Route::get('/shop', [ClientController::class, 'shop'])->name('shop');
     Route::get('/categories/{id}', [ClientController::class, 'categoryProducts'])->name('categoryProducts');
@@ -61,18 +56,12 @@ Route::middleware('user')->group(function () {
     Route::get('/cart/delete/{id}', [CartController::class, 'cartDelete']);
     Route::get('/cart-product', [CartController::class, 'cartProducts']);
     Route::get('cart/addToCart/{id}', [CartController::class, 'addToCart'])->name('cart.addToCart');
-
     // //Order
     Route::resource('order', OrderController::class);
-
     // //profile
     Route::get('/profile', [ClientController::class, 'profile'])->name('profile');
     Route::post('/profile', [ClientController::class, 'updateProfile'])->name('profile-update');
 });
-
-
-
-
 
 Route::middleware('admin')->group(function () {
     Route::get('dashboard', [HomeController::class, 'index'])->name('home.index');
@@ -88,23 +77,20 @@ Route::middleware('admin')->group(function () {
 
 Route::resource('wishlist', WishlistController::class);
 Route::get('/add-wishlist/{id}', [WishlistController::class, 'addWishList'])->name('add-wishlist');
-
+//Auth
 Route::get('register', [RegisterController::class, 'create'])->name('register.create');
 Route::post('register', [RegisterController::class, 'store'])->name('register.store');
 Route::get('login', [LoginController::class, 'create'])->name('login.create');
 Route::post('login', [LoginController::class, 'store'])->name('login.store');
 Route::get('/logout', [LoginController::class, 'destroy']);
-
 Route::post('check-mail-register', [RegisterController::class, 'checkMailRegister'])->name('register.checkMail');
 Route::post('/product/checkCode', [ProductController::class, 'checkProductCode'])->name('product.checkCode');
 Route::post('check-user-login', [LoginController::class, 'checkUserLogin'])->name('login.checkUserLogin');
-
-Route::post('/post-comment/{id}', [ClientController::class, 'postComment'])->name('post-comment');
-
-
+//Reset pass 
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
-
+//Post comment
+Route::post('/post-comment/{id}', [ClientController::class, 'postComment'])->name('post-comment');
 Route::get('get-code', [ProductController::class, 'generateCode'])->name('get-code');
