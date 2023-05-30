@@ -44,11 +44,8 @@ Route::prefix('/')->name('')->group(function () {
     Route::get('/color/{id}', [ClientController::class, 'colorProducts'])->name('colorProducts');
     Route::get('/searchProduct', [ClientController::class, 'searchProduct'])->name('searchProduct');
 });
-
-
-
+//User
 Route::middleware('user')->group(function () {
-
     //Cart Routes
     Route::get('/gift-card-list', [GiftCardController::class, 'getGiftCardList']);
     Route::post('/cart/orders', [CartController::class, 'order'])->name('cart.orders');
@@ -65,7 +62,7 @@ Route::middleware('user')->group(function () {
     Route::resource('wishlist', WishlistController::class);
     Route::get('/add-wishlist/{id}', [WishlistController::class, 'addWishList'])->name('add-wishlist');
 });
-
+//Admin
 Route::middleware('admin')->group(function () {
     Route::get('dashboard', [HomeController::class, 'index'])->name('home.index');
     Route::resource('user', UserController::class);
@@ -77,8 +74,6 @@ Route::middleware('admin')->group(function () {
     Route::resource('sizes', SizesController::class);
     Route::resource('orders', AdminOrderController::class);
 });
-
-
 //Auth
 Route::get('register', [RegisterController::class, 'create'])->name('register.create');
 Route::post('register', [RegisterController::class, 'store'])->name('register.store');
