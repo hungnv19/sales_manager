@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Send Password Reset Link
+                                        Send Password Reset Links
                                     </button>
                                 </div>
                             </form>
